@@ -1,0 +1,1183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.info.n25175_info.dao.N25175UserMapper">
+  <resultMap id="BaseResultMap" type="com.info.n25175_info.entity.N25175User">
+    <id column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="u_aid" jdbcType="INTEGER" property="uAid" />
+    <result column="u_name" jdbcType="VARCHAR" property="uName" />
+    <result column="u_province" jdbcType="VARCHAR" property="uProvince" />
+    <result column="u_city" jdbcType="VARCHAR" property="uCity" />
+    <result column="u_picture" jdbcType="VARCHAR" property="uPicture" />
+    <result column="u_married" jdbcType="INTEGER" property="uMarried" />
+    <result column="u_sex" jdbcType="INTEGER" property="uSex" />
+    <result column="u_identity" jdbcType="VARCHAR" property="uIdentity" />
+    <result column="u_born" jdbcType="DATE" property="uBorn" />
+    <result column="u_age" jdbcType="INTEGER" property="uAge" />
+    <result column="u_height" jdbcType="INTEGER" property="uHeight" />
+    <result column="u_ethnic" jdbcType="INTEGER" property="uEthnic" />
+    <result column="u_polity" jdbcType="INTEGER" property="uPolity" />
+    <result column="u_subscript" jdbcType="INTEGER" property="uSubscript" />
+    <result column="u_post" jdbcType="INTEGER" property="uPost" />
+    <result column="u_treatment" jdbcType="INTEGER" property="uTreatment" />
+    <result column="u_work" jdbcType="DATE" property="uWork" />
+    <result column="u_become" jdbcType="DATE" property="uBecome" />
+    <result column="u_out" jdbcType="DATE" property="uOut" />
+    <result column="u_address" jdbcType="VARCHAR" property="uAddress" />
+    <result column="u_phone" jdbcType="VARCHAR" property="uPhone" />
+    <result column="u_wx" jdbcType="VARCHAR" property="uWx" />
+    <result column="u_qq" jdbcType="VARCHAR" property="uQq" />
+    <result column="u_first" jdbcType="INTEGER" property="uFirst" />
+    <result column="u_first_start" jdbcType="DATE" property="uFirstStart" />
+    <result column="u_first_end" jdbcType="DATE" property="uFirstEnd" />
+    <result column="u_first_school" jdbcType="VARCHAR" property="uFirstSchool" />
+    <result column="u_first_major" jdbcType="VARCHAR" property="uFirstMajor" />
+    <result column="u_peak" jdbcType="INTEGER" property="uPeak" />
+    <result column="u_peak_start" jdbcType="DATE" property="uPeakStart" />
+    <result column="u_peak_end" jdbcType="DATE" property="uPeakEnd" />
+    <result column="u_peak_school" jdbcType="VARCHAR" property="uPeakSchool" />
+    <result column="u_peak_major" jdbcType="VARCHAR" property="uPeakMajor" />
+    <result column="u_old_address" jdbcType="VARCHAR" property="uOldAddress" />
+    <result column="u_content" jdbcType="VARCHAR" property="uContent" />
+    <result column="u_file" jdbcType="VARCHAR" property="uFile" />
+    <result column="u_number1" jdbcType="INTEGER" property="uNumber1" />
+    <result column="u_number2" jdbcType="INTEGER" property="uNumber2" />
+    <result column="u_date1" jdbcType="DATE" property="uDate1" />
+    <result column="u_date2" jdbcType="DATE" property="uDate2" />
+    <result column="u_string1" jdbcType="VARCHAR" property="uString1" />
+    <result column="u_string2" jdbcType="VARCHAR" property="uString2" />
+    <result column="u_textarea1" jdbcType="VARCHAR" property="uTextarea1" />
+    <result column="u_textarea2" jdbcType="VARCHAR" property="uTextarea2" />
+    <result column="u_work_year" jdbcType="VARCHAR" property="uWorkYear" />
+    <result column="u_email" jdbcType="VARCHAR" property="uEmail" />
+    <result column="u_tel" jdbcType="VARCHAR" property="uTel" />
+    <result column="u_postcode" jdbcType="VARCHAR" property="uPostcode" />
+    <result column="u_subsidy" jdbcType="VARCHAR" property="uSubsidy" />
+    <result column="u_prize" jdbcType="VARCHAR" property="uPrize" />
+    <result column="u_expect_place" jdbcType="VARCHAR" property="uExpectPlace" />
+    <result column="u_expect_job" jdbcType="VARCHAR" property="uExpectJob" />
+    <result column="u_expect_trade" jdbcType="VARCHAR" property="uExpectTrade" />
+    <result column="u_cometime" jdbcType="VARCHAR" property="uCometime" />
+    <result column="u_job_type" jdbcType="VARCHAR" property="uJobType" />
+    <result column="u_self_appraisal" jdbcType="VARCHAR" property="uSelfAppraisal" />
+    <result column="u_work_experience" jdbcType="VARCHAR" property="uWorkExperience" />
+    <result column="u_project_experience" jdbcType="VARCHAR" property="uProjectExperience" />
+    <result column="u_school_experience" jdbcType="VARCHAR" property="uSchoolExperience" />
+    <result column="u_school_honor" jdbcType="VARCHAR" property="uSchoolHonor" />
+    <result column="u_school_duty" jdbcType="VARCHAR" property="uSchoolDuty" />
+    <result column="u_skill" jdbcType="VARCHAR" property="uSkill" />
+    <result column="u_language" jdbcType="VARCHAR" property="uLanguage" />
+    <result column="u_credential" jdbcType="VARCHAR" property="uCredential" />
+    <result column="u_train_experience" jdbcType="VARCHAR" property="uTrainExperience" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    u_id, u_aid, u_name, u_province, u_city, u_picture, u_married, u_sex, u_identity, 
+    u_born, u_age, u_height, u_ethnic, u_polity, u_subscript, u_post, u_treatment, u_work, 
+    u_become, u_out, u_address, u_phone, u_wx, u_qq, u_first, u_first_start, u_first_end, 
+    u_first_school, u_first_major, u_peak, u_peak_start, u_peak_end, u_peak_school, u_peak_major, 
+    u_old_address, u_content, u_file, u_number1, u_number2, u_date1, u_date2, u_string1, 
+    u_string2, u_textarea1, u_textarea2, u_work_year, u_email, u_tel, u_postcode, u_subsidy, 
+    u_prize, u_expect_place, u_expect_job, u_expect_trade, u_cometime, u_job_type, u_self_appraisal, 
+    u_work_experience, u_project_experience, u_school_experience, u_school_honor, u_school_duty, 
+    u_skill, u_language, u_credential, u_train_experience
+  </sql>
+  <select id="selectByExample" parameterType="com.info.n25175_info.entity.N25175UserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from n25175_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+
+  <select id="selectByMonth" resultMap="BaseResultMap">
+    SELECT * FROM n25175_admin
+    LEFT JOIN n25175_user
+    ON a_id = u_aid
+    WHERE DATE_FORMAT( u_born, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' ) AND a_status &lt;&gt; 2 AND a_status &lt;&gt; 9 ORDER BY u_born
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from n25175_user
+    where u_id = #{uId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from n25175_user
+    where u_id = #{uId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.info.n25175_info.entity.N25175UserExample">
+    delete from n25175_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.info.n25175_info.entity.N25175User">
+    insert into n25175_user (u_id, u_aid, u_name, 
+      u_province, u_city, u_picture, 
+      u_married, u_sex, u_identity, 
+      u_born, u_age, u_height, 
+      u_ethnic, u_polity, u_subscript, 
+      u_post, u_treatment, u_work, 
+      u_become, u_out, u_address, 
+      u_phone, u_wx, u_qq, u_first, 
+      u_first_start, u_first_end, u_first_school, 
+      u_first_major, u_peak, u_peak_start, 
+      u_peak_end, u_peak_school, u_peak_major, 
+      u_old_address, u_content, u_file, 
+      u_number1, u_number2, u_date1, 
+      u_date2, u_string1, u_string2, 
+      u_textarea1, u_textarea2, u_work_year, 
+      u_email, u_tel, u_postcode, 
+      u_subsidy, u_prize, u_expect_place, 
+      u_expect_job, u_expect_trade, u_cometime, 
+      u_job_type, u_self_appraisal, u_work_experience, 
+      u_project_experience, u_school_experience, 
+      u_school_honor, u_school_duty, u_skill, 
+      u_language, u_credential, u_train_experience
+      )
+    values (#{uId,jdbcType=INTEGER}, #{uAid,jdbcType=INTEGER}, #{uName,jdbcType=VARCHAR}, 
+      #{uProvince,jdbcType=VARCHAR}, #{uCity,jdbcType=VARCHAR}, #{uPicture,jdbcType=VARCHAR}, 
+      #{uMarried,jdbcType=INTEGER}, #{uSex,jdbcType=INTEGER}, #{uIdentity,jdbcType=VARCHAR}, 
+      #{uBorn,jdbcType=DATE}, #{uAge,jdbcType=INTEGER}, #{uHeight,jdbcType=INTEGER}, 
+      #{uEthnic,jdbcType=INTEGER}, #{uPolity,jdbcType=INTEGER}, #{uSubscript,jdbcType=INTEGER}, 
+      #{uPost,jdbcType=INTEGER}, #{uTreatment,jdbcType=INTEGER}, #{uWork,jdbcType=DATE}, 
+      #{uBecome,jdbcType=DATE}, #{uOut,jdbcType=DATE}, #{uAddress,jdbcType=VARCHAR}, 
+      #{uPhone,jdbcType=VARCHAR}, #{uWx,jdbcType=VARCHAR}, #{uQq,jdbcType=VARCHAR}, #{uFirst,jdbcType=INTEGER}, 
+      #{uFirstStart,jdbcType=DATE}, #{uFirstEnd,jdbcType=DATE}, #{uFirstSchool,jdbcType=VARCHAR}, 
+      #{uFirstMajor,jdbcType=VARCHAR}, #{uPeak,jdbcType=INTEGER}, #{uPeakStart,jdbcType=DATE}, 
+      #{uPeakEnd,jdbcType=DATE}, #{uPeakSchool,jdbcType=VARCHAR}, #{uPeakMajor,jdbcType=VARCHAR}, 
+      #{uOldAddress,jdbcType=VARCHAR}, #{uContent,jdbcType=VARCHAR}, #{uFile,jdbcType=VARCHAR}, 
+      #{uNumber1,jdbcType=INTEGER}, #{uNumber2,jdbcType=INTEGER}, #{uDate1,jdbcType=DATE}, 
+      #{uDate2,jdbcType=DATE}, #{uString1,jdbcType=VARCHAR}, #{uString2,jdbcType=VARCHAR}, 
+      #{uTextarea1,jdbcType=VARCHAR}, #{uTextarea2,jdbcType=VARCHAR}, #{uWorkYear,jdbcType=VARCHAR}, 
+      #{uEmail,jdbcType=VARCHAR}, #{uTel,jdbcType=VARCHAR}, #{uPostcode,jdbcType=VARCHAR}, 
+      #{uSubsidy,jdbcType=VARCHAR}, #{uPrize,jdbcType=VARCHAR}, #{uExpectPlace,jdbcType=VARCHAR}, 
+      #{uExpectJob,jdbcType=VARCHAR}, #{uExpectTrade,jdbcType=VARCHAR}, #{uCometime,jdbcType=VARCHAR}, 
+      #{uJobType,jdbcType=VARCHAR}, #{uSelfAppraisal,jdbcType=VARCHAR}, #{uWorkExperience,jdbcType=VARCHAR}, 
+      #{uProjectExperience,jdbcType=VARCHAR}, #{uSchoolExperience,jdbcType=VARCHAR}, 
+      #{uSchoolHonor,jdbcType=VARCHAR}, #{uSchoolDuty,jdbcType=VARCHAR}, #{uSkill,jdbcType=VARCHAR}, 
+      #{uLanguage,jdbcType=VARCHAR}, #{uCredential,jdbcType=VARCHAR}, #{uTrainExperience,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.info.n25175_info.entity.N25175User">
+    insert into n25175_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="uAid != null">
+        u_aid,
+      </if>
+      <if test="uName != null">
+        u_name,
+      </if>
+      <if test="uProvince != null">
+        u_province,
+      </if>
+      <if test="uCity != null">
+        u_city,
+      </if>
+      <if test="uPicture != null">
+        u_picture,
+      </if>
+      <if test="uMarried != null">
+        u_married,
+      </if>
+      <if test="uSex != null">
+        u_sex,
+      </if>
+      <if test="uIdentity != null">
+        u_identity,
+      </if>
+      <if test="uBorn != null">
+        u_born,
+      </if>
+      <if test="uAge != null">
+        u_age,
+      </if>
+      <if test="uHeight != null">
+        u_height,
+      </if>
+      <if test="uEthnic != null">
+        u_ethnic,
+      </if>
+      <if test="uPolity != null">
+        u_polity,
+      </if>
+      <if test="uSubscript != null">
+        u_subscript,
+      </if>
+      <if test="uPost != null">
+        u_post,
+      </if>
+      <if test="uTreatment != null">
+        u_treatment,
+      </if>
+      <if test="uWork != null">
+        u_work,
+      </if>
+      <if test="uBecome != null">
+        u_become,
+      </if>
+      <if test="uOut != null">
+        u_out,
+      </if>
+      <if test="uAddress != null">
+        u_address,
+      </if>
+      <if test="uPhone != null">
+        u_phone,
+      </if>
+      <if test="uWx != null">
+        u_wx,
+      </if>
+      <if test="uQq != null">
+        u_qq,
+      </if>
+      <if test="uFirst != null">
+        u_first,
+      </if>
+      <if test="uFirstStart != null">
+        u_first_start,
+      </if>
+      <if test="uFirstEnd != null">
+        u_first_end,
+      </if>
+      <if test="uFirstSchool != null">
+        u_first_school,
+      </if>
+      <if test="uFirstMajor != null">
+        u_first_major,
+      </if>
+      <if test="uPeak != null">
+        u_peak,
+      </if>
+      <if test="uPeakStart != null">
+        u_peak_start,
+      </if>
+      <if test="uPeakEnd != null">
+        u_peak_end,
+      </if>
+      <if test="uPeakSchool != null">
+        u_peak_school,
+      </if>
+      <if test="uPeakMajor != null">
+        u_peak_major,
+      </if>
+      <if test="uOldAddress != null">
+        u_old_address,
+      </if>
+      <if test="uContent != null">
+        u_content,
+      </if>
+      <if test="uFile != null">
+        u_file,
+      </if>
+      <if test="uNumber1 != null">
+        u_number1,
+      </if>
+      <if test="uNumber2 != null">
+        u_number2,
+      </if>
+      <if test="uDate1 != null">
+        u_date1,
+      </if>
+      <if test="uDate2 != null">
+        u_date2,
+      </if>
+      <if test="uString1 != null">
+        u_string1,
+      </if>
+      <if test="uString2 != null">
+        u_string2,
+      </if>
+      <if test="uTextarea1 != null">
+        u_textarea1,
+      </if>
+      <if test="uTextarea2 != null">
+        u_textarea2,
+      </if>
+      <if test="uWorkYear != null">
+        u_work_year,
+      </if>
+      <if test="uEmail != null">
+        u_email,
+      </if>
+      <if test="uTel != null">
+        u_tel,
+      </if>
+      <if test="uPostcode != null">
+        u_postcode,
+      </if>
+      <if test="uSubsidy != null">
+        u_subsidy,
+      </if>
+      <if test="uPrize != null">
+        u_prize,
+      </if>
+      <if test="uExpectPlace != null">
+        u_expect_place,
+      </if>
+      <if test="uExpectJob != null">
+        u_expect_job,
+      </if>
+      <if test="uExpectTrade != null">
+        u_expect_trade,
+      </if>
+      <if test="uCometime != null">
+        u_cometime,
+      </if>
+      <if test="uJobType != null">
+        u_job_type,
+      </if>
+      <if test="uSelfAppraisal != null">
+        u_self_appraisal,
+      </if>
+      <if test="uWorkExperience != null">
+        u_work_experience,
+      </if>
+      <if test="uProjectExperience != null">
+        u_project_experience,
+      </if>
+      <if test="uSchoolExperience != null">
+        u_school_experience,
+      </if>
+      <if test="uSchoolHonor != null">
+        u_school_honor,
+      </if>
+      <if test="uSchoolDuty != null">
+        u_school_duty,
+      </if>
+      <if test="uSkill != null">
+        u_skill,
+      </if>
+      <if test="uLanguage != null">
+        u_language,
+      </if>
+      <if test="uCredential != null">
+        u_credential,
+      </if>
+      <if test="uTrainExperience != null">
+        u_train_experience,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="uAid != null">
+        #{uAid,jdbcType=INTEGER},
+      </if>
+      <if test="uName != null">
+        #{uName,jdbcType=VARCHAR},
+      </if>
+      <if test="uProvince != null">
+        #{uProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="uCity != null">
+        #{uCity,jdbcType=VARCHAR},
+      </if>
+      <if test="uPicture != null">
+        #{uPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="uMarried != null">
+        #{uMarried,jdbcType=INTEGER},
+      </if>
+      <if test="uSex != null">
+        #{uSex,jdbcType=INTEGER},
+      </if>
+      <if test="uIdentity != null">
+        #{uIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="uBorn != null">
+        #{uBorn,jdbcType=DATE},
+      </if>
+      <if test="uAge != null">
+        #{uAge,jdbcType=INTEGER},
+      </if>
+      <if test="uHeight != null">
+        #{uHeight,jdbcType=INTEGER},
+      </if>
+      <if test="uEthnic != null">
+        #{uEthnic,jdbcType=INTEGER},
+      </if>
+      <if test="uPolity != null">
+        #{uPolity,jdbcType=INTEGER},
+      </if>
+      <if test="uSubscript != null">
+        #{uSubscript,jdbcType=INTEGER},
+      </if>
+      <if test="uPost != null">
+        #{uPost,jdbcType=INTEGER},
+      </if>
+      <if test="uTreatment != null">
+        #{uTreatment,jdbcType=INTEGER},
+      </if>
+      <if test="uWork != null">
+        #{uWork,jdbcType=DATE},
+      </if>
+      <if test="uBecome != null">
+        #{uBecome,jdbcType=DATE},
+      </if>
+      <if test="uOut != null">
+        #{uOut,jdbcType=DATE},
+      </if>
+      <if test="uAddress != null">
+        #{uAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="uPhone != null">
+        #{uPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="uWx != null">
+        #{uWx,jdbcType=VARCHAR},
+      </if>
+      <if test="uQq != null">
+        #{uQq,jdbcType=VARCHAR},
+      </if>
+      <if test="uFirst != null">
+        #{uFirst,jdbcType=INTEGER},
+      </if>
+      <if test="uFirstStart != null">
+        #{uFirstStart,jdbcType=DATE},
+      </if>
+      <if test="uFirstEnd != null">
+        #{uFirstEnd,jdbcType=DATE},
+      </if>
+      <if test="uFirstSchool != null">
+        #{uFirstSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="uFirstMajor != null">
+        #{uFirstMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="uPeak != null">
+        #{uPeak,jdbcType=INTEGER},
+      </if>
+      <if test="uPeakStart != null">
+        #{uPeakStart,jdbcType=DATE},
+      </if>
+      <if test="uPeakEnd != null">
+        #{uPeakEnd,jdbcType=DATE},
+      </if>
+      <if test="uPeakSchool != null">
+        #{uPeakSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="uPeakMajor != null">
+        #{uPeakMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="uOldAddress != null">
+        #{uOldAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="uContent != null">
+        #{uContent,jdbcType=VARCHAR},
+      </if>
+      <if test="uFile != null">
+        #{uFile,jdbcType=VARCHAR},
+      </if>
+      <if test="uNumber1 != null">
+        #{uNumber1,jdbcType=INTEGER},
+      </if>
+      <if test="uNumber2 != null">
+        #{uNumber2,jdbcType=INTEGER},
+      </if>
+      <if test="uDate1 != null">
+        #{uDate1,jdbcType=DATE},
+      </if>
+      <if test="uDate2 != null">
+        #{uDate2,jdbcType=DATE},
+      </if>
+      <if test="uString1 != null">
+        #{uString1,jdbcType=VARCHAR},
+      </if>
+      <if test="uString2 != null">
+        #{uString2,jdbcType=VARCHAR},
+      </if>
+      <if test="uTextarea1 != null">
+        #{uTextarea1,jdbcType=VARCHAR},
+      </if>
+      <if test="uTextarea2 != null">
+        #{uTextarea2,jdbcType=VARCHAR},
+      </if>
+      <if test="uWorkYear != null">
+        #{uWorkYear,jdbcType=VARCHAR},
+      </if>
+      <if test="uEmail != null">
+        #{uEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="uTel != null">
+        #{uTel,jdbcType=VARCHAR},
+      </if>
+      <if test="uPostcode != null">
+        #{uPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="uSubsidy != null">
+        #{uSubsidy,jdbcType=VARCHAR},
+      </if>
+      <if test="uPrize != null">
+        #{uPrize,jdbcType=VARCHAR},
+      </if>
+      <if test="uExpectPlace != null">
+        #{uExpectPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="uExpectJob != null">
+        #{uExpectJob,jdbcType=VARCHAR},
+      </if>
+      <if test="uExpectTrade != null">
+        #{uExpectTrade,jdbcType=VARCHAR},
+      </if>
+      <if test="uCometime != null">
+        #{uCometime,jdbcType=VARCHAR},
+      </if>
+      <if test="uJobType != null">
+        #{uJobType,jdbcType=VARCHAR},
+      </if>
+      <if test="uSelfAppraisal != null">
+        #{uSelfAppraisal,jdbcType=VARCHAR},
+      </if>
+      <if test="uWorkExperience != null">
+        #{uWorkExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="uProjectExperience != null">
+        #{uProjectExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="uSchoolExperience != null">
+        #{uSchoolExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="uSchoolHonor != null">
+        #{uSchoolHonor,jdbcType=VARCHAR},
+      </if>
+      <if test="uSchoolDuty != null">
+        #{uSchoolDuty,jdbcType=VARCHAR},
+      </if>
+      <if test="uSkill != null">
+        #{uSkill,jdbcType=VARCHAR},
+      </if>
+      <if test="uLanguage != null">
+        #{uLanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="uCredential != null">
+        #{uCredential,jdbcType=VARCHAR},
+      </if>
+      <if test="uTrainExperience != null">
+        #{uTrainExperience,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.info.n25175_info.entity.N25175UserExample" resultType="java.lang.Long">
+    select count(*) from n25175_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update n25175_user
+    <set>
+      <if test="record.uId != null">
+        u_id = #{record.uId,jdbcType=INTEGER},
+      </if>
+      <if test="record.uAid != null">
+        u_aid = #{record.uAid,jdbcType=INTEGER},
+      </if>
+      <if test="record.uName != null">
+        u_name = #{record.uName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uProvince != null">
+        u_province = #{record.uProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uCity != null">
+        u_city = #{record.uCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uPicture != null">
+        u_picture = #{record.uPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uMarried != null">
+        u_married = #{record.uMarried,jdbcType=INTEGER},
+      </if>
+      <if test="record.uSex != null">
+        u_sex = #{record.uSex,jdbcType=INTEGER},
+      </if>
+      <if test="record.uIdentity != null">
+        u_identity = #{record.uIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uBorn != null">
+        u_born = #{record.uBorn,jdbcType=DATE},
+      </if>
+      <if test="record.uAge != null">
+        u_age = #{record.uAge,jdbcType=INTEGER},
+      </if>
+      <if test="record.uHeight != null">
+        u_height = #{record.uHeight,jdbcType=INTEGER},
+      </if>
+      <if test="record.uEthnic != null">
+        u_ethnic = #{record.uEthnic,jdbcType=INTEGER},
+      </if>
+      <if test="record.uPolity != null">
+        u_polity = #{record.uPolity,jdbcType=INTEGER},
+      </if>
+      <if test="record.uSubscript != null">
+        u_subscript = #{record.uSubscript,jdbcType=INTEGER},
+      </if>
+      <if test="record.uPost != null">
+        u_post = #{record.uPost,jdbcType=INTEGER},
+      </if>
+      <if test="record.uTreatment != null">
+        u_treatment = #{record.uTreatment,jdbcType=INTEGER},
+      </if>
+      <if test="record.uWork != null">
+        u_work = #{record.uWork,jdbcType=DATE},
+      </if>
+      <if test="record.uBecome != null">
+        u_become = #{record.uBecome,jdbcType=DATE},
+      </if>
+      <if test="record.uOut != null">
+        u_out = #{record.uOut,jdbcType=DATE},
+      </if>
+      <if test="record.uAddress != null">
+        u_address = #{record.uAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uPhone != null">
+        u_phone = #{record.uPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uWx != null">
+        u_wx = #{record.uWx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uQq != null">
+        u_qq = #{record.uQq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uFirst != null">
+        u_first = #{record.uFirst,jdbcType=INTEGER},
+      </if>
+      <if test="record.uFirstStart != null">
+        u_first_start = #{record.uFirstStart,jdbcType=DATE},
+      </if>
+      <if test="record.uFirstEnd != null">
+        u_first_end = #{record.uFirstEnd,jdbcType=DATE},
+      </if>
+      <if test="record.uFirstSchool != null">
+        u_first_school = #{record.uFirstSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uFirstMajor != null">
+        u_first_major = #{record.uFirstMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uPeak != null">
+        u_peak = #{record.uPeak,jdbcType=INTEGER},
+      </if>
+      <if test="record.uPeakStart != null">
+        u_peak_start = #{record.uPeakStart,jdbcType=DATE},
+      </if>
+      <if test="record.uPeakEnd != null">
+        u_peak_end = #{record.uPeakEnd,jdbcType=DATE},
+      </if>
+      <if test="record.uPeakSchool != null">
+        u_peak_school = #{record.uPeakSchool,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uPeakMajor != null">
+        u_peak_major = #{record.uPeakMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uOldAddress != null">
+        u_old_address = #{record.uOldAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uContent != null">
+        u_content = #{record.uContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uFile != null">
+        u_file = #{record.uFile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uNumber1 != null">
+        u_number1 = #{record.uNumber1,jdbcType=INTEGER},
+      </if>
+      <if test="record.uNumber2 != null">
+        u_number2 = #{record.uNumber2,jdbcType=INTEGER},
+      </if>
+      <if test="record.uDate1 != null">
+        u_date1 = #{record.uDate1,jdbcType=DATE},
+      </if>
+      <if test="record.uDate2 != null">
+        u_date2 = #{record.uDate2,jdbcType=DATE},
+      </if>
+      <if test="record.uString1 != null">
+        u_string1 = #{record.uString1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uString2 != null">
+        u_string2 = #{record.uString2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uTextarea1 != null">
+        u_textarea1 = #{record.uTextarea1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uTextarea2 != null">
+        u_textarea2 = #{record.uTextarea2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uWorkYear != null">
+        u_work_year = #{record.uWorkYear,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uEmail != null">
+        u_email = #{record.uEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uTel != null">
+        u_tel = #{record.uTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uPostcode != null">
+        u_postcode = #{record.uPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uSubsidy != null">
+        u_subsidy = #{record.uSubsidy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uPrize != null">
+        u_prize = #{record.uPrize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uExpectPlace != null">
+        u_expect_place = #{record.uExpectPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uExpectJob != null">
+        u_expect_job = #{record.uExpectJob,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uExpectTrade != null">
+        u_expect_trade = #{record.uExpectTrade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uCometime != null">
+        u_cometime = #{record.uCometime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uJobType != null">
+        u_job_type = #{record.uJobType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uSelfAppraisal != null">
+        u_self_appraisal = #{record.uSelfAppraisal,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uWorkExperience != null">
+        u_work_experience = #{record.uWorkExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uProjectExperience != null">
+        u_project_experience = #{record.uProjectExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uSchoolExperience != null">
+        u_school_experience = #{record.uSchoolExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uSchoolHonor != null">
+        u_school_honor = #{record.uSchoolHonor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uSchoolDuty != null">
+        u_school_duty = #{record.uSchoolDuty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uSkill != null">
+        u_skill = #{record.uSkill,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uLanguage != null">
+        u_language = #{record.uLanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uCredential != null">
+        u_credential = #{record.uCredential,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uTrainExperience != null">
+        u_train_experience = #{record.uTrainExperience,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update n25175_user
+    set u_id = #{record.uId,jdbcType=INTEGER},
+      u_aid = #{record.uAid,jdbcType=INTEGER},
+      u_name = #{record.uName,jdbcType=VARCHAR},
+      u_province = #{record.uProvince,jdbcType=VARCHAR},
+      u_city = #{record.uCity,jdbcType=VARCHAR},
+      u_picture = #{record.uPicture,jdbcType=VARCHAR},
+      u_married = #{record.uMarried,jdbcType=INTEGER},
+      u_sex = #{record.uSex,jdbcType=INTEGER},
+      u_identity = #{record.uIdentity,jdbcType=VARCHAR},
+      u_born = #{record.uBorn,jdbcType=DATE},
+      u_age = #{record.uAge,jdbcType=INTEGER},
+      u_height = #{record.uHeight,jdbcType=INTEGER},
+      u_ethnic = #{record.uEthnic,jdbcType=INTEGER},
+      u_polity = #{record.uPolity,jdbcType=INTEGER},
+      u_subscript = #{record.uSubscript,jdbcType=INTEGER},
+      u_post = #{record.uPost,jdbcType=INTEGER},
+      u_treatment = #{record.uTreatment,jdbcType=INTEGER},
+      u_work = #{record.uWork,jdbcType=DATE},
+      u_become = #{record.uBecome,jdbcType=DATE},
+      u_out = #{record.uOut,jdbcType=DATE},
+      u_address = #{record.uAddress,jdbcType=VARCHAR},
+      u_phone = #{record.uPhone,jdbcType=VARCHAR},
+      u_wx = #{record.uWx,jdbcType=VARCHAR},
+      u_qq = #{record.uQq,jdbcType=VARCHAR},
+      u_first = #{record.uFirst,jdbcType=INTEGER},
+      u_first_start = #{record.uFirstStart,jdbcType=DATE},
+      u_first_end = #{record.uFirstEnd,jdbcType=DATE},
+      u_first_school = #{record.uFirstSchool,jdbcType=VARCHAR},
+      u_first_major = #{record.uFirstMajor,jdbcType=VARCHAR},
+      u_peak = #{record.uPeak,jdbcType=INTEGER},
+      u_peak_start = #{record.uPeakStart,jdbcType=DATE},
+      u_peak_end = #{record.uPeakEnd,jdbcType=DATE},
+      u_peak_school = #{record.uPeakSchool,jdbcType=VARCHAR},
+      u_peak_major = #{record.uPeakMajor,jdbcType=VARCHAR},
+      u_old_address = #{record.uOldAddress,jdbcType=VARCHAR},
+      u_content = #{record.uContent,jdbcType=VARCHAR},
+      u_file = #{record.uFile,jdbcType=VARCHAR},
+      u_number1 = #{record.uNumber1,jdbcType=INTEGER},
+      u_number2 = #{record.uNumber2,jdbcType=INTEGER},
+      u_date1 = #{record.uDate1,jdbcType=DATE},
+      u_date2 = #{record.uDate2,jdbcType=DATE},
+      u_string1 = #{record.uString1,jdbcType=VARCHAR},
+      u_string2 = #{record.uString2,jdbcType=VARCHAR},
+      u_textarea1 = #{record.uTextarea1,jdbcType=VARCHAR},
+      u_textarea2 = #{record.uTextarea2,jdbcType=VARCHAR},
+      u_work_year = #{record.uWorkYear,jdbcType=VARCHAR},
+      u_email = #{record.uEmail,jdbcType=VARCHAR},
+      u_tel = #{record.uTel,jdbcType=VARCHAR},
+      u_postcode = #{record.uPostcode,jdbcType=VARCHAR},
+      u_subsidy = #{record.uSubsidy,jdbcType=VARCHAR},
+      u_prize = #{record.uPrize,jdbcType=VARCHAR},
+      u_expect_place = #{record.uExpectPlace,jdbcType=VARCHAR},
+      u_expect_job = #{record.uExpectJob,jdbcType=VARCHAR},
+      u_expect_trade = #{record.uExpectTrade,jdbcType=VARCHAR},
+      u_cometime = #{record.uCometime,jdbcType=VARCHAR},
+      u_job_type = #{record.uJobType,jdbcType=VARCHAR},
+      u_self_appraisal = #{record.uSelfAppraisal,jdbcType=VARCHAR},
+      u_work_experience = #{record.uWorkExperience,jdbcType=VARCHAR},
+      u_project_experience = #{record.uProjectExperience,jdbcType=VARCHAR},
+      u_school_experience = #{record.uSchoolExperience,jdbcType=VARCHAR},
+      u_school_honor = #{record.uSchoolHonor,jdbcType=VARCHAR},
+      u_school_duty = #{record.uSchoolDuty,jdbcType=VARCHAR},
+      u_skill = #{record.uSkill,jdbcType=VARCHAR},
+      u_language = #{record.uLanguage,jdbcType=VARCHAR},
+      u_credential = #{record.uCredential,jdbcType=VARCHAR},
+      u_train_experience = #{record.uTrainExperience,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.info.n25175_info.entity.N25175User">
+    update n25175_user
+    <set>
+      <if test="uAid != null">
+        u_aid = #{uAid,jdbcType=INTEGER},
+      </if>
+<!--      <if test="uName != null">-->
+        u_name = #{uName,jdbcType=VARCHAR},
+<!--      </if>-->
+<!--      <if test="uProvince != null">-->
+        u_province = #{uProvince,jdbcType=VARCHAR},
+<!--      </if>-->
+<!--      <if test="uCity != null">-->
+        u_city = #{uCity,jdbcType=VARCHAR},
+<!--      </if>-->
+<!--      <if test="uPicture != null">-->
+        u_picture = #{uPicture,jdbcType=VARCHAR},
+<!--      </if>-->
+<!--      <if test="uMarried != null">-->
+        u_married = #{uMarried,jdbcType=INTEGER},
+<!--      </if>-->
+<!--      <if test="uSex != null">-->
+        u_sex = #{uSex,jdbcType=INTEGER},
+<!--      </if>-->
+<!--      <if test="uIdentity != null">-->
+        u_identity = #{uIdentity,jdbcType=VARCHAR},
+<!--      </if>-->
+<!--      <if test="uBorn != null">-->
+        u_born = #{uBorn,jdbcType=DATE},
+<!--      </if>-->
+<!--      <if test="uAge != null">-->
+        u_age = #{uAge,jdbcType=INTEGER},
+<!--      </if>-->
+<!--      <if test="uHeight != null">-->
+        u_height = #{uHeight,jdbcType=INTEGER},
+<!--      </if>-->
+<!--      <if test="uEthnic != null">-->
+        u_ethnic = #{uEthnic,jdbcType=INTEGER},
+<!--      </if>-->
+<!--      <if test="uPolity != null">-->
+        u_polity = #{uPolity,jdbcType=INTEGER},
+<!--      </if>-->
+<!--      <if test="uSubscript != null">-->
+        u_subscript = #{uSubscript,jdbcType=INTEGER},
+<!--      </if>-->
+<!--      <if test="uPost != null">-->
+        u_post = #{uPost,jdbcType=INTEGER},
+<!--      </if>-->
+<!--      <if test="uTreatment != null">-->
+        u_treatment = #{uTreatment,jdbcType=INTEGER},
+<!--      </if>-->
+<!--      <if test="uWork != null">-->
+        u_work = #{uWork,jdbcType=DATE},
+<!--      </if>-->
+<!--      <if test="uBecome != null">-->
+        u_become = #{uBecome,jdbcType=DATE},
+<!--      </if>-->
+<!--      <if test="uOut != null">-->
+        u_out = #{uOut,jdbcType=DATE},
+<!--      </if>-->
+<!--      <if test="uAddress != null">-->
+        u_address = #{uAddress,jdbcType=VARCHAR},
+<!--      </if>-->
+<!--      <if test="uPhone != null">-->
+        u_phone = #{uPhone,jdbcType=VARCHAR},
+<!--      </if>-->
+<!--      <if test="uWx != null">-->
+        u_wx = #{uWx,jdbcType=VARCHAR},
+<!--      </if>-->
+<!--      <if test="uQq != null">-->
+        u_qq = #{uQq,jdbcType=VARCHAR},
+<!--      </if>-->
+<!--      <if test="uFirst != null">-->
+        u_first = #{uFirst,jdbcType=INTEGER},
+<!--      </if>-->
+<!--      <if test="uFirstStart != null">-->
+        u_first_start = #{uFirstStart,jdbcType=DATE},
+<!--      </if>-->
+<!--      <if test="uFirstEnd != null">-->
+        u_first_end = #{uFirstEnd,jdbcType=DATE},
+<!--      </if>-->
+<!--      <if test="uFirstSchool != null">-->
+        u_first_school = #{uFirstSchool,jdbcType=VARCHAR},
+<!--      </if>-->
+<!--      <if test="uFirstMajor != null">-->
+        u_first_major = #{uFirstMajor,jdbcType=VARCHAR},
+<!--      </if>-->
+<!--      <if test="uPeak != null">-->
+        u_peak = #{uPeak,jdbcType=INTEGER},
+<!--      </if>-->
+<!--      <if test="uPeakStart != null">-->
+        u_peak_start = #{uPeakStart,jdbcType=DATE},
+<!--      </if>-->
+<!--      <if test="uPeakEnd != null">-->
+        u_peak_end = #{uPeakEnd,jdbcType=DATE},
+<!--      </if>-->
+<!--      <if test="uPeakSchool != null">-->
+        u_peak_school = #{uPeakSchool,jdbcType=VARCHAR},
+<!--      </if>-->
+<!--      <if test="uPeakMajor != null">-->
+        u_peak_major = #{uPeakMajor,jdbcType=VARCHAR},
+<!--      </if>-->
+<!--      <if test="uOldAddress != null">-->
+        u_old_address = #{uOldAddress,jdbcType=VARCHAR},
+<!--      </if>-->
+<!--      <if test="uContent != null">-->
+        u_content = #{uContent,jdbcType=VARCHAR},
+<!--      </if>-->
+<!--      <if test="uFile != null">-->
+        u_file = #{uFile,jdbcType=VARCHAR},
+<!--      </if>-->
+      <if test="uNumber1 != null">
+        u_number1 = #{uNumber1,jdbcType=INTEGER},
+      </if>
+      <if test="uNumber2 != null">
+        u_number2 = #{uNumber2,jdbcType=INTEGER},
+      </if>
+      <if test="uDate1 != null">
+        u_date1 = #{uDate1,jdbcType=DATE},
+      </if>
+      <if test="uDate2 != null">
+        u_date2 = #{uDate2,jdbcType=DATE},
+      </if>
+      <if test="uString1 != null">
+        u_string1 = #{uString1,jdbcType=VARCHAR},
+      </if>
+      <if test="uString2 != null">
+        u_string2 = #{uString2,jdbcType=VARCHAR},
+      </if>
+      <if test="uTextarea1 != null">
+        u_textarea1 = #{uTextarea1,jdbcType=VARCHAR},
+      </if>
+      <if test="uTextarea2 != null">
+        u_textarea2 = #{uTextarea2,jdbcType=VARCHAR},
+      </if>
+      <if test="uWorkYear != null">
+        u_work_year = #{uWorkYear,jdbcType=VARCHAR},
+      </if>
+      <if test="uEmail != null">
+        u_email = #{uEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="uTel != null">
+        u_tel = #{uTel,jdbcType=VARCHAR},
+      </if>
+      <if test="uPostcode != null">
+        u_postcode = #{uPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="uSubsidy != null">
+        u_subsidy = #{uSubsidy,jdbcType=VARCHAR},
+      </if>
+      <if test="uPrize != null">
+        u_prize = #{uPrize,jdbcType=VARCHAR},
+      </if>
+      <if test="uExpectPlace != null">
+        u_expect_place = #{uExpectPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="uExpectJob != null">
+        u_expect_job = #{uExpectJob,jdbcType=VARCHAR},
+      </if>
+      <if test="uExpectTrade != null">
+        u_expect_trade = #{uExpectTrade,jdbcType=VARCHAR},
+      </if>
+      <if test="uCometime != null">
+        u_cometime = #{uCometime,jdbcType=VARCHAR},
+      </if>
+      <if test="uJobType != null">
+        u_job_type = #{uJobType,jdbcType=VARCHAR},
+      </if>
+      <if test="uSelfAppraisal != null">
+        u_self_appraisal = #{uSelfAppraisal,jdbcType=VARCHAR},
+      </if>
+      <if test="uWorkExperience != null">
+        u_work_experience = #{uWorkExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="uProjectExperience != null">
+        u_project_experience = #{uProjectExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="uSchoolExperience != null">
+        u_school_experience = #{uSchoolExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="uSchoolHonor != null">
+        u_school_honor = #{uSchoolHonor,jdbcType=VARCHAR},
+      </if>
+      <if test="uSchoolDuty != null">
+        u_school_duty = #{uSchoolDuty,jdbcType=VARCHAR},
+      </if>
+      <if test="uSkill != null">
+        u_skill = #{uSkill,jdbcType=VARCHAR},
+      </if>
+      <if test="uLanguage != null">
+        u_language = #{uLanguage,jdbcType=VARCHAR},
+      </if>
+      <if test="uCredential != null">
+        u_credential = #{uCredential,jdbcType=VARCHAR},
+      </if>
+      <if test="uTrainExperience != null">
+        u_train_experience = #{uTrainExperience,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where u_id = #{uId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.info.n25175_info.entity.N25175User">
+    update n25175_user
+    set u_aid = #{uAid,jdbcType=INTEGER},
+      u_name = #{uName,jdbcType=VARCHAR},
+      u_province = #{uProvince,jdbcType=VARCHAR},
+      u_city = #{uCity,jdbcType=VARCHAR},
+      u_picture = #{uPicture,jdbcType=VARCHAR},
+      u_married = #{uMarried,jdbcType=INTEGER},
+      u_sex = #{uSex,jdbcType=INTEGER},
+      u_identity = #{uIdentity,jdbcType=VARCHAR},
+      u_born = #{uBorn,jdbcType=DATE},
+      u_age = #{uAge,jdbcType=INTEGER},
+      u_height = #{uHeight,jdbcType=INTEGER},
+      u_ethnic = #{uEthnic,jdbcType=INTEGER},
+      u_polity = #{uPolity,jdbcType=INTEGER},
+      u_subscript = #{uSubscript,jdbcType=INTEGER},
+      u_post = #{uPost,jdbcType=INTEGER},
+      u_treatment = #{uTreatment,jdbcType=INTEGER},
+      u_work = #{uWork,jdbcType=DATE},
+      u_become = #{uBecome,jdbcType=DATE},
+      u_out = #{uOut,jdbcType=DATE},
+      u_address = #{uAddress,jdbcType=VARCHAR},
+      u_phone = #{uPhone,jdbcType=VARCHAR},
+      u_wx = #{uWx,jdbcType=VARCHAR},
+      u_qq = #{uQq,jdbcType=VARCHAR},
+      u_first = #{uFirst,jdbcType=INTEGER},
+      u_first_start = #{uFirstStart,jdbcType=DATE},
+      u_first_end = #{uFirstEnd,jdbcType=DATE},
+      u_first_school = #{uFirstSchool,jdbcType=VARCHAR},
+      u_first_major = #{uFirstMajor,jdbcType=VARCHAR},
+      u_peak = #{uPeak,jdbcType=INTEGER},
+      u_peak_start = #{uPeakStart,jdbcType=DATE},
+      u_peak_end = #{uPeakEnd,jdbcType=DATE},
+      u_peak_school = #{uPeakSchool,jdbcType=VARCHAR},
+      u_peak_major = #{uPeakMajor,jdbcType=VARCHAR},
+      u_old_address = #{uOldAddress,jdbcType=VARCHAR},
+      u_content = #{uContent,jdbcType=VARCHAR},
+      u_file = #{uFile,jdbcType=VARCHAR},
+      u_number1 = #{uNumber1,jdbcType=INTEGER},
+      u_number2 = #{uNumber2,jdbcType=INTEGER},
+      u_date1 = #{uDate1,jdbcType=DATE},
+      u_date2 = #{uDate2,jdbcType=DATE},
+      u_string1 = #{uString1,jdbcType=VARCHAR},
+      u_string2 = #{uString2,jdbcType=VARCHAR},
+      u_textarea1 = #{uTextarea1,jdbcType=VARCHAR},
+      u_textarea2 = #{uTextarea2,jdbcType=VARCHAR},
+      u_work_year = #{uWorkYear,jdbcType=VARCHAR},
+      u_email = #{uEmail,jdbcType=VARCHAR},
+      u_tel = #{uTel,jdbcType=VARCHAR},
+      u_postcode = #{uPostcode,jdbcType=VARCHAR},
+      u_subsidy = #{uSubsidy,jdbcType=VARCHAR},
+      u_prize = #{uPrize,jdbcType=VARCHAR},
+      u_expect_place = #{uExpectPlace,jdbcType=VARCHAR},
+      u_expect_job = #{uExpectJob,jdbcType=VARCHAR},
+      u_expect_trade = #{uExpectTrade,jdbcType=VARCHAR},
+      u_cometime = #{uCometime,jdbcType=VARCHAR},
+      u_job_type = #{uJobType,jdbcType=VARCHAR},
+      u_self_appraisal = #{uSelfAppraisal,jdbcType=VARCHAR},
+      u_work_experience = #{uWorkExperience,jdbcType=VARCHAR},
+      u_project_experience = #{uProjectExperience,jdbcType=VARCHAR},
+      u_school_experience = #{uSchoolExperience,jdbcType=VARCHAR},
+      u_school_honor = #{uSchoolHonor,jdbcType=VARCHAR},
+      u_school_duty = #{uSchoolDuty,jdbcType=VARCHAR},
+      u_skill = #{uSkill,jdbcType=VARCHAR},
+      u_language = #{uLanguage,jdbcType=VARCHAR},
+      u_credential = #{uCredential,jdbcType=VARCHAR},
+      u_train_experience = #{uTrainExperience,jdbcType=VARCHAR}
+    where u_id = #{uId,jdbcType=INTEGER}
+  </update>
+</mapper>

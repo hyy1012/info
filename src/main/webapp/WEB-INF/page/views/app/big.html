@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>维修列表</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+		<style type="text/css">
+			body .step-line-box .step-line {
+				top: 19px;
+			}
+
+			.step-icon-custom-box {
+				width: 40px;
+				height: 40px;
+			}
+
+			.step-icon-custom {
+				margin-top: -2px;
+				font-size: 26px;
+			}
+			.demoTable>.layui-inline{margin-right: 10px;}
+			.step-icon.step-icon-custom-box:hover{cursor: pointer;}
+			.layui-form-label{width: 100px;}
+			.layui-table{width: 100%;}
+			.c_title .layui-input-inline{padding-top: 10px;}
+		</style>
+	</head>
+	<body>
+		<ul class="sidebar hidden-xs">
+		<a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-chat"></i>咨询<span class="sbr-400 tra" style="height: 108px;padding-top: 10px;left: -117px;"><img src="../../layuiadmin/img/person.png" alt=""></span></a>
+		<a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-login-wechat" style="color: #fff;"></i>微信<span class="sbr-400 tra" style="height: 108px;padding-top: 10px;left: -117px;"><img src="../../layuiadmin/img/weixin.png" alt=""></span></a>
+		<a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-cellphone"></i>电话<span class="sbr-400 tra"><i class="r-arr-b"></i>0574-63559457</span></a>
+		</ul>
+	<div class="layui-fluid"style="padding-bottom: 50px;">
+		<div class="layui-row layui-col-space15">
+				
+			<div class="demoTable">
+				订单编号：
+				<div class="layui-inline">
+					<input class="layui-input" name="id" id="demoReload" autocomplete="off">
+				</div>
+				车牌
+				<div class="layui-inline">
+					<input class="layui-input" name="id" id="demoReload" autocomplete="off">
+				</div>
+				<button class="layui-btn" data-type="reload">搜索</button>
+			</div>
+			<!-- style="display: none;margin-top: 20px;" -->
+			<div class="layui-row addNews" style="display: none;margin-top: 20px;">
+			<div class="layui-col-md11">
+				<!-- <form class="layui-form" action=""> -->
+					<div class="layui-form-item">
+						<label class="layui-form-label">订单编号</label>
+						<div class="layui-input-inline">
+							<input type="text" name="name" autocomplete="off" class="layui-input" value="4665">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">车牌</label>
+						<div class="layui-input-inline">
+							<input type="text" name="name" autocomplete="off" class="layui-input" value="5646541">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">交接照片</label>
+						<div class="layui-input-inline" style="width: calc(100% - 200px);">
+							<div class="layui-upload">
+							  <button type="button" class="layui-btn" id="test2">上传</button> 
+							  <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+								预览图：
+								<div class="layui-upload-list" id="demo2"></div>
+							 </blockquote>
+							</div>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">备注说明</label>
+						<div class="layui-input-inline" style="width: calc(100% - 150px);">
+							<textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+						</div>
+					</div>
+					
+				<!-- </form> -->
+			</div>
+		</div>
+	
+			<div class="layui-row">
+				<div class="layui-col-md12">
+					<!-- <button class="layui-btn" style="margin-left: 20px;" onclick="addNew()">添加</button> -->
+					<h2>出厂列表</h2>
+					<table class="layui-hide" lay-filter="test" id="test"></table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer class="footer">
+		<span class="footer-brand">
+			<a href="http://www.25175.net" target="_blank"><strong class="text-danger">顺通网络</strong></a>&nbsp;提供技术支持
+		</span>
+		<p class="no-margin">
+			&copy;by <a href="http://www.25175.net/" target="_Blank"><strong>25175</strong></a>
+		</p>
+	</footer><!-- /footer -->
+		<script src="../../layuiadmin/layui/layui.js"></script>
+		<script>
+			
+			layui.config({
+				base: '../../layuiadmin/' //静态资源所在路径
+			}).extend({
+				index: 'lib/index', //主入口模块
+			}).use(['index', 'jquery', 'table','laydate','upload'], function() {
+				var $ = layui.jquery,laydate=layui.laydate,upload=layui.upload,
+					table = layui.table;
+				table.render({
+					elem: '#test'
+					// toolbar:true,
+					,url:'../../layuiadmin/json/app/weixiuliebiao.js'
+					,cols: [[
+						{field:'id', width:80, title: 'ID',sort: true}
+						,{field:'orderNumber', title: '订单编号',event:"orderNumber"}
+						,{field:'carNumber', title: '车牌', }
+						,{field:'brand', title: '品牌', }
+						,{field:'model', title: '型号', }
+						,{field:'timeInto',  title: '进厂日期', }
+						,{field:'pickOne', title: '接车人', }
+						,{field:'majorPerpon', title: '主修人', }
+						,{field:'importants',  title: '重要等级', toolbar:"#important"}
+						,{field:'report', title: '检测报告', event:"car_report_"}
+						,{field:'orderStatus', title: '订单状态', }
+						,{field:'registrationSource', title: '登记来源', }
+						,{field:'financialStatus', title: '财务状态', }
+					]]
+					,page: true
+				});
+
+				table.on("tool(test)",function(obj){
+					var data = obj.data;
+					//行数据信息
+					console.log(data)
+					// 订单编号
+					if(obj.event==="orderNumber"){
+						if(data.importants==1){
+							location.href="maintain2.html"
+						}else if(data.importants==2){
+							location.href="maintain3.html"
+						}else{
+							location.href="maintain4.html"
+						}
+					}
+					// 检测报告
+					if(obj.event==="car_report_"){
+						layer.open({
+							title:"检测报告",
+							type: 1,
+							shadeClose:true,
+							area:["800px","650px"],
+							btn:["关闭"],
+							content:$('.car_report'),
+							yes:function(index){
+								layer.close(index)
+							}
+						})
+					}
+				})
+
+			});
+		</script>
+		<!-- 检测报告 -->
+			<div class="layui-row car_report" style="display: none;margin-top: 20px;">
+			<div class="layui-col-md12">
+				<form class="layui-form" action="">
+						<div class="layui-form-item c_title">
+							<label class="layui-form-label">单据编号</label>
+							<div class="layui-input-inline">
+								56465446465416
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<div class="layui-inline">
+								<label class="layui-form-label">客户名称</label>
+								<div class="layui-input-inline">
+									<input type="text" name="name" autocomplete="off" class="layui-input" value="张三">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">检修人</label>
+								<div class="layui-input-inline">
+									<input type="text" name="name" autocomplete="off" class="layui-input" value="李四">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">进厂公里数</label>
+								<div class="layui-input-inline">
+									<input type="text" name="name" autocomplete="off" class="layui-input" style="width: 100px;display: inline-block;" value="500"> KM
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">进厂时间</label>
+								<div class="layui-input-inline">
+									<input type="text" id="date" autocomplete="off" class="layui-input" value="2019-12-12">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">品牌</label>
+								<div class="layui-input-inline">
+									<input type="text" id="date" autocomplete="off" class="layui-input" value="丰田">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">车牌号码</label>
+								<div class="layui-input-inline">
+									<input type="text" id="date" autocomplete="off" class="layui-input" value="松K12541">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">检测时间</label>
+								<div class="layui-input-inline">
+									<input type="text" id="date" autocomplete="off" class="layui-input" value="2019-12-12">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">车型</label>
+								<div class="layui-input-inline">
+									<input type="text" name="name" autocomplete="off" class="layui-input" value="类型一">
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">故障说明</label>
+							<div class="layui-input-inline" style="width: calc(100% - 200px);">
+								<textarea placeholder="请输入内容" class="layui-textarea">故障说明</textarea>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">维修建议</label>
+							<div class="layui-input-inline" style="width: calc(100% - 200px);">
+								<textarea placeholder="请输入内容" class="layui-textarea">维修建议</textarea>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">维修前照片</label>
+							<div class="layui-input-inline" style="width: calc(100% - 200px);">
+								<img src="../../layuiadmin/layui/css/modules/layim/skin/2.jpg" width="120px" onclick="previewImg(this)">
+								<!-- <div class="layui-upload">
+								  <button type="button" class="layui-btn" id="test2">多图片上传</button> 
+								  <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+									预览图：
+									<div class="layui-upload-list" id="demo2"></div>
+								 </blockquote>
+								</div> -->
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">订单备注</label>
+							<div class="layui-input-inline" style="width: calc(100% - 200px);">
+								<textarea placeholder="请输入内容" class="layui-textarea">订单备注</textarea>
+							</div>
+						</div>
+						<div class="layui-form-item c_title">
+							<div class="layui-inline">
+								<label class="layui-form-label">修理厂(盖章)</label>
+								<div class="layui-input-inline">
+									xx修理厂
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">客户签字</label>
+								<div class="layui-input-inline">
+									张三
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item c_title">
+							<div class="layui-inline ">
+								<label class="layui-form-label">联系地址</label>
+								<div class="layui-input-inline">
+									东三环222号
+								</div>
+							</div>
+							<div class="layui-inline ">
+								<label class="layui-form-label">日期</label>
+								<div class="layui-input-inline">
+									2019-12-12
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item c_title">
+							<label class="layui-form-label">联系电话</label>
+							<div class="layui-input-inline">
+								5416541654
+							</div>
+						</div>
+						<div class="layui-form-item c_title">
+							<label class="layui-form-label">客户经理</label>
+							<div class="layui-input-inline">
+								孙三
+							</div>
+						</div>
+						<div class="layui-form-item c_title">
+							<label class="layui-form-label">日期</label>
+							<div class="layui-input-inline">
+								2019-12-13
+							</div>
+						</div>
+						
+				</form>
+			</div>
+		</div>
+		
+		<script type="text/html" id="important">
+			{{#  if(d.importants === 1){ }}
+					<span style="color:#f33">非常重要</span>
+			{{#  } else if(d.importants === 2){ }}
+				  <span style="color:#00CC99">重要</span>
+			{{#  } else if(d.importants === 3){ }}
+					<span style="color:#3377FF">一般</span>
+			{{#  } }}
+		</script>
+	</body>
+</html>

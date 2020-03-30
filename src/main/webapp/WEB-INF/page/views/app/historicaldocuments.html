@@ -1,0 +1,333 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>维修单据</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+	<style>
+		.c_title .layui-input-inline{padding-top: 10px;}
+		.payWay span{margin: 10px;
+    border: 1px solid #009688;
+    color: #009688;
+    padding: 5px 12px;
+    display: inline-block;}
+		.payWay span.on{background: #009688;
+    color: #fff;}
+		.layui-table-view .layui-table{width: 100%;}
+		.other{position: relative;}
+		.other>div{margin-left: 20px;}
+		.receivable{position: absolute;top: 50px;left: 130px;}
+		.received{position: absolute;top: 70px;left: 130px;}
+	</style>
+</head>
+<body>
+<ul class="sidebar hidden-xs">
+  <a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-chat"></i>咨询<span class="sbr-400 tra" style="height: 108px;padding-top: 10px;left: -117px;"><img src="../../layuiadmin/img/person.png" alt=""></span></a>
+  <a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-login-wechat" style="color: #fff;"></i>微信<span class="sbr-400 tra" style="height: 108px;padding-top: 10px;left: -117px;"><img src="../../layuiadmin/img/weixin.png" alt=""></span></a>
+  <a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-cellphone"></i>电话<span class="sbr-400 tra"><i class="r-arr-b"></i>0574-63559457</span></a>
+  </ul>
+  <div class="layui-fluid" style="padding-bottom: 50px;"> 
+    <div class="layui-row layui-col-space15 layadmin-panel-selection">
+			 <h2>维修单据</h2>
+			 <div class="demoTable">
+			 		订单编号：
+			 		<div class="layui-inline">
+			 			<input class="layui-input" name="id" id="demoReload" autocomplete="off">
+			 		</div>
+			 		车牌
+			 		<div class="layui-inline">
+			 			<input class="layui-input" name="id" id="demoReload" autocomplete="off">
+			 		</div>
+			 		<button class="layui-btn" data-type="reload">搜索</button>
+			 	</div>
+			 <table class="layui-hide" lay-filter="test" id="test"></table>
+    </div>
+  </div>
+	<object ID='wb' WIDTH=0 HEIGHT=0 CLASSID='CLSID:8856F961-340A-11D0-A96B-00C04FD705A2'></object>
+ <!--footer-->
+ <footer class="footer">
+ 	<span class="footer-brand">
+ 		<a href="http://www.25175.net" target="_blank"><strong class="text-danger">顺通网络</strong></a>&nbsp;提供技术支持
+ 	</span>
+ 	<p class="no-margin">
+ 		&copy;by <a href="http://www.25175.net/" target="_Blank"><strong>25175</strong></a>
+ 	</p>
+ </footer><!-- /footer -->
+  <script type="text/html" id="barTool">
+  	<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+		<a class="layui-btn layui-btn-xs" lay-event="printOne">打印A</a>
+		<a class="layui-btn layui-btn-xs" lay-event="printTwo">打印B</a>
+  </script>
+  <script src="../../layuiadmin/layui/layui.js"></script>  
+  <script>
+  layui.config({
+    base: '../../layuiadmin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index','jquery','table'],function(){
+		var $ = layui.jquery,
+			table = layui.table;
+		table.render({
+			elem: '#test'
+			,toolbar:true
+			,url:'../../layuiadmin/json/app/weixiudanju.js'
+			,cols: [[
+				{field:'id', width:80, title: 'ID',sort: true}
+				,{field:'orderNumber', title: '订单编号',event:"orderNumber"}
+				,{field:'carNumber', title: '车牌', }
+				,{field:'orderType', title: '订单分类', }
+			  ,{field:'timeInto',  title: '进厂日期', }
+				,{field:'timeOver',  title: '维修完成日期', }
+				,{field:'timeOut',  title: '出厂日期', }
+				,{field:'timeInto',  title: '结算日期', }
+				,{field:'pickOne', title: '接车人', }
+				,{field:'majorPerpon', title: '主修人', }
+				,{field:'maintMoney',  title: '维修金额'}
+				,{field:'shop', title: '门店'}
+				,{field:'orderStatus', title: '订单状态', }
+				,{field:'right', title: '操作',toolbar: '#barTool', width:250}
+			]]
+			,page: true
+		});
+		table.render({
+			elem:"#test6",
+			totalRow: true,
+			url:"../../layuiadmin/json/app/weixiudanju6.js",
+			cols:[[
+				{field:'id', width:90, title: '序号',sort: true,totalRowText:"材料费合计"},
+				{field:'name', title: '配件名称', width:100},
+				{field:'shippingWarehouse', title: '出货仓库' , width:100},
+				{field:'unit', title: '单位' , width:60},
+				{field:'oneMoney',  title: '单价(元)' , width:60},
+				{field:'allCounts',  title: '数量', width:60},
+				{field:'allMoney',  title: '总金额', totalRow:true,width:60},
+				{field:'remark',  title: '备注' }
+			]]
+		})
+		table.render({
+			elem:"#test7",
+			totalRow: true,
+			url:"../../layuiadmin/json/app/weixiudanju7.js",
+			cols:[[
+				{field:'id',  title: '序号',sort: true,totalRowText:"工时费合计", width:90},
+				{field:'name', title: '维修项目名称', width:120},
+				{field:'chargePerHour', title: '每工时收费', width:70},
+				{field:'standardLaborTime', title: '标准工时', width:60 },
+				{field:'manHourCost',  title: '工时费', width:60 },
+				{field:'discountRate',  title: '折扣率', width:60 },
+				{field:'allMoney',  title: '总金额',totalRow:true, width:90 },
+				{field:'majorInPerson',  title: '主修人', width:70 },
+				{field:'remark',  title: '备注', }
+			]]
+		})
+		table.on("tool(test)",function(obj){
+			if(obj.event==="orderNumber"){
+				layer.open({
+					title:"维修报价单",
+					shadeClose:true,
+					btn:["确认","关闭"],
+					type:1,
+					content:$('.repair_quotation'),
+					area:["800px","650px"],
+					yes:function(i){
+						layer.close(i);
+					},
+					btn2:function(){
+						window.print();
+					}
+				})
+			}
+			
+			if(obj.event==="printOne"){
+				window.print();
+			}
+		})
+		$('body').on('click','.payWay span',function(){
+			$(this).addClass('on').siblings().removeClass('on');
+		})
+	});
+  </script>
+	<!-- 维修报价 display: none;-->
+		<div class="layui-row repair_quotation" style="margin: 20px;display: none;">
+		<div class="layui-col-md12">
+			<h3>上海市机动车维修结算清单</h3>
+			<form class="layui-form" action="">
+					<div class="layui-form-item c_title">
+						<label class="layui-form-label">单据编号</label>
+						<div class="layui-input-inline">
+							56465446465416
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">日期</label>
+							<div class="layui-input-inline">
+								2019-12-12
+								<!-- <input type="text" id="date" autocomplete="off" class="layui-input" value=""> -->
+							</div>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">客户名称</label>
+							<div class="layui-input-inline">
+								<input type="text" name="name" autocomplete="off" class="layui-input" value="张三">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">送修人</label>
+							<div class="layui-input-inline">
+								<input type="text" name="name" autocomplete="off" class="layui-input" value="李四">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">进厂公里数</label>
+							<div class="layui-input-inline">
+								<input type="text" name="name" autocomplete="off" class="layui-input" style="width: 100px;display: inline-block;" value="500"> KM
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">进厂时间</label>
+							<div class="layui-input-inline">
+								<input type="text" id="date2" autocomplete="off" class="layui-input" value="2019-12-12">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">工时定额</label>
+							<div class="layui-input-inline">
+								<input type="text"  autocomplete="off" class="layui-input" value="丰田">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">车牌号码</label>
+							<div class="layui-input-inline">
+								<input type="text" autocomplete="off" class="layui-input" value="松K12541">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">维修时间</label>
+							<div class="layui-input-inline">
+								<input type="text" id="date3" autocomplete="off" class="layui-input" value="2019-12-12">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">车型</label>
+							<div class="layui-input-inline">
+								<input type="text" name="name" autocomplete="off" class="layui-input" value="类型一">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">完工时间</label>
+							<div class="layui-input-inline">
+								<input type="text" id="date4" name="name" autocomplete="off" class="layui-input" value="2019-02-04">
+							</div>
+						</div>
+					</div>
+					
+					<div style="font-weight: 600;">维修用料及费用</div>
+					<table id="test6" calss="layui-hide" lay-filter="test6"></table>
+					<div style="font-weight: 600;">维修工时及费用</div>
+					<table id="test7" calss="layui-hide" lay-filter="test7"></table>
+					<div style="font-weight: 600;margin-bottom: 10px;">费用结算及收费情况</div>
+					<div class="other">
+						<div>材料费用： ￥20</div>
+						<div>工时费用： ￥20</div>
+						<div>其他收费： ￥20</div>
+						<div>应收金额： ￥20</div>
+						<div>实收金额： ￥20</div>
+						<div>优惠金额： ￥20</div>
+						<div>欠款金额： ￥20</div>
+						<div class="receivable">应收金额： 二十</div>
+						<div class="received">实收金额： 二十</div>
+					</div>
+					
+					<div style="font-weight: 600;margin-top: 10px;">支付方式</div>
+					<div class="payWay">
+						<span>微信</span>
+						<span>支付宝</span>
+						<span>现金</span>
+						<span>刷卡</span>
+					</div>
+					<div style="margin-bottom: 10px;">
+						<div style="font-weight: 600;">质量保证</div>
+						<div style="text-indent: 10px;">
+							该车按双方约定进行维修并检验合格。维修竣工车辆实行质量保证，
+							保证期为车辆行驶<input type="text" class="layui-input" style="display: inline-block;width: 80px;">公里
+							或<input type="text" class="layui-input" style="display: inline-block;width: 80px;">日。
+							质量保证期中行驶里程和日期指标以先达到者为准。
+							保证期从维修竣工出厂之日起计算。因维修质量原因造成机动车无法正常使用，
+							由本厂负责无偿返修，在原维修范围内修竣，交托修方。 
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">备注</label>
+						<div class="layui-input-inline" style="width: calc(100% - 200px);">
+							<textarea placeholder="请输入内容" class="layui-textarea">备注</textarea>
+						</div>
+					</div>
+					
+					
+					<div class="layui-form-item">
+						<label class="layui-form-label">订单备注</label>
+						<div class="layui-input-inline" style="width: calc(100% - 200px);">
+							<textarea placeholder="请输入内容" class="layui-textarea">订单备注</textarea>
+						</div>
+					</div>
+					<div class="layui-form-item c_title">
+						<div class="layui-inline">
+							<label class="layui-form-label">修理厂(盖章)</label>
+							<div class="layui-input-inline">
+								xx修理厂
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">客户签字</label>
+							<div class="layui-input-inline">
+								张三
+							</div>
+						</div>
+					</div>
+					<div class="layui-form-item c_title">
+						<div class="layui-inline ">
+							<label class="layui-form-label">联系地址</label>
+							<div class="layui-input-inline">
+								东三环222号
+							</div>
+						</div>
+						<div class="layui-inline ">
+							<label class="layui-form-label">日期</label>
+							<div class="layui-input-inline">
+								2019-12-12
+							</div>
+						</div>
+					</div>
+					<div class="layui-form-item c_title">
+						<label class="layui-form-label">联系电话</label>
+						<div class="layui-input-inline">
+							5416541654
+						</div>
+					</div>
+					<div class="layui-form-item c_title">
+						<label class="layui-form-label">客户经理</label>
+						<div class="layui-input-inline">
+							孙三
+						</div>
+					</div>
+					<div class="layui-form-item c_title">
+						<label class="layui-form-label">日期</label>
+						<div class="layui-input-inline">
+							2019-12-13
+						</div>
+					</div>
+					
+			</form>
+		</div>
+	</div>
+	
+</body>
+</html>

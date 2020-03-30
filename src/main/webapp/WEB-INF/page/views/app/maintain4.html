@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>专业开单</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+		<link rel="stylesheet" type="text/css" href="../../layuiadmin/layui/extend/steps.css" />
+		<style type="text/css">
+			body .step-line-box .step-line {
+				top: 19px;
+			}
+
+			.step-icon-custom-box {
+				width: 40px;
+				height: 40px;
+			}
+
+			.step-icon-custom {
+				margin-top: -2px;
+				font-size: 26px;
+			}
+			.demoTable>.layui-inline{margin-right: 10px;}
+			.step-icon.step-icon-custom-box:hover{cursor: pointer;}
+			.layui-form-label{width: 100px;}
+			.layui-table{width: 100%;}
+			.c_title .layui-input-inline{padding-top: 10px;}
+		</style>
+	</head>
+	<body>
+		<ul class="sidebar hidden-xs">
+		<a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-chat"></i>咨询<span class="sbr-400 tra" style="height: 108px;padding-top: 10px;left: -117px;"><img src="../../layuiadmin/img/person.png" alt=""></span></a>
+		<a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-login-wechat" style="color: #fff;"></i>微信<span class="sbr-400 tra" style="height: 108px;padding-top: 10px;left: -117px;"><img src="../../layuiadmin/img/weixin.png" alt=""></span></a>
+		<a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-cellphone"></i>电话<span class="sbr-400 tra"><i class="r-arr-b"></i>0574-63559457</span></a>
+		</ul>
+		<!--footer-->
+		<footer class="footer">
+			<span class="footer-brand">
+				<a href="http://www.25175.net" target="_blank"><strong class="text-danger">顺通网络</strong></a>&nbsp;提供技术支持
+			</span>
+			<p class="no-margin">
+				&copy;by <a href="http://www.25175.net/" target="_Blank"><strong>25175</strong></a>
+			</p>
+		</footer><!-- /footer -->
+	<div class="layui-fluid" style="padding-bottom: 50px;">
+		<div class="layui-row layui-col-space15">
+				
+				
+			<div class="layui-row">
+				<div class="layui-col-md10 layui-col-lg-offset1">
+					<div id="step"></div>
+				</div>
+			</div>
+		<div class="demoTable">
+				订单编号：
+				<div class="layui-inline">
+					<input class="layui-input" name="id" id="demoReload" autocomplete="off">
+				</div>
+				车牌
+				<div class="layui-inline">
+					<input class="layui-input" name="id" id="demoReload" autocomplete="off">
+				</div>
+				<button class="layui-btn" data-type="reload">搜索</button>
+			</div>
+			<!-- style="display: none;margin-top: 20px;" -->
+			<div class="layui-row addNews" style="display: none;margin-top: 20px;">
+			<div class="layui-col-md11">
+				<!-- <form class="layui-form" action=""> -->
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">订单编号</label>
+							<div class="layui-input-inline">
+								<input type="text" name="name" autocomplete="off" class="layui-input" value="">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">车牌</label>
+							<div class="layui-input-inline">
+								<input type="text" name="name" autocomplete="off" class="layui-input" value="">
+							</div>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">完成照片</label>
+						<div class="layui-input-inline" style="width: calc(100% - 200px);">
+							<div class="layui-upload">
+							  <button type="button" class="layui-btn" id="test2">上传</button> 
+							  <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+								预览图：
+								<div class="layui-upload-list" id="demo2"></div>
+							 </blockquote>
+							</div>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">备注说明</label>
+						<div class="layui-input-inline" style="width: calc(100% - 150px);">
+							<textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+						</div>
+					</div>
+				<!-- </form> -->
+			</div>
+		</div>
+	
+			<div class="layui-row">
+				<div class="layui-col-md12">
+					<!-- <button class="layui-btn" style="margin-left: 20px;" onclick="addNew()">添加</button> -->
+					<h2>维修中列表</h2>
+					<table class="layui-hide" lay-filter="test" id="test"></table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/html" id="imgInfo">
+		<img src="{{d.img}}" alt="" width="40px" height="40px" onclick="previewImg(this)">
+	</script>
+	<script type="text/html" id="barTool">
+		<a class="layui-btn layui-btn-xs" lay-event="edit">完工确认</a>
+	</script>
+		<script src="../../layuiadmin/layui/layui.js"></script>
+		<script src="../../layuiadmin/layui/extend/steps.js"></script>
+		<script>
+			
+			layui.config({
+				base: '../../layuiadmin/' //静态资源所在路径
+			}).extend({
+				index: 'lib/index', //主入口模块
+			}).use(['index', 'jquery', 'table','laydate','upload'], function() {
+				var $ = layui.jquery,laydate=layui.laydate,upload=layui.upload,
+					table = layui.table;
+				//多图片上传
+				  upload.render({
+					elem: '#test2'
+					,url: '/upload/',
+					size:60
+					,multiple: true
+					,before: function(obj){
+					  //预读本地文件示例，不支持ie8
+					  obj.preview(function(index, file, result){
+						$('#demo2').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
+					  });
+					}
+					,done: function(res){
+					  //上传完毕
+					}
+				  });
+				table.render({
+					elem: '#test10'
+					,url:'../../layuiadmin/json/app/dengji10.js'
+					,cols: [[
+						{field:'id', width:80, title: '序号',sort: true}
+						,{field:'name', title: '商品名称',width:100}
+						,{field:'nameOrDescription',  title: '品号',width:100 }
+						,{field:'loadingDosage', title: '装车用量', width:70}
+						,{field:'remark', title: '备注',width:110}
+						,{field:'img', title: '图片',toolbar:"#imgInfo",width:80}
+						,{field:'relevantParts',  title: '相关零件', width:78}
+						,{field:'inventory',  title: '库存', width:60}
+						,{field:'purchaseCost', title: '采购成本',width:60}
+						,{field:'price',  title: '建议零售价',width:60}
+					]]
+				});
+				table.render({
+					elem: '#test11'
+					,url:'../../layuiadmin/json/app/dengji10.js'
+					,cols: [[
+						{field:'id', width:80, title: '序号',sort: true}
+						,{field:'name', title: '商品名称',width:100}
+						,{field:'nameOrDescription',  title: '品号',width:100 }
+						,{field:'loadingDosage', title: '装车用量', width:70}
+						,{field:'remark', title: '备注',width:110}
+						,{field:'img', title: '图片',toolbar:"#imgInfo",width:80}
+						,{field:'relevantParts',  title: '相关零件', width:78}
+						,{field:'inventory',  title: '库存', width:60}
+						,{field:'purchaseCost', title: '采购成本',width:60}
+						,{field:'price',  title: '建议零售价',width:60}
+					]]
+				});
+				table.render({
+					elem: '#test15'
+					,url:'../../layuiadmin/json/app/dengji10.js'
+					,cols: [[
+						{field:'id', width:80, title: '序号',sort: true}
+						,{field:'name', title: '商品名称',width:100}
+						,{field:'nameOrDescription',  title: '品号',width:100 }
+						,{field:'loadingDosage', title: '装车用量', width:70}
+						,{field:'remark', title: '备注',width:110}
+						,{field:'img', title: '图片',toolbar:"#imgInfo",width:80}
+						,{field:'relevantParts',  title: '相关零件', width:78}
+						,{field:'inventory',  title: '库存', width:60}
+						,{field:'purchaseCost', title: '采购成本',width:60}
+						,{field:'price',  title: '建议零售价',width:60}
+					]]
+				});
+				
+				table.render({
+					elem: '#test',
+					toolbar:true,
+					defaultToolbar:["exports","print"]
+					,url:'../../layuiadmin/json/app/weixiu.js'
+					,cols: [[
+						{field:'id', width:80, title: 'ID',sort: true}
+						,{field:'orderNumber', title: '订单编号'}
+						,{field:'timeInto',  title: '进厂时间', }
+						,{field:'carNumber', title: '车牌', }
+						,{field:'orderType', title: '订单类型', event:"orderType_",width:90}
+						,{field:'motorcycleType', title: '车型'}
+						,{field:'importants',  title: '优先等级', toolbar:"#important"}
+						,{field:'examingReport',  title: '检测报告', event:"car_report_"}
+						// event:"car_report_"  event:"m_list"
+						,{field:'maintenanceList',  title: '维修清单', event:"m_list"}
+						,{field:'cost',  title: '成本', }
+						,{field:'offer',  title: '报价', }
+						,{field:'serviceman', title: '维修人',event:"serviceMan"}
+						,{field:'maintenanceStation',  title: '维修工位' }
+						,{field:'subordinate',  title: '所属门店' }
+						,{field:'orderState',  title: '订单状态', }
+						,{field:'RegistationOfSource',  title: '登记来源' }
+						,{fixed: 'right', title:'操作', toolbar: '#barTool', width:100}
+					]]
+					,page: true
+				});
+
+				table.on("tool(test)",function(obj){
+					var data = obj.data;
+					if(obj.enevt==="serviceMan"){
+						layer.open({
+							title:"选择维修人",
+							type: 1,
+							shadeClose:true,
+							area:["400px","250px"],
+							btn:["确定","取消"],
+							content:$('#serviceMan_'),
+							yes:function(index){
+								layer.close(index)
+								obj.update({
+									serviceman:$('#serviceMan_select_man').val(),
+									maintenanceStation:$('#serviceMan_select_seat').val(),
+									orderState:"维修中"
+								})
+							}
+						})
+					}
+					if(obj.event==="m_list"){
+						layui.use(['index', 'jquery', 'table','laydate','upload'], function() {
+							var $ = layui.jquery,laydate=layui.laydate,count=0,count2=0,count3=0,
+								table = layui.table;
+							$('.layui-table.addDengji3_1 tbody tr').each(function(i,e){
+								var s = $(this).children('td:nth-child(3)').children('input').val()*$(this).children('td:nth-child(2)').children('input').val();
+								$(this).children('td:nth-child(4)').text(s);
+							count+=s;
+							})
+							$("#weixiuAll").text(count);
+							$('.layui-table.addDengji3_2 tbody tr').each(function(i,e){
+								var s = $(this).children('td:nth-child(3)').children('input').val()*$(this).children('td:nth-child(2)').children('input').val();
+								$(this).children('td:nth-child(4)').text(s);
+							count2+=s;
+							})
+							$("#weixiuAll2").text(count2);
+							$('.layui-table.addDengji3_3 tbody tr').each(function(i,e){
+								var s = $(this).children('td:nth-child(3)').children('input').val()*$(this).children('td:nth-child(2)').children('input').val();
+								$(this).children('td:nth-child(4)').text(s);
+							count3+=s;
+							})
+							$("#weixiuAll3").text(count3);
+							layer.open({
+								title:"维修清单",
+								type: 1,
+								shadeClose:true,
+								area:["800px","650px"],
+								btn:["确定","取消"],
+								content:$('.maintenanceList'),
+								yes:function(index){
+									layer.close(index)
+								}
+							})
+						})
+					}
+					if(obj.event==="car_report_"){
+						layer.open({
+							title:"检测报告",
+							type: 1,
+							shadeClose:true,
+							area:["800px","650px"],
+							btn:["关闭"],
+							content:$('.car_report'),
+							yes:function(index){
+								layer.close(index)
+							}
+						})
+					}
+					if(obj.event==="orderType_"){
+						layer.open({
+							title:"选择订单类型",
+							type: 1,
+							shadeClose:true,
+							area:["400px","250px"],
+							btn:["确定","取消"],
+							content:$('#orderType_'),
+							yes:function(index){
+								layer.close(index)
+								obj.update({
+									orderType:$('#orderType_select').val(),
+								})
+							}
+						})
+					}
+					// 完工（编辑)
+					if(obj.event==="edit"){
+						layer.open({
+							title:"完工确认",
+							type:1,
+							btnAlign: 'c',
+							shadeClose:true,
+							area:["900px","650px"],
+							btn:["完工","取消"],
+							content:$('.addNews'),
+							yes:function(index){
+								layer.msg('ok')
+								layer.close(index);
+							},btn2: function(index, layero){
+								//按钮【按钮二】的回调
+								layer.msg('取消')
+								layer.close(index);
+						    }
+						})
+					}
+				})
+				laydate.render({
+					elem:"#date",
+					type:"datetime"
+				})
+						$("body").on("click", ".step-icon.step-icon-custom-box",function(){
+							var box = $(this).children('.step-icon-custom').text();
+							$('.step-icon.step-icon-custom-box').each(function(i,e){
+								if($(this).children('.step-icon-custom').text()==box){
+									switch (i){
+										case 0:
+										  location.href="maintain.html";
+											break;
+										case 1:
+										  location.href="maintain2.html";
+											break;
+										case 2:
+										  location.href="maintain3.html";
+											break;
+										case 3:
+										  location.href="maintain4.html";
+											break;
+										case 4:
+										  location.href="maintain5.html";
+											break;
+										case 5:
+										  location.href="maintain6.html";
+											break;
+										default:
+											break;
+									}
+								}
+							})
+					});
+					
+				var time1=localStorage.getItem("time1");
+				var time2;
+				if(localStorage.getItem("time2")==null||localStorage.getItem("time3")=="undefined"){
+					time2="";
+				}else{
+					time2=localStorage.getItem("time2");
+				}
+				var time3;
+				if(localStorage.getItem("time3")==null||localStorage.getItem("time3")=="undefined"){
+					time3="";
+				}else{
+					time3=localStorage.getItem("time3");
+				}
+			    var time = getNowFormatDate();
+				localStorage.setItem("time4",time);
+				var steps1 = steps({
+					el: "#step",
+					data: [{
+							title: "登记",
+							description: time1
+						},
+						{
+							title: "检测",
+							description: time2
+						},
+						{
+							title: "定价",
+							description: time3
+						},
+						{
+							title: "维修",
+							description: time
+						},
+						{
+							title: "结算",
+							description: ""
+						},
+						{
+							title: "出厂",
+							description: ""
+						}
+					],
+					active: 3,
+					center: true,
+					iconType: "custom",
+					customClass: "custom-class",
+					dataOrder: ["title", "line", "description"]
+				});
+
+			});
+			function getNowFormatDate() {
+				var date = new Date();
+				var seperator1 = "-";
+				var seperator2 = ":";
+				var month = date.getMonth() + 1;
+				var strDate = date.getDate();
+				if (month >= 1 && month <= 9) {
+						month = "0" + month;
+				}
+				if (strDate >= 0 && strDate <= 9) {
+						strDate = "0" + strDate;
+				}
+				var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+								+ " " + date.getHours() + seperator2 + date.getMinutes()
+								+ seperator2 + date.getSeconds();
+				return currentdate;
+			}
+			function previewImg(obj) {
+				var img = new Image();  
+				img.src = obj.src;
+				var imgHtml = "<img src='" + obj.src + "' width='500px' height='500px'/>";  
+				//弹出层
+				layer.open({  
+					type: 1,  
+					shade: 0.8,
+					offset: 'auto',
+					area: [500 + 'px',550+'px'],
+					shadeClose:true,
+					scrollbar: false,
+					title: "图片预览", //不显示标题  
+					content: imgHtml, //捕获的元素，注意：最好该指定的元素要存放在body最外层，否则可能被其它的相对元素所影响  
+					cancel: function () {  
+						//layer.msg('捕获就是从页面已经存在的元素上，包裹layer的结构', { time: 5000, icon: 6 });  
+					}  
+				}); 
+			}
+		</script>
+		<!-- 维修人 -->
+		<div id="serviceMan_" style="display: none;margin-top: 30px;">
+			<form class="layui-form" action="">
+				<div class="layui-form-item">
+					<div class="layui-inline">
+						<label class="layui-form-label">维修人</label>
+						<div class="layui-input-inline">
+							<select name="modules" lay-verify="required" lay-search="" id="serviceMan_select_man">
+								<option value="张三">张三</option>
+								<option value="李四">李四</option>
+								<option value="王五">王五</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<div class="layui-inline">
+						<label class="layui-form-label">维修工位</label>
+						<div class="layui-input-inline">
+							<select name="modules" lay-verify="required" lay-search="" id="serviceMan_select_seat">
+								<option value="工位一">工位一</option>
+								<option value="工位二">工位二</option>
+								<option value="工位三">工位三</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- 订单 -->
+		<div id="orderType_" style="display: none;margin-top: 30px;">
+			<form class="layui-form" action="">
+				<div class="layui-form-item">
+					<div class="layui-inline">
+						<label class="layui-form-label">订单类型</label>
+						<div class="layui-input-inline">
+							<select name="modules" lay-verify="required" lay-search="" id="orderType_select">
+								<option value="类型一">类型一</option>
+								<option value="类型二">类型二</option>
+								<option value="类型三">类型三</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<script type="text/html" id="important">
+			{{#  if(d.importants === 1){ }}
+					<span style="color:#f33">非常重要</span>
+			{{#  } else if(d.importants === 2){ }}
+				  <span style="color:#00CC99">重要</span>
+			{{#  } else if(d.importants === 3){ }}
+					<span style="color:#3377FF">一般</span>
+			{{#  } }}
+		</script>
+		<!-- 维修清单 -->
+		<div class="layui-row maintenanceList" style="display: none;margin: 20px;">
+			<div class="layui-col-md12">
+				<!-- <form class="layui-form" action=""> -->
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">订单编号</label>
+							<div class="layui-input-inline">
+								<input type="text" name="name" autocomplete="off" class="layui-input" value="89789">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">车牌</label>
+							<div class="layui-input-inline">
+								<input type="text" name="name" autocomplete="off" class="layui-input" value="89489">
+							</div>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">维修用料及费用</label>
+							<div class="layui-input-inline" style="">
+								<button class="layui-btn" data-type="reload" onclick="addDengji3_1()">+</button>
+							</div>
+						</div>
+					</div>
+					<div class="layui-form">
+					  <table class="layui-table addDengji3_1">
+						<thead>
+						  <tr>
+							<th>品名</th>
+							<th>数量</th>
+							<th>单价</th>
+							<th>小计</th>
+							<th>仓库</th>
+							<th>操作</th>
+						  </tr> 
+						</thead>
+						<tbody>
+						  <tr>
+							<td>雨刷</td>
+							<td><input type="text" value="1" onblur="comte()" style="width: 100%;height: 100%;border: none;outline: none;"></td>
+							<td><input type="text" value="20" onblur="comte()" style="width: 100%;height: 100%;border: none;outline: none;"></td>
+							<td>20</td>
+							<td>第一仓库</td>
+							<td><a class="layui-btn layui-btn-danger layui-btn-xs">删除</a></td>
+						  </tr>
+						</tbody>
+					  </table>
+					</div>
+					<div class="layui-form-item">
+						维修用料及费用小计： <span id="weixiuAll">50</span>
+					</div>
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">维修工时及费用</label>
+							<div class="layui-input-inline" style="">
+								<button class="layui-btn" data-type="reload" onclick="addDengji3_2()">+</button>
+							</div>
+						</div>
+					</div>
+					<div class="layui-form">
+					  <table class="layui-table addDengji3_2">
+						<thead>
+						  <tr>
+							<th>品名</th>
+							<th>数量</th>
+							<th>单价</th>
+							<th>小计</th>
+							<th>仓库</th>
+							<th>操作</th>
+						  </tr> 
+						</thead>
+						<tbody>
+						  <tr>
+							<td>雨刷</td>
+							<td><input type="text" value="1" onblur="comte2()" style="width: 100%;height: 100%;border: none;outline: none;"></td>
+							<td><input type="text" value="20" onblur="comte2()" style="width: 100%;height: 100%;border: none;outline: none;"></td>
+							<td>20</td>
+							<td>第一仓库</td>
+							<td><a class="layui-btn layui-btn-danger layui-btn-xs">删除</a></td>
+						  </tr>
+						</tbody>
+					  </table>
+					</div>
+					<div class="layui-form-item">
+						维修工时费及费用小计： <span id="weixiuAll2">50</span>
+					</div>
+					<!-- three -->
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">其他费用</label>
+							<div class="layui-input-inline" style="">
+								<button class="layui-btn" data-type="reload" onclick="addDengji3_3()">+</button>
+							</div>
+						</div>
+					</div>
+					<div class="layui-form">
+					  <table class="layui-table addDengji3_3">
+						<thead>
+						  <tr>
+							<th>品名</th>
+							<th>数量</th>
+							<th>单价</th>
+							<th>小计</th>
+							<th>操作</th>
+						  </tr> 
+						</thead>
+						<tbody>
+						  <tr>
+							<td>雨刷</td>
+							<td><input type="text" value="1" onblur="comte3()" style="width: 100%;height: 100%;border: none;outline: none;"></td>
+							<td><input type="text" value="20" onblur="comte3()" style="width: 100%;height: 100%;border: none;outline: none;"></td>
+							<td>20</td>
+							<td><a class="layui-btn layui-btn-danger layui-btn-xs">删除</a></td>
+						  </tr>
+						</tbody>
+					  </table>
+					</div>
+					<div class="layui-form-item">
+						其他费用小计： <span id="weixiuAll3">50</span>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">订单备注说明</label>
+						<div class="layui-input-inline" style="width: calc(100% - 150px);">
+							<textarea placeholder="请输入内容" class="layui-textarea">暂无</textarea>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">合计金额</label>
+							<div class="layui-input-inline">
+								<input type="text" name="name" autocomplete="off" class="layui-input" value="200">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">成本</label>
+							<div class="layui-input-inline">
+								<input type="text" name="name" autocomplete="off" class="layui-input" value="100">
+							</div>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">优惠</label>
+							<div class="layui-input-inline">
+								<input type="text" name="name" autocomplete="off" class="layui-input" value="50">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">应收</label>
+							<div class="layui-input-inline">
+								<input type="text" name="name" autocomplete="off" class="layui-input" value="150">
+							</div>
+						</div>
+					</div>
+				<!-- </form> -->
+			</div>
+		</div>
+		<!-- 检测报告 -->
+		<div class="layui-row car_report" style="display: none;margin-top: 20px;">
+		<div class="layui-col-md12">
+			<form class="layui-form" action="">
+					<div class="layui-form-item c_title">
+						<label class="layui-form-label">单据编号</label>
+						<div class="layui-input-inline">
+							56465446465416
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">客户名称</label>
+							<div class="layui-input-inline">
+								<input type="text" name="name" autocomplete="off" class="layui-input" value="张三">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">检修人</label>
+							<div class="layui-input-inline">
+								<input type="text" name="name" autocomplete="off" class="layui-input" value="李四">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">进厂公里数</label>
+							<div class="layui-input-inline">
+								<input type="text" name="name" autocomplete="off" class="layui-input" style="width: 100px;display: inline-block;" value="500"> KM
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">进厂时间</label>
+							<div class="layui-input-inline">
+								<input type="text" id="date" autocomplete="off" class="layui-input" value="2019-12-12">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">品牌</label>
+							<div class="layui-input-inline">
+								<input type="text" id="date" autocomplete="off" class="layui-input" value="丰田">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">车牌号码</label>
+							<div class="layui-input-inline">
+								<input type="text" id="date" autocomplete="off" class="layui-input" value="松K12541">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">检测时间</label>
+							<div class="layui-input-inline">
+								<input type="text" id="date" autocomplete="off" class="layui-input" value="2019-12-12">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">车型</label>
+							<div class="layui-input-inline">
+								<input type="text" name="name" autocomplete="off" class="layui-input" value="类型一">
+							</div>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">故障说明</label>
+						<div class="layui-input-inline" style="width: calc(100% - 200px);">
+							<textarea placeholder="请输入内容" class="layui-textarea">故障说明</textarea>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">维修建议</label>
+						<div class="layui-input-inline" style="width: calc(100% - 200px);">
+							<textarea placeholder="请输入内容" class="layui-textarea">维修建议</textarea>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">维修前照片</label>
+						<div class="layui-input-inline" style="width: calc(100% - 200px);">
+							<img src="../../layuiadmin/layui/css/modules/layim/skin/2.jpg" width="120px" onclick="previewImg(this)">
+							<!-- <div class="layui-upload">
+							  <button type="button" class="layui-btn" id="test2">多图片上传</button> 
+							  <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+								预览图：
+								<div class="layui-upload-list" id="demo2"></div>
+							 </blockquote>
+							</div> -->
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">订单备注</label>
+						<div class="layui-input-inline" style="width: calc(100% - 200px);">
+							<textarea placeholder="请输入内容" class="layui-textarea">订单备注</textarea>
+						</div>
+					</div>
+					<div class="layui-form-item c_title">
+						<div class="layui-inline">
+							<label class="layui-form-label">修理厂(盖章)</label>
+							<div class="layui-input-inline">
+								xx修理厂
+							</div>
+						</div>
+						<div class="layui-inline">
+							<label class="layui-form-label">客户签字</label>
+							<div class="layui-input-inline">
+								张三
+							</div>
+						</div>
+					</div>
+					<div class="layui-form-item c_title">
+						<div class="layui-inline ">
+							<label class="layui-form-label">联系地址</label>
+							<div class="layui-input-inline">
+								东三环222号
+							</div>
+						</div>
+						<div class="layui-inline ">
+							<label class="layui-form-label">日期</label>
+							<div class="layui-input-inline">
+								2019-12-12
+							</div>
+						</div>
+					</div>
+					<div class="layui-form-item c_title">
+						<label class="layui-form-label">联系电话</label>
+						<div class="layui-input-inline">
+							5416541654
+						</div>
+					</div>
+					<div class="layui-form-item c_title">
+						<label class="layui-form-label">客户经理</label>
+						<div class="layui-input-inline">
+							孙三
+						</div>
+					</div>
+					<div class="layui-form-item c_title">
+						<label class="layui-form-label">日期</label>
+						<div class="layui-input-inline">
+							2019-12-13
+						</div>
+					</div>
+					
+			</form>
+		</div>
+	</div>
+	<script>
+		function comte(){
+			layui.use(['jquery','form'],function(){
+				var $ = layui.jquery,form=layui.form,count=0;
+					$('.layui-table.addDengji3_1 tbody tr').each(function(i,e){
+						var s = $(this).children('td:nth-child(3)').children('input').val()*$(this).children('td:nth-child(2)').children('input').val();
+						$(this).children('td:nth-child(4)').text(s);
+						count+=s;
+					})
+					$("#weixiuAll").text(count);
+			})
+		}
+		function comte2(){
+			layui.use(['jquery','form'],function(){
+				var $ = layui.jquery,form=layui.form,count=0;
+					$('.layui-table.addDengji3_2 tbody tr').each(function(i,e){
+						var s = $(this).children('td:nth-child(3)').children('input').val()*$(this).children('td:nth-child(2)').children('input').val();
+						$(this).children('td:nth-child(4)').text(s);
+						count+=s;
+					})
+					$("#weixiuAll2").text(count);
+			})
+		}
+		function comte3(){
+			layui.use(['jquery','form'],function(){
+				var $ = layui.jquery,form=layui.form,count=0;
+					$('.layui-table.addDengji3_3 tbody tr').each(function(i,e){
+						var s = $(this).children('td:nth-child(3)').children('input').val()*$(this).children('td:nth-child(2)').children('input').val();
+						$(this).children('td:nth-child(4)').text(s);
+						count+=s;
+					})
+					$("#weixiuAll3").text(count);
+			})
+		}
+		function addDengji3_3(){
+			layui.use(['jquery','form'],function(){
+				var $ = layui.jquery,form=layui.form,count=0;
+				layer.open({
+					title:"选择品名",
+					type:1,
+					shadeClose:true,
+					area:["850px","650px"],
+					btn:["确定","取消"],
+					content:$('#addDengji3_3_div'),
+					yes:function(index){
+						layer.msg('ok')
+						layer.close(index);
+						var tr=" <tr>"+
+						  ' <td><input type="text"  onblur="comte3()" style="width: 100%;height: 100%;border: none;outline: none;"></td>'+
+						  ' <td><input type="text"  onblur="comte3()" style="width: 100%;height: 100%;border: none;outline: none;"></td>'+
+						  ' <td><input type="text"  onblur="comte3()" style="width: 100%;height: 100%;border: none;outline: none;"></td>'+
+						  " <td>600</td>"+
+						  ' <td><a class="layui-btn layui-btn-danger layui-btn-xs">删除</a></td>'+
+						  " </tr>";         
+						$(".addDengji3_3.layui-table tbody").append(tr);
+						comte3();
+					},btn2: function(index, layero){
+						layer.msg('取消')
+						layer.close(index);
+					},
+				})
+				
+			})
+		}
+		function addDengji3_2(){
+			layui.use(['jquery','form'],function(){
+				var $ = layui.jquery,form=layui.form,count=0;
+				layer.open({
+					title:"选择品名",
+					type:1,
+					shadeClose:true,
+					area:["850px","650px"],
+					btn:["确定","取消"],
+					content:$('#addDengji3_2_div'),
+					yes:function(index){
+						layer.msg('ok')
+						layer.close(index);
+						console.log($('#pinming2').val())
+						console.log($('#cangku2').val())
+						var tr=" <tr>"+
+						  " <td>"+$('#pinming2').val()+"</td>"+
+						  ' <td><input type="text" value="2" onblur="comte2()" style="width: 100%;height: 100%;border: none;outline: none;"></td>'+
+						  ' <td><input type="text" value="300" onblur="comte2()" style="width: 100%;height: 100%;border: none;outline: none;"></td>'+
+						  " <td>600</td>"+
+						  " <td>"+$('#cangku2').val()+"</td>"+
+						  ' <td><a class="layui-btn layui-btn-danger layui-btn-xs">删除</a></td>'+
+						  " </tr>";         
+						$(".addDengji3_2.layui-table tbody").append(tr);
+						comte2();
+					},btn2: function(index, layero){
+						layer.msg('取消')
+						layer.close(index);
+					},
+				})
+				
+			})
+		}
+		function addDengji3_1(){
+			layui.use(['jquery','form'],function(){
+				var $ = layui.jquery,form=layui.form,count=0;
+				layer.open({
+					title:"选择品名",
+					type:1,
+					shadeClose:true,
+					area:["850px","650px"],
+					btn:["确定","取消"],
+					content:$('#addDengji3_1_div'),
+					yes:function(index){
+						layer.msg('ok')
+						layer.close(index);
+						console.log($('#pinming').val())
+						console.log($('#cangku').val())
+						var tr=" <tr>"+
+						  " <td>"+$('#pinming').val()+"</td>"+
+						  ' <td><input type="text" value="2" onblur="comte()" style="width: 100%;height: 100%;border: none;outline: none;"></td>'+
+						  ' <td><input type="text" value="200" onblur="comte()" style="width: 100%;height: 100%;border: none;outline: none;"></td>'+
+						  " <td>600</td>"+
+						  " <td>"+$('#cangku').val()+"</td>"+
+						  ' <td><a class="layui-btn layui-btn-danger layui-btn-xs">删除</a></td>'+
+						  " </tr>";         
+						$(".addDengji3_1.layui-table tbody").append(tr);
+						comte();
+					},btn2: function(index, layero){
+						layer.msg('取消')
+						layer.close(index);
+					},
+				})
+				
+			})
+		}
+	</script>
+	<div id="addDengji3_3_div" style="display: none;margin: 20px;">
+		<form class="layui-form" action="">
+			<div class="demoTable">
+				商品/服务框：
+				<div class="layui-inline">
+					<input class="layui-input" name="id" id="demoReload" autocomplete="off">
+				</div>
+				仓库
+				<div class="layui-inline">
+					<select name="modules" lay-verify="required" lay-search="" id="cangku3">
+						<option value="第一仓库">第一仓库</option>
+						<option value="第二仓库">第二仓库</option>
+						<option value="第三仓库">第三仓库</option>
+					</select>
+				</div>
+				车型
+				<div class="layui-inline">
+					<select name="modules" lay-verify="required" lay-search="" id="pinming3">
+						<option value="雨刷">雨刷</option>
+						<option value="液压">液压</option>
+						<option value="油表">油表</option>
+					</select>
+				</div>
+				一级分类
+				<div class="layui-inline">
+					<select name="modules" lay-verify="required" lay-search="" id="frist3">
+						<option value="雨刷">雨刷</option>
+						<option value="液压">液压</option>
+						<option value="油表">油表</option>
+					</select>
+				</div>
+				二级分类
+				<div class="layui-inline">
+					<select name="modules" lay-verify="required" lay-search="" id="second3">
+						<option value="雨刷">雨刷</option>
+						<option value="液压">液压</option>
+						<option value="油表">油表</option>
+					</select>
+				</div>
+				<button class="layui-btn" data-type="reload">搜索</button>
+				<table class="layui-hide" lay-filter="test15" id="test15"></table>
+			</div>
+		</form>
+				
+	</div>
+	<div id="addDengji3_2_div" style="display: none;margin: 20px;">
+		<form class="layui-form" action="">
+			<div class="demoTable">
+				商品/服务框：
+				<div class="layui-inline">
+					<input class="layui-input" name="id" id="demoReload" autocomplete="off">
+				</div>
+				仓库
+				<div class="layui-inline">
+					<select name="modules" lay-verify="required" lay-search="" id="cangku2">
+						<option value="第一仓库">第一仓库</option>
+						<option value="第二仓库">第二仓库</option>
+						<option value="第三仓库">第三仓库</option>
+					</select>
+				</div>
+				车型
+				<div class="layui-inline">
+					<select name="modules" lay-verify="required" lay-search="" id="pinming2">
+						<option value="雨刷">雨刷</option>
+						<option value="液压">液压</option>
+						<option value="油表">油表</option>
+					</select>
+				</div>
+				一级分类
+				<div class="layui-inline">
+					<select name="modules" lay-verify="required" lay-search="" id="frist2">
+						<option value="雨刷">雨刷</option>
+						<option value="液压">液压</option>
+						<option value="油表">油表</option>
+					</select>
+				</div>
+				二级分类
+				<div class="layui-inline">
+					<select name="modules" lay-verify="required" lay-search="" id="second2">
+						<option value="雨刷">雨刷</option>
+						<option value="液压">液压</option>
+						<option value="油表">油表</option>
+					</select>
+				</div>
+				<button class="layui-btn" data-type="reload">搜索</button>
+			</div>
+		</form>
+		<table class="layui-hide" id="test10" lay-filter="test10"></table>
+	</div>
+	<div id="addDengji3_1_div" style="display: none;margin: 20px;">
+		<form class="layui-form" action="">
+			<div class="demoTable">
+				商品/服务框：
+				<div class="layui-inline">
+					<input class="layui-input" name="id" id="demoReload" autocomplete="off">
+				</div>
+				仓库
+				<div class="layui-inline">
+					<select name="modules" lay-verify="required" lay-search="" id="cangku">
+						<option value="第一仓库">第一仓库</option>
+						<option value="第二仓库">第二仓库</option>
+						<option value="第三仓库">第三仓库</option>
+					</select>
+				</div>
+				车型
+				<div class="layui-inline">
+					<select name="modules" lay-verify="required" lay-search="" id="pinming">
+						<option value="雨刷">雨刷</option>
+						<option value="液压">液压</option>
+						<option value="油表">油表</option>
+					</select>
+				</div>
+				一级分类
+				<div class="layui-inline">
+					<select name="modules" lay-verify="required" lay-search="" id="frist">
+						<option value="雨刷">雨刷</option>
+						<option value="液压">液压</option>
+						<option value="油表">油表</option>
+					</select>
+				</div>
+				二级分类
+				<div class="layui-inline">
+					<select name="modules" lay-verify="required" lay-search="" id="second">
+						<option value="雨刷">雨刷</option>
+						<option value="液压">液压</option>
+						<option value="油表">油表</option>
+					</select>
+				</div>
+				<button class="layui-btn" data-type="reload">搜索</button>
+			</div>
+		</form>
+		<table class="layui-hide" lay-filter="test11" id="test11"></table>
+	</div>
+	
+	</body>
+</html>

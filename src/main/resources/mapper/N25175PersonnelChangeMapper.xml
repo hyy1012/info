@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.info.n25175_info.dao.N25175PersonnelChangeMapper">
+  <resultMap id="BaseResultMap" type="com.info.n25175_info.entity.N25175PersonnelChange">
+    <id column="pc_id" jdbcType="INTEGER" property="pcId" />
+    <result column="pc_name" jdbcType="VARCHAR" property="pcName" />
+    <result column="pc_type" jdbcType="INTEGER" property="pcType" />
+    <result column="pc_content" jdbcType="VARCHAR" property="pcContent" />
+    <result column="pc_date" jdbcType="TIMESTAMP" property="pcDate" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    pc_id, pc_name, pc_type, pc_content, pc_date
+  </sql>
+  <select id="selectByExample" parameterType="com.info.n25175_info.entity.N25175PersonnelChangeExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from n25175_personnel_change
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from n25175_personnel_change
+    where pc_id = #{pcId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from n25175_personnel_change
+    where pc_id = #{pcId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.info.n25175_info.entity.N25175PersonnelChangeExample">
+    delete from n25175_personnel_change
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.info.n25175_info.entity.N25175PersonnelChange">
+    insert into n25175_personnel_change (pc_id, pc_name, pc_type, 
+      pc_content, pc_date)
+    values (#{pcId,jdbcType=INTEGER}, #{pcName,jdbcType=VARCHAR}, #{pcType,jdbcType=INTEGER}, 
+      #{pcContent,jdbcType=VARCHAR}, #{pcDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.info.n25175_info.entity.N25175PersonnelChange">
+    insert into n25175_personnel_change
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pcId != null">
+        pc_id,
+      </if>
+      <if test="pcName != null">
+        pc_name,
+      </if>
+      <if test="pcType != null">
+        pc_type,
+      </if>
+      <if test="pcContent != null">
+        pc_content,
+      </if>
+      <if test="pcDate != null">
+        pc_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pcId != null">
+        #{pcId,jdbcType=INTEGER},
+      </if>
+      <if test="pcName != null">
+        #{pcName,jdbcType=VARCHAR},
+      </if>
+      <if test="pcType != null">
+        #{pcType,jdbcType=INTEGER},
+      </if>
+      <if test="pcContent != null">
+        #{pcContent,jdbcType=VARCHAR},
+      </if>
+      <if test="pcDate != null">
+        #{pcDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.info.n25175_info.entity.N25175PersonnelChangeExample" resultType="java.lang.Long">
+    select count(*) from n25175_personnel_change
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update n25175_personnel_change
+    <set>
+      <if test="record.pcId != null">
+        pc_id = #{record.pcId,jdbcType=INTEGER},
+      </if>
+      <if test="record.pcName != null">
+        pc_name = #{record.pcName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pcType != null">
+        pc_type = #{record.pcType,jdbcType=INTEGER},
+      </if>
+      <if test="record.pcContent != null">
+        pc_content = #{record.pcContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pcDate != null">
+        pc_date = #{record.pcDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update n25175_personnel_change
+    set pc_id = #{record.pcId,jdbcType=INTEGER},
+      pc_name = #{record.pcName,jdbcType=VARCHAR},
+      pc_type = #{record.pcType,jdbcType=INTEGER},
+      pc_content = #{record.pcContent,jdbcType=VARCHAR},
+      pc_date = #{record.pcDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.info.n25175_info.entity.N25175PersonnelChange">
+    update n25175_personnel_change
+    <set>
+      <if test="pcName != null">
+        pc_name = #{pcName,jdbcType=VARCHAR},
+      </if>
+      <if test="pcType != null">
+        pc_type = #{pcType,jdbcType=INTEGER},
+      </if>
+      <if test="pcContent != null">
+        pc_content = #{pcContent,jdbcType=VARCHAR},
+      </if>
+      <if test="pcDate != null">
+        pc_date = #{pcDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where pc_id = #{pcId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.info.n25175_info.entity.N25175PersonnelChange">
+    update n25175_personnel_change
+    set pc_name = #{pcName,jdbcType=VARCHAR},
+      pc_type = #{pcType,jdbcType=INTEGER},
+      pc_content = #{pcContent,jdbcType=VARCHAR},
+      pc_date = #{pcDate,jdbcType=TIMESTAMP}
+    where pc_id = #{pcId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,140 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>车辆类型</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<style>
+	.layui-col-xs4 .grid-demo-bg1 span{margin-bottom: 10px;border: 1px solid #009688;color: #009688;padding: 5px 12px;display: inline-block;}
+	.layui-col-xs4 .grid-demo-bg1 span.on{background: #009688;color: #fff;}
+	.layui-col-xs4 .grid-demo-bg1 span:hover{cursor: pointer;}
+	.layui-form-label{width: 85px;}
+</style>
+<body>
+<ul class="sidebar hidden-xs">
+  <a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-chat"></i>咨询<span class="sbr-400 tra" style="height: 108px;padding-top: 10px;left: -117px;"><img src="../../layuiadmin/img/person.png" alt=""></span></a>
+  <a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-login-wechat" style="color: #fff;"></i>微信<span class="sbr-400 tra" style="height: 108px;padding-top: 10px;left: -117px;"><img src="../../layuiadmin/img/weixin.png" alt=""></span></a>
+  <a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-cellphone"></i>电话<span class="sbr-400 tra"><i class="r-arr-b"></i>0574-63559457</span></a>
+  </ul>
+  <footer class="footer">
+  	<span class="footer-brand">
+  		<a href="http://www.25175.net" target="_blank"><strong class="text-danger">顺通网络</strong></a>&nbsp;提供技术支持
+  	</span>
+  	<p class="no-margin">
+  		&copy;by <a href="http://www.25175.net/" target="_Blank"><strong>25175</strong></a>
+  	</p>
+  </footer><!-- /footer -->
+  <div class="layui-fluid" style="padding-bottom: 50px;">
+    <div class="layui-row layui-col-space15">
+      <div class="layui-row">
+      	<div class="layui-col-xs4">
+      		<div class="grid-demo grid-demo-bg1">
+      			<span class="on" onclick="addNew()">添加车辆类型</span>
+      		</div>
+      	</div>
+      </div>
+	  <div class="layui-row">
+		<div class="layui-col-xs5">
+			<div class="grid-demo grid-demo-bg1">
+				<table class="layui-hide" id="test" lay-filter="test"></table>
+			</div>
+		</div>
+	  </div>
+      
+    </div>
+  </div>
+  <script type="text/html" id="barTool">
+  	 <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  	 <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+  </script>
+  <script src="../../layuiadmin/layui/layui.js"></script>  
+  <script>
+  layui.config({
+    base: '../../layuiadmin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index', 'sample','table','jquery'],function(){
+	  var table=layui.table,$=layui.jquery;
+	  table.on('tool(test)',function(obj){
+	  	if(obj.event==="edit"){
+	  		layer.open({
+	  			title:"编辑",
+	  			type:1,
+	  			btn:["确定",'取消'],
+	  			shadeClose:true,
+	  			content:$('#edit_type'),
+	  			area:["400px","200px"],
+	  			yes:function(index){
+	  				layer.msg('ok');
+	  				layer.close(index);
+	  			}
+	  		})
+	  	}else if(obj.event === "del"){
+	  		layer.msg('删除');
+	  	}
+	  })
+	 
+	  table.render({
+	  	elem: '#test'
+	  	,url:'../../layuiadmin/json/console/plateList.js'
+	  	,cols: [[
+	  		{field:'id', title: 'ID'}
+	  		,{field:'name', title: '类型名称'}
+	  		,{fixed: 'right', title:'操作', toolbar: '#barTool', width:150}
+	  	]]
+	  	,page: true
+	  });
+  });
+  function addNew(){
+    layui.use(['index','jquery'],function(){
+    var $=layui.jquery;
+		layer.open({
+			title:"添加分类",
+			type:1,
+			btn:["确定",'取消'],
+			shadeClose:true,
+			content:$('#add_type'),
+			area:["400px","200px"],
+			yes:function(index){
+				layer.msg('ok');
+				layer.close(index);
+			}
+		})
+	});
+  }
+  </script>
+   <!-- 添加分类 -->
+  <div id="add_type" style="display: none;margin-top: 30px;">
+  	<form class="layui-form" action="">
+  		<div class="layui-form-item">
+  			<div class="layui-inline">
+  				<label class="layui-form-label">类型名称</label>
+  				<div class="layui-input-inline">
+  					<input type="text" name="name" autocomplete="off" class="layui-input" value="">
+  				</div>
+  			</div>
+  		</div>
+  	</form>
+  </div>
+  <!-- 编辑 -->
+  <div id="edit_type" style="display: none;margin-top: 30px;">
+  	<form class="layui-form" action="">
+  		<div class="layui-form-item">
+  			<div class="layui-inline">
+  				<label class="layui-form-label">类型名称</label>
+  				<div class="layui-input-inline">
+  					<input type="text" name="name" autocomplete="off" class="layui-input" value="N1类车辆">
+  				</div>
+  			</div>
+  		</div>
+	</form>
+  </div>
+</body>
+</html>

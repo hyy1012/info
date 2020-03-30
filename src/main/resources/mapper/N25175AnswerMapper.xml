@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.info.n25175_info.dao.N25175AnswerMapper">
+  <resultMap id="BaseResultMap" type="com.info.n25175_info.entity.N25175Answer">
+    <id column="na_id" jdbcType="INTEGER" property="naId" />
+    <result column="na_answer" jdbcType="VARCHAR" property="naAnswer" />
+    <result column="na_score" jdbcType="INTEGER" property="naScore" />
+    <result column="na_problemId" jdbcType="INTEGER" property="naProblemid" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    na_id, na_answer, na_score, na_problemId
+  </sql>
+  <select id="selectByExample" parameterType="com.info.n25175_info.entity.N25175AnswerExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from n25175_answer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKeyOne" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from n25175_answer
+    where na_problemId = #{pid,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from n25175_answer
+    where na_id = #{naId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from n25175_answer
+    where na_id = #{naId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.info.n25175_info.entity.N25175AnswerExample">
+    delete from n25175_answer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.info.n25175_info.entity.N25175Answer">
+    insert into n25175_answer (na_id, na_answer, na_score, 
+      na_problemId)
+    values (#{naId,jdbcType=INTEGER}, #{naAnswer,jdbcType=VARCHAR}, #{naScore,jdbcType=INTEGER}, 
+      #{naProblemid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.info.n25175_info.entity.N25175Answer">
+    insert into n25175_answer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="naId != null">
+        na_id,
+      </if>
+      <if test="naAnswer != null">
+        na_answer,
+      </if>
+      <if test="naScore != null">
+        na_score,
+      </if>
+      <if test="naProblemid != null">
+        na_problemId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="naId != null">
+        #{naId,jdbcType=INTEGER},
+      </if>
+      <if test="naAnswer != null">
+        #{naAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="naScore != null">
+        #{naScore,jdbcType=INTEGER},
+      </if>
+      <if test="naProblemid != null">
+        #{naProblemid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.info.n25175_info.entity.N25175AnswerExample" resultType="java.lang.Long">
+    select count(*) from n25175_answer
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update n25175_answer
+    <set>
+      <if test="record.naId != null">
+        na_id = #{record.naId,jdbcType=INTEGER},
+      </if>
+      <if test="record.naAnswer != null">
+        na_answer = #{record.naAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.naScore != null">
+        na_score = #{record.naScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.naProblemid != null">
+        na_problemId = #{record.naProblemid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update n25175_answer
+    set na_id = #{record.naId,jdbcType=INTEGER},
+      na_answer = #{record.naAnswer,jdbcType=VARCHAR},
+      na_score = #{record.naScore,jdbcType=INTEGER},
+      na_problemId = #{record.naProblemid,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.info.n25175_info.entity.N25175Answer">
+    update n25175_answer
+    <set>
+      <if test="naAnswer != null">
+        na_answer = #{naAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="naScore != null">
+        na_score = #{naScore,jdbcType=INTEGER},
+      </if>
+      <if test="naProblemid != null">
+        na_problemId = #{naProblemid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where na_id = #{naId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.info.n25175_info.entity.N25175Answer">
+    update n25175_answer
+    set na_answer = #{naAnswer,jdbcType=VARCHAR},
+      na_score = #{naScore,jdbcType=INTEGER},
+      na_problemId = #{naProblemid,jdbcType=INTEGER}
+    where na_id = #{naId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,307 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>员工信息</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+</head>
+<body>
+	<ul class="sidebar hidden-xs">
+	<a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-chat"></i>咨询<span class="sbr-400 tra" style="height: 108px;padding-top: 10px;left: -117px;"><img src="../../layuiadmin/img/person.png" alt=""></span></a>
+	<a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-login-wechat" style="color: #fff;"></i>微信<span class="sbr-400 tra" style="height: 108px;padding-top: 10px;left: -117px;"><img src="../../layuiadmin/img/weixin.png" alt=""></span></a>
+	<a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-cellphone"></i>电话<span class="sbr-400 tra"><i class="r-arr-b"></i>0574-63559457</span></a>
+	</ul>
+	 <footer class="footer">
+	 	<span class="footer-brand">
+	 		<a href="http://www.25175.net" target="_blank"><strong class="text-danger">顺通网络</strong></a>&nbsp;提供技术支持
+	 	</span>
+	 	<p class="no-margin">
+	 		&copy;by <a href="http://www.25175.net/" target="_Blank"><strong>25175</strong></a>
+	 	</p>
+	 </footer><!-- /footer -->
+	 <div class="layui-fluid" style="padding-bottom: 50px;">
+			<div class="layui-row">
+				<div class="layui-col-md12">
+					<h2>员工信息</h2>
+					<div class="demoTable" style="margin-top: 10px;">
+						姓名：
+						<div class="layui-inline">
+							<input class="layui-input" name="id" id="demoReload" autocomplete="off">
+						</div>
+						<button class="layui-btn" data-type="reload">搜索</button>
+					</div>
+					<button class="layui-btn addNew" style="margin-top: 10px;">添加</button>
+					<button class="layui-btn addNew" style="margin-top: 10px;">导入</button>
+					<button class="layui-btn addNew" style="margin-top: 10px;">模板下载</button>
+					<button class="layui-btn addNew" style="margin-top: 10px;">待定</button>
+					<table class="layui-hide" id="test" lay-filter="test"></table>
+				</div>
+			</div>
+   </div>
+   <div id="addNew_role" class="layui-row" style="display: none;margin: 20px;">
+    	<div class="layui-col-md12">
+    			<form action="" method="" class="layui-form">
+    				<div class="layui-form-item">
+    					<label class="layui-form-label">工号</label>
+    					<div class="layui-input-inline">
+    						<input type="text"  autocomplete="off" class="layui-input" value="">
+    					</div>
+    				</div>
+    				<div class="layui-form-item">
+    					<label class="layui-form-label">姓名</label>
+    					<div class="layui-input-inline">
+    						<input type="text"  autocomplete="off" class="layui-input" value="">
+    					</div>
+    				</div>
+   				<div class="layui-form-item">
+   					<label class="layui-form-label">性别</label>
+   					<div class="layui-input-inline">
+   						<select name="modules" lay-verify="required">
+   							<option value="0">男</option>
+   							<option value="1">女</option>
+   						</select>
+   					</div>
+   				</div>
+    				<div class="layui-form-item">
+    					<label class="layui-form-label">职务</label>
+    					<div class="layui-input-inline">
+    						<input type="text"  autocomplete="off" class="layui-input" value="">
+    					</div>
+    				</div>
+    				<div class="layui-form-item">
+    					<label class="layui-form-label">联系方式</label>
+    					<div class="layui-input-inline">
+    						<input type="text"  autocomplete="off" class="layui-input" value="">
+    					</div>
+    				</div>
+    				<div class="layui-form-item">
+    					<label class="layui-form-label">身份证号</label>
+    					<div class="layui-input-inline">
+    						<input type="text"  autocomplete="off" class="layui-input" value="">
+    					</div>
+    				</div>
+   				<div class="layui-form-item">
+   					<label class="layui-form-label">住址</label>
+   					<div class="layui-input-inline">
+   						<input type="text"  autocomplete="off" class="layui-input" value="">
+   					</div>
+   				</div>
+   				<div class="layui-form-item">
+   					<label class="layui-form-label">底薪</label>
+   					<div class="layui-input-inline">
+   						<input type="text"  autocomplete="off" class="layui-input" value="">
+   					</div>
+   				</div>
+   				<div class="layui-form-item">
+   					<label class="layui-form-label">所属门店</label>
+   					<div class="layui-input-inline">
+   						<select name="modules" lay-verify="required">
+   							<option value="465416546">465416546</option>
+   							<option value="99999999">99999999</option>
+   							<option value="789789789">789789789</option>
+   						</select>
+   					</div>
+   				</div>
+    				<div class="layui-form-item">
+    					<label class="layui-form-label">入职时间</label>
+    					<div class="layui-input-inline">
+    						<input type="text" id="date5" autocomplete="off" class="layui-input" value="">
+    					</div>
+    				</div>
+   				<div class="layui-form-item">
+   					<label class="layui-form-label">备注</label>
+   					<div class="layui-input-inline">
+   						<textarea rows="" cols="" class="layui-textarea"></textarea>
+   					</div>
+   				</div>
+    				<div class="layui-form-item">
+    					<label class="layui-form-label">提成模式</label>
+    					<div class="layui-input-inline">
+    						<select name="modules" lay-verify="required">
+    							<option value="0">模式一</option>
+    							<option value="1">模式二</option>
+    							<option value="2">模式三</option>
+    						</select>
+    					</div>
+    				</div>
+    				
+    			</form>
+    		</div>
+    	
+    </div>
+   
+	 <div id="edit" class="layui-row" style="display: none;margin: 20px;">
+	 	<div class="layui-col-md12">
+	 			<form action="" method="" class="layui-form">
+	 				<div class="layui-form-item">
+	 					<label class="layui-form-label">工号</label>
+	 					<div class="layui-input-inline">
+	 						<input type="text"  autocomplete="off" class="layui-input" value="9631">
+	 					</div>
+	 				</div>
+	 				<div class="layui-form-item">
+	 					<label class="layui-form-label">姓名</label>
+	 					<div class="layui-input-inline">
+	 						<input type="text"  autocomplete="off" class="layui-input" value="张三">
+	 					</div>
+	 				</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">性别</label>
+						<div class="layui-input-inline">
+							<select name="modules" lay-verify="required">
+								<option value="0">男</option>
+								<option value="1">女</option>
+							</select>
+						</div>
+					</div>
+	 				<div class="layui-form-item">
+	 					<label class="layui-form-label">职务</label>
+	 					<div class="layui-input-inline">
+	 						<input type="text"  autocomplete="off" class="layui-input" value="职务一">
+	 					</div>
+	 				</div>
+	 				<div class="layui-form-item">
+	 					<label class="layui-form-label">联系方式</label>
+	 					<div class="layui-input-inline">
+	 						<input type="text"  autocomplete="off" class="layui-input" value="136965201421">
+	 					</div>
+	 				</div>
+	 				<div class="layui-form-item">
+	 					<label class="layui-form-label">身份证号</label>
+	 					<div class="layui-input-inline">
+	 						<input type="text"  autocomplete="off" class="layui-input" value="312521444511200012">
+	 					</div>
+	 				</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">住址</label>
+						<div class="layui-input-inline">
+							<input type="text"  autocomplete="off" class="layui-input" value="北京大街">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">底薪</label>
+						<div class="layui-input-inline">
+							<input type="text"  autocomplete="off" class="layui-input" value="5000">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">所属门店</label>
+						<div class="layui-input-inline">
+							<select name="modules" lay-verify="required">
+								<option value="465416546">465416546</option>
+								<option value="99999999">99999999</option>
+								<option value="789789789">789789789</option>
+							</select>
+						</div>
+					</div>
+	 				<div class="layui-form-item">
+	 					<label class="layui-form-label">入职时间</label>
+	 					<div class="layui-input-inline">
+	 						<input type="text" id="date" autocomplete="off" class="layui-input" value="2019-02-02">
+	 					</div>
+	 				</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">备注</label>
+						<div class="layui-input-inline">
+							<textarea rows="" cols="" class="layui-textarea">备注</textarea>
+						</div>
+					</div>
+	 				<div class="layui-form-item">
+	 					<label class="layui-form-label">提成模式</label>
+	 					<div class="layui-input-inline">
+	 						<select name="modules" lay-verify="required">
+	 							<option value="0">模式一</option>
+	 							<option value="1">模式二</option>
+	 							<option value="2">模式三</option>
+	 						</select>
+	 					</div>
+	 				</div>
+	 				
+	 			</form>
+	 		</div>
+	 	
+	 </div>
+	<script type="text/html" id="barTool">
+  	<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+  </script>
+	 <script type="text/html" id="sex_">
+		{{# if(d.sex==0){ }}
+			男
+		{{# }else{ }}
+			女
+		{{# } }}
+	</script>
+  <script src="../../layuiadmin/layui/layui.js"></script>  
+  <script>
+  layui.config({
+    base: '../../layuiadmin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index','jquery','table','form','laydate'],function(){
+		var $ = layui.jquery,table=layui.table,form=layui.form,laydate=layui.laydate;
+		laydate.render({
+			elem:"#date"
+		})
+		laydate.render({
+			elem:"#date5"
+		})
+		$('.addNew').click(function(){
+			layer.open({
+				title:"添加员工",
+				area:["400px","750px"],
+				type:1,
+				shadeClose:true,
+				btn:["确定","取消"],
+				content:$('#addNew_role'),
+				yes:function(index){
+					layer.close(index);
+					layer.msg('ok')
+				}
+			})
+		})
+		table.on("tool(test)",function(obj){
+			layer.open({
+				title:"编辑员工信息",
+				area:["400px","750px"],
+				type:1,
+				shadeClose:true,
+				btn:["确定","取消"],
+				content:$('#edit'),
+				yes:function(index){
+					layer.close(index);
+					layer.msg('ok')
+				}
+			})
+		})
+		table.render({
+			elem: '#test'
+			,url:'../../layuiadmin/json/user/info.js'
+			,cols: [[
+				{field:'id', width:80, title: 'ID',sort: true}
+				,{field:'jobNumber', title: '工号'}
+				,{field:'name', title: '姓名'}
+				,{field:'sex',  title: '性别', toolbar:"#sex_"}
+				,{field:'duty', title: '职务', }
+				,{field:'phone', title: '联系方式'}
+				,{field:'IDNumber', title: '身份证号'}
+				,{field:'address',  title: '住址', }
+				,{field:'basicSalary', title: '底薪'}
+				,{field:'belongsToTheDoor', title: '所属门店'}
+				,{field:'entryTime', title: '入职时间'}
+				,{field:'remark', title: '备注'}
+				,{field:'commissionMode', title: '提成模式'}
+				,{field:"left",title:"操作",toolbar:"#barTool",width:120}
+			]]
+			,page: true
+		});
+	});
+  </script>
+</body>
+</html>

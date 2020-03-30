@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.info.n25175_info.dao.N25175UserEnableMapper">
+  <resultMap id="BaseResultMap" type="com.info.n25175_info.entity.N25175UserEnable">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="e_idef1" jdbcType="VARCHAR" property="eIdef1" />
+    <result column="e_idef2" jdbcType="VARCHAR" property="eIdef2" />
+    <result column="e_ddef1" jdbcType="VARCHAR" property="eDdef1" />
+    <result column="e_ddef2" jdbcType="VARCHAR" property="eDdef2" />
+    <result column="e_sdef1" jdbcType="VARCHAR" property="eSdef1" />
+    <result column="e_sdef2" jdbcType="VARCHAR" property="eSdef2" />
+    <result column="e_tadef1" jdbcType="VARCHAR" property="eTadef1" />
+    <result column="e_tadef2" jdbcType="VARCHAR" property="eTadef2" />
+    <result column="e_idef1n" jdbcType="VARCHAR" property="eIdef1n" />
+    <result column="e_idef2n" jdbcType="VARCHAR" property="eIdef2n" />
+    <result column="e_ddef1n" jdbcType="VARCHAR" property="eDdef1n" />
+    <result column="e_ddef2n" jdbcType="VARCHAR" property="eDdef2n" />
+    <result column="e_sdef1n" jdbcType="VARCHAR" property="eSdef1n" />
+    <result column="e_sdef2n" jdbcType="VARCHAR" property="eSdef2n" />
+    <result column="e_tadef1n" jdbcType="VARCHAR" property="eTadef1n" />
+    <result column="e_tadef2n" jdbcType="VARCHAR" property="eTadef2n" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, e_idef1, e_idef2, e_ddef1, e_ddef2, e_sdef1, e_sdef2, e_tadef1, e_tadef2, e_idef1n, 
+    e_idef2n, e_ddef1n, e_ddef2n, e_sdef1n, e_sdef2n, e_tadef1n, e_tadef2n
+  </sql>
+  <select id="selectByExample" parameterType="com.info.n25175_info.entity.N25175UserEnableExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from n25175_user_enable
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from n25175_user_enable
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from n25175_user_enable
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.info.n25175_info.entity.N25175UserEnableExample">
+    delete from n25175_user_enable
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.info.n25175_info.entity.N25175UserEnable">
+    insert into n25175_user_enable (id, e_idef1, e_idef2, 
+      e_ddef1, e_ddef2, e_sdef1, 
+      e_sdef2, e_tadef1, e_tadef2, 
+      e_idef1n, e_idef2n, e_ddef1n, 
+      e_ddef2n, e_sdef1n, e_sdef2n, 
+      e_tadef1n, e_tadef2n)
+    values (#{id,jdbcType=INTEGER}, #{eIdef1,jdbcType=VARCHAR}, #{eIdef2,jdbcType=VARCHAR}, 
+      #{eDdef1,jdbcType=VARCHAR}, #{eDdef2,jdbcType=VARCHAR}, #{eSdef1,jdbcType=VARCHAR}, 
+      #{eSdef2,jdbcType=VARCHAR}, #{eTadef1,jdbcType=VARCHAR}, #{eTadef2,jdbcType=VARCHAR}, 
+      #{eIdef1n,jdbcType=VARCHAR}, #{eIdef2n,jdbcType=VARCHAR}, #{eDdef1n,jdbcType=VARCHAR}, 
+      #{eDdef2n,jdbcType=VARCHAR}, #{eSdef1n,jdbcType=VARCHAR}, #{eSdef2n,jdbcType=VARCHAR}, 
+      #{eTadef1n,jdbcType=VARCHAR}, #{eTadef2n,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.info.n25175_info.entity.N25175UserEnable">
+    insert into n25175_user_enable
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="eIdef1 != null">
+        e_idef1,
+      </if>
+      <if test="eIdef2 != null">
+        e_idef2,
+      </if>
+      <if test="eDdef1 != null">
+        e_ddef1,
+      </if>
+      <if test="eDdef2 != null">
+        e_ddef2,
+      </if>
+      <if test="eSdef1 != null">
+        e_sdef1,
+      </if>
+      <if test="eSdef2 != null">
+        e_sdef2,
+      </if>
+      <if test="eTadef1 != null">
+        e_tadef1,
+      </if>
+      <if test="eTadef2 != null">
+        e_tadef2,
+      </if>
+      <if test="eIdef1n != null">
+        e_idef1n,
+      </if>
+      <if test="eIdef2n != null">
+        e_idef2n,
+      </if>
+      <if test="eDdef1n != null">
+        e_ddef1n,
+      </if>
+      <if test="eDdef2n != null">
+        e_ddef2n,
+      </if>
+      <if test="eSdef1n != null">
+        e_sdef1n,
+      </if>
+      <if test="eSdef2n != null">
+        e_sdef2n,
+      </if>
+      <if test="eTadef1n != null">
+        e_tadef1n,
+      </if>
+      <if test="eTadef2n != null">
+        e_tadef2n,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="eIdef1 != null">
+        #{eIdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="eIdef2 != null">
+        #{eIdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="eDdef1 != null">
+        #{eDdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="eDdef2 != null">
+        #{eDdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="eSdef1 != null">
+        #{eSdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="eSdef2 != null">
+        #{eSdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="eTadef1 != null">
+        #{eTadef1,jdbcType=VARCHAR},
+      </if>
+      <if test="eTadef2 != null">
+        #{eTadef2,jdbcType=VARCHAR},
+      </if>
+      <if test="eIdef1n != null">
+        #{eIdef1n,jdbcType=VARCHAR},
+      </if>
+      <if test="eIdef2n != null">
+        #{eIdef2n,jdbcType=VARCHAR},
+      </if>
+      <if test="eDdef1n != null">
+        #{eDdef1n,jdbcType=VARCHAR},
+      </if>
+      <if test="eDdef2n != null">
+        #{eDdef2n,jdbcType=VARCHAR},
+      </if>
+      <if test="eSdef1n != null">
+        #{eSdef1n,jdbcType=VARCHAR},
+      </if>
+      <if test="eSdef2n != null">
+        #{eSdef2n,jdbcType=VARCHAR},
+      </if>
+      <if test="eTadef1n != null">
+        #{eTadef1n,jdbcType=VARCHAR},
+      </if>
+      <if test="eTadef2n != null">
+        #{eTadef2n,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.info.n25175_info.entity.N25175UserEnableExample" resultType="java.lang.Long">
+    select count(*) from n25175_user_enable
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update n25175_user_enable
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.eIdef1 != null">
+        e_idef1 = #{record.eIdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eIdef2 != null">
+        e_idef2 = #{record.eIdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eDdef1 != null">
+        e_ddef1 = #{record.eDdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eDdef2 != null">
+        e_ddef2 = #{record.eDdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eSdef1 != null">
+        e_sdef1 = #{record.eSdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eSdef2 != null">
+        e_sdef2 = #{record.eSdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eTadef1 != null">
+        e_tadef1 = #{record.eTadef1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eTadef2 != null">
+        e_tadef2 = #{record.eTadef2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eIdef1n != null">
+        e_idef1n = #{record.eIdef1n,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eIdef2n != null">
+        e_idef2n = #{record.eIdef2n,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eDdef1n != null">
+        e_ddef1n = #{record.eDdef1n,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eDdef2n != null">
+        e_ddef2n = #{record.eDdef2n,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eSdef1n != null">
+        e_sdef1n = #{record.eSdef1n,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eSdef2n != null">
+        e_sdef2n = #{record.eSdef2n,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eTadef1n != null">
+        e_tadef1n = #{record.eTadef1n,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eTadef2n != null">
+        e_tadef2n = #{record.eTadef2n,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update n25175_user_enable
+    set id = #{record.id,jdbcType=INTEGER},
+      e_idef1 = #{record.eIdef1,jdbcType=VARCHAR},
+      e_idef2 = #{record.eIdef2,jdbcType=VARCHAR},
+      e_ddef1 = #{record.eDdef1,jdbcType=VARCHAR},
+      e_ddef2 = #{record.eDdef2,jdbcType=VARCHAR},
+      e_sdef1 = #{record.eSdef1,jdbcType=VARCHAR},
+      e_sdef2 = #{record.eSdef2,jdbcType=VARCHAR},
+      e_tadef1 = #{record.eTadef1,jdbcType=VARCHAR},
+      e_tadef2 = #{record.eTadef2,jdbcType=VARCHAR},
+      e_idef1n = #{record.eIdef1n,jdbcType=VARCHAR},
+      e_idef2n = #{record.eIdef2n,jdbcType=VARCHAR},
+      e_ddef1n = #{record.eDdef1n,jdbcType=VARCHAR},
+      e_ddef2n = #{record.eDdef2n,jdbcType=VARCHAR},
+      e_sdef1n = #{record.eSdef1n,jdbcType=VARCHAR},
+      e_sdef2n = #{record.eSdef2n,jdbcType=VARCHAR},
+      e_tadef1n = #{record.eTadef1n,jdbcType=VARCHAR},
+      e_tadef2n = #{record.eTadef2n,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.info.n25175_info.entity.N25175UserEnable">
+    update n25175_user_enable
+    <set>
+      <if test="eIdef1 != null">
+        e_idef1 = #{eIdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="eIdef2 != null">
+        e_idef2 = #{eIdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="eDdef1 != null">
+        e_ddef1 = #{eDdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="eDdef2 != null">
+        e_ddef2 = #{eDdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="eSdef1 != null">
+        e_sdef1 = #{eSdef1,jdbcType=VARCHAR},
+      </if>
+      <if test="eSdef2 != null">
+        e_sdef2 = #{eSdef2,jdbcType=VARCHAR},
+      </if>
+      <if test="eTadef1 != null">
+        e_tadef1 = #{eTadef1,jdbcType=VARCHAR},
+      </if>
+      <if test="eTadef2 != null">
+        e_tadef2 = #{eTadef2,jdbcType=VARCHAR},
+      </if>
+      <if test="eIdef1n != null">
+        e_idef1n = #{eIdef1n,jdbcType=VARCHAR},
+      </if>
+      <if test="eIdef2n != null">
+        e_idef2n = #{eIdef2n,jdbcType=VARCHAR},
+      </if>
+      <if test="eDdef1n != null">
+        e_ddef1n = #{eDdef1n,jdbcType=VARCHAR},
+      </if>
+      <if test="eDdef2n != null">
+        e_ddef2n = #{eDdef2n,jdbcType=VARCHAR},
+      </if>
+      <if test="eSdef1n != null">
+        e_sdef1n = #{eSdef1n,jdbcType=VARCHAR},
+      </if>
+      <if test="eSdef2n != null">
+        e_sdef2n = #{eSdef2n,jdbcType=VARCHAR},
+      </if>
+      <if test="eTadef1n != null">
+        e_tadef1n = #{eTadef1n,jdbcType=VARCHAR},
+      </if>
+      <if test="eTadef2n != null">
+        e_tadef2n = #{eTadef2n,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.info.n25175_info.entity.N25175UserEnable">
+    update n25175_user_enable
+    set e_idef1 = #{eIdef1,jdbcType=VARCHAR},
+      e_idef2 = #{eIdef2,jdbcType=VARCHAR},
+      e_ddef1 = #{eDdef1,jdbcType=VARCHAR},
+      e_ddef2 = #{eDdef2,jdbcType=VARCHAR},
+      e_sdef1 = #{eSdef1,jdbcType=VARCHAR},
+      e_sdef2 = #{eSdef2,jdbcType=VARCHAR},
+      e_tadef1 = #{eTadef1,jdbcType=VARCHAR},
+      e_tadef2 = #{eTadef2,jdbcType=VARCHAR},
+      e_idef1n = #{eIdef1n,jdbcType=VARCHAR},
+      e_idef2n = #{eIdef2n,jdbcType=VARCHAR},
+      e_ddef1n = #{eDdef1n,jdbcType=VARCHAR},
+      e_ddef2n = #{eDdef2n,jdbcType=VARCHAR},
+      e_sdef1n = #{eSdef1n,jdbcType=VARCHAR},
+      e_sdef2n = #{eSdef2n,jdbcType=VARCHAR},
+      e_tadef1n = #{eTadef1n,jdbcType=VARCHAR},
+      e_tadef2n = #{eTadef2n,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

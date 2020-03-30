@@ -1,0 +1,234 @@
+.Toast ul,
+li {
+    list-style: none;
+}
+
+.Toast p {
+    padding: 0;
+    margin: 0;
+}
+
+.Toast .memberupdown .description li.descriptionli {
+    padding-bottom: 10px;
+    line-height: 20px;
+}
+
+.Toast {
+    position: relative;
+}
+
+.Toast .text-center {
+    text-align: center;
+}
+
+.Toast .layui-layer-title {
+    padding: 0 80px 0 20px;
+    height: 42px;
+    line-height: 42px;
+    font-size: 14px;
+    color: #333;
+    overflow: hidden;
+    text-align: center;
+    border-radius: 2px 2px 0 0;
+}
+
+.Toast .layui-layer-setwin {
+    position: absolute;
+    right: 15px;
+    *right: 0;
+    top: 15px;
+    font-size: 0;
+    line-height: initial;
+    background-image: url(http://reg.25175.com/share/del.png);
+    background-size: 100% 100%;
+    width: 15px;
+    background-size: 100% 100%;
+    height: 15px;
+}
+
+.Toast .layui-layer-setwin a {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    margin-left: 10px;
+    font-size: 12px;
+    _overflow: hidden;
+}
+
+.Toast .layui-layer-setwin .layui-layer-close1 {
+    background-position: 0 -40px;
+    cursor: pointer;
+}
+
+.Toast .layui-layer-page .layui-layer-content {
+    position: relative;
+    overflow: auto;
+}
+
+.Toast .memberupdown {
+    padding: 10px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.Toast .memberupdown .updowndescription,
+.memberupdown .updownmemberlist {
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+    height: 448px;
+}
+
+.Toast .memberupdown .description {
+    border: 1px solid #eaeaea;
+    position: absolute;
+    width: 310px;
+    height: 352px;
+    padding: 10px;
+    margin: auto;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    top: 0;
+    font-size: 14px;
+}
+
+.Toast .memberupdown .updowndescription,
+.memberupdown .updownmemberlist {
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+    height: 448px;
+}
+
+.Toast .memberupdown .updownmemberlistbox {
+    margin: auto;
+    position: absolute;
+    width: 310px;
+    height: 210px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.Toast .memberupdown .updownmemberlistbox .col-xs-6 {
+    height: 210px;
+}
+
+.Toast .col-xs-6 {
+    width: 50%;
+}
+
+.Toast .memberupdown .updownmemberlistbox .downtemplate {
+    width: 100%;
+    text-align: center;
+    padding-left: 0;
+}
+
+.Toast .memberupdown .updownmemberlistbox .downtemplate .templatestep {
+    height: 50px;
+    line-height: 50px;
+    position: relative;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+}
+
+.Toast .memberupdown .updownmemberlistbox .downtemplate .templatestep .step1 {
+    display: block;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    color: #fff;
+    text-align: center;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    background-color: #f66;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+}
+
+.Toast .memberupdown .updownmemberlistbox .downtemplate .templatecenter {
+    height: 110px;
+    position: relative;
+}
+
+.Toast .col-xs-1,
+.col-xs-2,
+.col-xs-3,
+.col-xs-4,
+.col-xs-5,
+.col-xs-6,
+.col-xs-7,
+.col-xs-8,
+.col-xs-9,
+.col-xs-10,
+.col-xs-11,
+.col-xs-12 {
+    float: left;
+}
+
+
+
+
+.Toast .descriptionli p {
+    color: #333;
+}
+
+.Toast .memberupdown .description li.descriptionli .descriptionp {
+    text-indent: 1em;
+}
+
+.Toast i {
+    font-style: normal;
+}
+
+.Toast .memberupdown .description li.descriptionli .colorff {
+    color: #f00;
+}
+
+.Toast .memberupdown .updownmemberlistbox .downtemplate .updowmmemberlist {
+    height: 110px;
+    width: 100px;
+}
+
+.Toast .file {
+    margin: auto;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+.Toast .memberupdown .updownmemberlistbox .downtemplate .templatecenter img {
+    position: absolute;
+    border: none;
+    display: block;
+    width: 110px;
+    height: 110px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    z-index: -1;
+}
+
+
+.Toast .memberupdown .updownmemberlistbox .downtemplate .templatecenter a {
+    display: block;
+    height: 110px;
+    width: 125px;
+    margin-left: 25px;
+}

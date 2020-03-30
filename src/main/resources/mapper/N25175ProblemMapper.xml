@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.info.n25175_info.dao.N25175ProblemMapper">
+  <resultMap id="BaseResultMap" type="com.info.n25175_info.entity.N25175Problem">
+    <id column="p_id" jdbcType="INTEGER" property="pId" />
+    <result column="p_topic" jdbcType="VARCHAR" property="pTopic" />
+    <result column="p_type" jdbcType="INTEGER" property="pType" />
+    <result column="p_list" jdbcType="INTEGER" property="pList" />
+    <result column="p_postId" jdbcType="INTEGER" property="pPostid" />
+    <result column="p_score" jdbcType="INTEGER" property="pScore" />
+    <result column="p_date" jdbcType="TIMESTAMP" property="pDate" />
+    <result column="p_sign" jdbcType="INTEGER" property="pSign" />
+  </resultMap>
+
+  <resultMap id="Base" type="com.info.n25175_info.dto.ProblemDto" extends="BaseResultMap">
+    <collection property="answers" ofType="com.info.n25175_info.entity.N25175Answer" column="p_id" select="com.info.n25175_info.dao.N25175AnswerMapper.selectByPrimaryKeyOne"></collection>
+  </resultMap>
+
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    p_id, p_topic, p_type, p_list, p_postId, p_score, p_date, p_sign
+  </sql>
+  <select id="selectByExample" parameterType="com.info.n25175_info.entity.N25175ProblemExample" resultMap="Base">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from n25175_problem
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="Base">
+    select 
+    <include refid="Base_Column_List" />
+    from n25175_problem
+    where p_id = #{pId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from n25175_problem
+    where p_id = #{pId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.info.n25175_info.entity.N25175ProblemExample">
+    delete from n25175_problem
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.info.n25175_info.entity.N25175Problem" useGeneratedKeys="true" keyProperty="pId">
+    insert into n25175_problem (p_id, p_topic, p_type,
+    p_list, p_postId, p_score,
+    p_date, p_sign)
+    values (#{pId,jdbcType=INTEGER}, #{pTopic,jdbcType=VARCHAR}, #{pType,jdbcType=INTEGER},
+    #{pList,jdbcType=INTEGER}, #{pPostid,jdbcType=INTEGER}, #{pScore,jdbcType=INTEGER},
+    #{pDate,jdbcType=TIMESTAMP}, #{pSign,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.info.n25175_info.entity.N25175Problem" useGeneratedKeys="true" keyProperty="pId">
+    insert into n25175_problem
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pId != null">
+        p_id,
+      </if>
+      <if test="pTopic != null">
+        p_topic,
+      </if>
+      <if test="pType != null">
+        p_type,
+      </if>
+      <if test="pList != null">
+        p_list,
+      </if>
+      <if test="pPostid != null">
+        p_postId,
+      </if>
+      <if test="pScore != null">
+        p_score,
+      </if>
+      <if test="pDate != null">
+        p_date,
+      </if>
+      <if test="pSign != null">
+        p_sign,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pId != null">
+        #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="pTopic != null">
+        #{pTopic,jdbcType=VARCHAR},
+      </if>
+      <if test="pType != null">
+        #{pType,jdbcType=INTEGER},
+      </if>
+      <if test="pList != null">
+        #{pList,jdbcType=INTEGER},
+      </if>
+      <if test="pPostid != null">
+        #{pPostid,jdbcType=INTEGER},
+      </if>
+      <if test="pScore != null">
+        #{pScore,jdbcType=INTEGER},
+      </if>
+      <if test="pDate != null">
+        #{pDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pSign != null">
+        #{pSign,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.info.n25175_info.entity.N25175ProblemExample" resultType="java.lang.Long">
+    select count(*) from n25175_problem
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByEx" parameterType="com.info.n25175_info.entity.N25175ProblemExample">
+    update n25175_problem
+   SET p_list = p_list +1
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </update>
+
+  <update id="updateByExampleSelective" parameterType="map">
+    update n25175_problem
+    <set>
+      <if test="record.pId != null">
+        p_id = #{record.pId,jdbcType=INTEGER},
+      </if>
+      <if test="record.pTopic != null">
+        p_topic = #{record.pTopic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pType != null">
+        p_type = #{record.pType,jdbcType=INTEGER},
+      </if>
+      <if test="record.pList != null">
+        p_list = #{record.pList,jdbcType=INTEGER},
+      </if>
+      <if test="record.pPostid != null">
+        p_postId = #{record.pPostid,jdbcType=INTEGER},
+      </if>
+      <if test="record.pScore != null">
+        p_score = #{record.pScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.pDate != null">
+        p_date = #{record.pDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.pSign != null">
+        p_sign = #{record.pSign,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update n25175_problem
+    set p_id = #{record.pId,jdbcType=INTEGER},
+    p_topic = #{record.pTopic,jdbcType=VARCHAR},
+    p_type = #{record.pType,jdbcType=INTEGER},
+    p_list = #{record.pList,jdbcType=INTEGER},
+    p_postId = #{record.pPostid,jdbcType=INTEGER},
+    p_score = #{record.pScore,jdbcType=INTEGER},
+    p_date = #{record.pDate,jdbcType=TIMESTAMP},
+    p_sign = #{record.pSign,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.info.n25175_info.entity.N25175Problem">
+    update n25175_problem
+    <set>
+      <if test="pTopic != null">
+        p_topic = #{pTopic,jdbcType=VARCHAR},
+      </if>
+      <if test="pType != null">
+        p_type = #{pType,jdbcType=INTEGER},
+      </if>
+      <if test="pList != null">
+        p_list = #{pList,jdbcType=INTEGER},
+      </if>
+      <if test="pPostid != null">
+        p_postId = #{pPostid,jdbcType=INTEGER},
+      </if>
+      <if test="pScore != null">
+        p_score = #{pScore,jdbcType=INTEGER},
+      </if>
+      <if test="pDate != null">
+        p_date = #{pDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pSign != null">
+        p_sign = #{pSign,jdbcType=INTEGER},
+      </if>
+    </set>
+    where p_id = #{pId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.info.n25175_info.entity.N25175Problem">
+    update n25175_problem
+    set p_topic = #{pTopic,jdbcType=VARCHAR},
+      p_type = #{pType,jdbcType=INTEGER},
+      p_list = #{pList,jdbcType=INTEGER},
+      p_postId = #{pPostid,jdbcType=INTEGER},
+      p_score = #{pScore,jdbcType=INTEGER},
+      p_date = #{pDate,jdbcType=TIMESTAMP},
+      p_sign = #{pSign,jdbcType=INTEGER}
+    where p_id = #{pId,jdbcType=INTEGER}
+  </update>
+  <select id="selectIdsByPostId" resultType="java.lang.Integer">
+    select p_id from n25175_problem where p_postId = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

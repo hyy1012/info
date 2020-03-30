@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>闪电开单</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+		<style>
+			h3{font-weight: 600;}
+		.layui-form-label{width: 85px;}
+		.layui-col-md8{text-align: center;}
+		.layui-btn+.layui-btn{margin-left: 40px;}
+	</style>
+	</head>
+	<body>
+<ul class="sidebar hidden-xs">
+  <a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-chat"></i>咨询<span class="sbr-400 tra" style="height: 108px;padding-top: 10px;left: -117px;"><img src="../../layuiadmin/img/person.png" alt=""></span></a>
+  <a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-login-wechat" style="color: #fff;"></i>微信<span class="sbr-400 tra" style="height: 108px;padding-top: 10px;left: -117px;"><img src="../../layuiadmin/img/weixin.png" alt=""></span></a>
+  <a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-cellphone"></i>电话<span class="sbr-400 tra"><i class="r-arr-b"></i>0574-63559457</span></a>
+  </ul>
+		<div class="layui-fluid" style="padding-bottom: 50px;">
+			<div class="layui-row layui-col-space15 layadmin-panel-selection">
+				<div class="layui-col-md12">
+					<form class="layui-form" action="">
+						<div class="layui-form-item">
+							<div class="layui-inline">
+								<label class="layui-form-label">订单编号</label>
+								<div class="layui-input-inline">
+									<input type="text" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">日期</label>
+								<div class="layui-input-inline">
+									<input type="text" id="date" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">制单人</label>
+								<div class="layui-input-inline">
+									<input type="text" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">司机</label>
+								<div class="layui-input-inline">
+									<input type="text" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">电话</label>
+								<div class="layui-input-inline">
+									<input type="text" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">所属公司</label>
+								<div class="layui-input-inline">
+									<input type="text" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">车牌</label>
+								<div class="layui-input-inline">
+									<input type="text" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">品牌</label>
+								<div class="layui-input-inline">
+									<input type="text" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">车型</label>
+								<div class="layui-input-inline">
+									<input type="text" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">企业名称</label>
+								<div class="layui-input-inline">
+									<input type="text" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">姓名</label>
+								<div class="layui-input-inline">
+									<input type="text" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">手机</label>
+								<div class="layui-input-inline">
+									<input type="text" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">会员卡号</label>
+								<div class="layui-input-inline">
+									<input type="text" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">积分</label>
+								<div class="layui-input-inline">
+									<input type="text" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">维修次数</label>
+								<div class="layui-input-inline">
+									<input type="text" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">公里数</label>
+								<div class="layui-input-inline">
+									<input type="text" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">油表</label>
+								<div class="layui-input-inline">
+									<input type="text" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">门店</label>
+								<div class="layui-input-inline">
+									<select name="modules" lay-verify="required" lay-search="">
+										<option value="">选择门店</option>
+										<option value="1">1店</option>
+										<option value="2">2店</option>
+										<option value="3">3店</option>
+									</select>
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">订单类型</label>
+								<div class="layui-input-inline">
+									<select name="modules" lay-verify="required" lay-search="">
+										<option value="">选择订单类型</option>
+										<option value="1">类型1</option>
+										<option value="2">类型2</option>
+										<option value="3">类型3</option>
+									</select>
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">接车人</label>
+								<div class="layui-input-inline">
+									<select name="modules" lay-verify="required" lay-search="">
+										<option value="">选择接车人</option>
+										<option value="1">张三</option>
+										<option value="2">李四</option>
+										<option value="3">王五</option>
+									</select>
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">主修人</label>
+								<div class="layui-input-inline">
+									<select name="modules" lay-verify="required" lay-search="">
+										<option value="">选择主修人</option>
+										<option value="1">张三</option>
+										<option value="2">李四</option>
+										<option value="3">王五</option>
+									</select>
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">进厂时间</label>
+								<div class="layui-input-inline">
+									<input type="text" id="date1" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">开始维修时间</label>
+								<div class="layui-input-inline">
+									<input type="text" id="date2" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">维修完成时间</label>
+								<div class="layui-input-inline">
+									<input type="text" id="date3" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">任务编号</label>
+								<div class="layui-input-inline">
+									<input type="text" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">车辆来源</label>
+								<div class="layui-input-inline">
+									<select name="modules" lay-verify="required" lay-search="">
+										<option value="">选择车辆来源</option>
+										<option value="1">来源一</option>
+										<option value="2">来源二</option>
+										<option value="3">来源三</option>
+									</select>
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">出厂时间</label>
+								<div class="layui-input-inline">
+									<input type="text" id="date4" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+						</div>
+						<div class="layui-col-md12">
+							<h3>维修用料及费用</h3>
+							<table class="layui-hide" id="test" lay-filter="test"></table>
+						</div>
+						<div class="layui-col-md12">
+							<h3>维修用料及费用</h3>
+							<table class="layui-hide" id="test1" lay-filter="test1"></table>
+						</div>
+						<div class="layui-col-md12">
+							<h3>其他费用</h3>
+							<table class="layui-hide" id="test2" lay-filter="test2"></table>
+						</div>
+						<div class="layui-form-item">
+							<div class="layui-inline">
+								<label class="layui-form-label">合计金额</label>
+								<div class="layui-input-inline">
+									<input type="text" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">优惠金额</label>
+								<div class="layui-input-inline">
+									<input type="text" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">应收金额</label>
+								<div class="layui-input-inline">
+									<input type="text" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">成本合计</label>
+								<div class="layui-input-inline">
+									<input type="text" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<div class="layui-inline">
+								<label class="layui-form-label">实收金额</label>
+								<div class="layui-input-inline">
+									<input type="text" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">结算时间</label>
+								<div class="layui-input-inline">
+									<input type="text" autocomplete="off" class="layui-input" id="date5">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">欠款金额</label>
+								<div class="layui-input-inline">
+									<input type="text" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+							<div class="layui-inline">
+								<label class="layui-form-label">挂账时间</label>
+								<div class="layui-input-inline">
+									<input type="text" autocomplete="off" class="layui-input" id="date6">
+								</div>
+							</div>
+						</div>
+						<div class="layui-upload">
+							<button type="button" class="layui-btn" id="photo">维修前上传照片</button>
+							<blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+								预览图：
+								<div class="layui-upload-list" id="photoDemo"></div>
+							</blockquote>
+						</div>
+						<div class="layui-upload">
+							<button type="button" class="layui-btn" id="photo1">维修中后照片</button>
+							<blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+								预览图：
+								<div class="layui-upload-list" id="photoDemo1"></div>
+							</blockquote>
+						</div>
+						<div class="layui-form-item layui-form-text">
+							<label class="layui-form-label">故障描述</label>
+							<div class="layui-input-block">
+								<textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+							</div>
+						</div>
+						<div class="layui-form-item layui-form-text">
+							<label class="layui-form-label">其他备注说明</label>
+							<div class="layui-input-block">
+								<textarea placeholder="请输入内容" class="layui-textarea"></textarea>
+							</div>
+						</div>
+						<div class="layui-col-md8 layui-col-lg-offset2">
+							<button type="button" class="layui-btn layui-btn-primary">取消</button>
+							<button type="button" class="layui-btn">保存</button>
+							<button type="button" class="layui-btn layui-btn-normal">领料</button>
+							<button type="button" class="layui-btn layui-btn-warm">结算</button>
+							<button type="button" class="layui-btn layui-btn-danger">挂账</button>
+						</div>
+					</form>
+				</div>
+
+
+			</div>
+		</div>
+		<script type="text/html" id="discountRateTool">
+			{{ d.discountRate }} %
+	</script>
+	<footer class="footer">
+		<span class="footer-brand">
+			<a href="http://www.25175.net" target="_blank"><strong class="text-danger">顺通网络</strong></a>&nbsp;提供技术支持
+		</span>
+		<p class="no-margin">
+			&copy;by <a href="http://www.25175.net/" target="_Blank"><strong>25175</strong></a>
+		</p>
+	</footer><!-- /footer -->
+		<script src="../../layuiadmin/layui/layui.js"></script>
+		<script>
+			layui.config({
+				base: '../../layuiadmin/' //静态资源所在路径
+			}).extend({
+				index: 'lib/index' //主入口模块
+			}).use(['index', 'form', 'laydate', 'table', 'jquery', 'upload'], function() {
+				var form = layui.form,
+					laydate = layui.laydate,
+					table = layui.table,
+					$ = layui.jquery,
+					upload = layui.upload;
+				//多图片上传
+				upload.render({
+					elem: '#photo',
+					url: '/upload/',
+					multiple: true,
+					size: 60 //限制文件大小，单位 KB
+						,
+					before: function(obj) {
+						//预读本地文件示例，不支持ie8
+						obj.preview(function(index, file, result) {
+							$('#photoDemo').append('<img src="' + result + '" alt="' + file.name + '" class="layui-upload-img">')
+						});
+					},
+					done: function(res) {
+						//上传完毕
+					}
+				});
+				upload.render({
+					elem: '#photo1',
+					url: '/upload/',
+					multiple: true,
+					size: 60 //限制文件大小，单位 KB
+						,
+					before: function(obj) {
+						//预读本地文件示例，不支持ie8
+						obj.preview(function(index, file, result) {
+							$('#photoDemo1').append('<img src="' + result + '" alt="' + file.name + '" class="layui-upload-img">')
+						});
+					},
+					done: function(res) {
+						//上传完毕
+					}
+				});
+				table.render({
+					elem: '#test',
+					url: '../../layuiadmin/json/app/fast.js',
+					totalRow: true,
+					cols: [
+						[{
+							field: 'id',
+							title: '序号',
+							totalRowText: '合计'
+						}, {
+							field: 'name',
+							title: '配件名称',
+							event: 'choose'
+						}, {
+							field: 'standard',
+							title: '规格',
+							edit: 'text'
+						}, {
+							field: 'price',
+							title: '单价(元)',
+							edit: 'text'
+						}, {
+							field: 'count',
+							title: '数量',
+							edit: 'text'
+						}, {
+							field: 'unit',
+							title: '单位',
+							edit: 'text'
+						}, {
+							field: 'subtotal',
+							title: '小计',
+							edit: 'text',
+							totalRow: true
+						}, {
+							field: 'warehouse',
+							title: '仓库',
+							edit: 'text'
+						}]
+					]
+				});
+				table.render({
+					elem: '#test1',
+					url: '../../layuiadmin/json/app/fast1.js',
+					totalRow: true,
+					cols: [
+						[{
+							field: 'id',
+							title: '序号',
+							totalRowText: '合计'
+						}, {
+							field: 'name',
+							title: '维修项目名称',
+							event: 'msj_choose'
+						}, {
+							field: 'chargePerHour',
+							title: '每工时收费',
+							edit: 'text'
+						}, {
+							field: 'hour',
+							title: '核定工时',
+							edit: 'text'
+						}, {
+							field: 'discountRate',
+							title: '折扣率',
+							edit: 'text',
+							toolbar: "#discountRateTool"
+						}, {
+							field: 'maintenanceMan',
+							title: '维修工',
+							edit: 'text'
+						}, {
+							field: 'manHourCost',
+							title: '工时费',
+							edit: 'text',
+							totalRow: true
+						}, {
+							field: 'warehouse',
+							title: '仓库',
+							edit: 'text'
+						}]
+					]
+				});
+				table.render({
+					elem: '#test2',
+					url: '../../layuiadmin/json/app/fast2.js',
+					totalRow: true,
+					cols: [
+						[{
+							field: 'id',
+							title: '序号',
+							totalRowText: '合计'
+						}, {
+							field: 'name',
+							title: '费用名称',
+							event: 'money_name'
+						}, {
+							field: 'chargeForThat',
+							minWidth: 250,
+							title: '收费说明',
+							edit: 'text'
+						}, {
+							field: 'money',
+							title: '收费金额',
+							edit: 'text',
+							totalRow: true
+						}, {
+							field: 'mark',
+							title: '备注',
+							edit: 'text',
+							minWidth: 220
+						}]
+					]
+				});
+				table.on('tool(test)', function(obj) {
+					var data = obj.data;
+					if (obj.event === "choose") {
+						layer.open({
+							title: "选择配件",
+							type: 1,
+							btn: ['确定', '取消'],
+							shadeClose: true,
+							content: $('#choose_name'),
+							area: ['400px', '300px'],
+							yes: function(i) {
+								layer.close(i);
+								obj.update({
+									name: $('#accessories').val()
+								});
+							}
+						})
+					}
+				})
+				table.on('tool(test1)', function(obj) {
+					if (obj.event === "msj_choose") {
+						layer.open({
+							title: "选择维修项目",
+							type: 1,
+							btn: ['确定', '取消'],
+							shadeClose: true,
+							content: $('#msj_choose'),
+							area: ['400px', '300px'],
+							yes: function(i) {
+								layer.close(i);
+								obj.update({
+									name: $('#msj_ac').val()
+								});
+							}
+						})
+					}
+				})
+				table.on('tool(test2)', function(obj) {
+					if (obj.event === "money_name") {
+						layer.open({
+							title: "选择其他费用",
+							type: 1,
+							btn: ['确定', '取消'],
+							shadeClose: true,
+							content: $('#msj_ohter'),
+							area: ['400px', '300px'],
+							yes: function(i) {
+								layer.close(i);
+								obj.update({
+									name: $('#msj_money').val()
+								});
+							}
+						})
+					}
+				})
+				laydate.render({
+					elem: "#date"
+				})
+				laydate.render({
+					elem: "#date1"
+				})
+				laydate.render({
+					elem: "#date2"
+				})
+				laydate.render({
+					elem: "#date3"
+				})
+				laydate.render({
+					elem: "#date4"
+				})
+				laydate.render({
+					elem: "#date5"
+				})
+				laydate.render({
+					elem: "#date6"
+				})
+			});
+		</script>
+		<!-- 其他 -->
+		<div id="msj_ohter" style="display: none;margin-top: 30px;">
+			<form class="layui-form" action="">
+				<div class="layui-form-item">
+					<div class="layui-inline">
+						<label class="layui-form-label">选择费用名称</label>
+						<div class="layui-input-inline">
+							<select name="modules" lay-verify="required" lay-search="" id="msj_money">
+								<option value="">选择费用名称</option>
+								<option value="换雨刷">换雨刷</option>
+								<option value="洗车">洗车</option>
+								<option value="修天窗">修天窗</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- 维修 -->
+		<div id="msj_choose" style="display: none;margin-top: 30px;">
+			<form class="layui-form" action="">
+				<div class="layui-form-item">
+					<div class="layui-inline">
+						<label class="layui-form-label">选择维修项目</label>
+						<div class="layui-input-inline">
+							<select name="modules" lay-verify="required" lay-search="" id="msj_ac">
+								<option value="">选择维修项目</option>
+								<option value="换轮胎">换轮胎</option>
+								<option value="钣金喷漆">钣金喷漆</option>
+								<option value="换刹车">换刹车</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<!-- 配件 -->
+		<div id="choose_name" style="display: none;margin-top: 30px;">
+			<form class="layui-form" action="">
+				<div class="layui-form-item">
+					<div class="layui-inline">
+						<label class="layui-form-label">选择配件</label>
+						<div class="layui-input-inline">
+							<select name="modules" lay-verify="required" lay-search="" id="accessories">
+								<option value="">选择配件</option>
+								<option value="轮胎">轮胎</option>
+								<option value="雨刷">雨刷</option>
+								<option value="底盘">底盘</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</body>
+</html>

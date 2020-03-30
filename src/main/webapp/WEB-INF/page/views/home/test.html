@@ -1,0 +1,179 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>员工资料</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../../css/city-picker.css" />
+  <script src="../../../js/jquery-2.1.4.js"></script>
+  <script src="../../../js/city-picker.data.js"></script>
+  <script src="../../../js/city-picker.js"></script>
+	<style type="text/css">
+		.grid-demo-bg1>span{margin-bottom: 10px;border: 1px solid #009688;color: #009688;padding: 5px 12px;display: inline-block;}
+		.grid-demo-bg1>span.on{background: #009688;color: #fff;}
+		.grid-demo-bg1>span:hover{cursor: pointer;}
+		.requires {
+			color:red
+		}
+		
+		
+		.layui-in-label {
+		 
+		    display: inline-block;
+		    width: 100%;
+		    text-align: right;
+		}
+		
+		
+		.layui-row{
+			margin-bottom:15px
+			
+		}
+	</style>
+</head>
+<body>
+
+	<ul class="layui-nav" >
+	  <li class="layui-nav-item">
+	    <div class="layui-logo" lay-href="home/indexPage.html">
+	     <span><img src="../../layuiadmin/img/logo.png" alt="" style="width: 40px;margin-right: 20px;"></a>企业人力资源</span>
+	    </div>
+	  </li>
+	  
+	 
+	</ul>
+  <ul class="sidebar hidden-xs">
+  <a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-chat"></i>咨询<span class="sbr-400 tra" style="height: 108px;padding-top: 10px;left: -117px;"><img src="../../layuiadmin/img/person.png" alt=""></span></a>
+  <a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-login-wechat" style="color: #fff;"></i>微信<span class="sbr-400 tra" style="height: 108px;padding-top: 10px;left: -117px;"><img src="../../layuiadmin/img/weixin.png" alt=""></span></a>
+  <a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-cellphone"></i>电话<span class="sbr-400 tra"><i class="r-arr-b"></i>0574-63559457</span></a>
+  </ul>
+  
+  <div class="layui-fluid" style="padding-bottom: 50px;"  >
+   
+	
+			
+					<div class="layui-col-xs12 layui-form" style="text-align: left;">
+						<div  style="width: 80%; background-color: #FFFFFF;padding: 30px; margin: 0 auto;">
+							<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+							  <legend>基本信息</legend>
+							</fieldset>
+							
+							<div class="layui-row" >
+							<div class="layui-col-xs2">
+					              <label class="layui-in-label">应聘职位<span class="requires">*</span></label>
+							</div>
+							<div class="layui-col-xs7">
+								<input class="layui-input">
+							</div>
+							</div>
+							<div class="layui-row"  >
+							<div class="layui-col-xs2">
+							      <label class="layui-in-label">应聘职位<span class="requires">*</span></label>
+							</div>
+							<div class="layui-col-xs7">
+								<input class="layui-input">
+							</div>
+							</div>
+							
+							
+							
+							
+							
+							<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+							  <legend>试题</legend>
+							</fieldset>
+							
+							<div class="layui-row" >
+							<div class="layui-col-xs2">
+							      <label class="layui-in-label"><span class="requires">*</span></label>
+							</div>
+							
+							<div class="layui-col-xs8">
+								<div><span>EXCEL导入时，进行条件判断如：替换，跳过，提示位置，提供重复位置，数据20位导入导出不变</span></div>
+								<div>
+									<input type="radio" name="married" value="是" title="是" checked="">
+									<input type="radio" name="married" value="否" title="否">
+								</div>
+								
+							</div>
+							</div>
+							<div class="layui-row" >
+							<div class="layui-col-xs2">
+							      <label class="layui-in-label">应聘职位<span class="requires">*</span></label>
+							</div>
+							<div class="layui-col-xs7">
+								<input class="layui-input">
+							</div>
+							</div>
+						
+
+						</div>
+					</div>
+		
+   
+ 
+  </div>
+
+
+	 
+  <script src="../../layuiadmin/layui/layui.js"></script>  
+  <script>
+  layui.config({
+    base: '../../layuiadmin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index', 'console','jquery','table','laydate','form'],function(){
+			var $ = layui.jquery,table = layui.table,laydate=layui.laydate,client=true;
+			
+	
+			  
+			  
+			  $("#photoImage").click(function(){
+				  
+				  $("#photo").click();
+			  })
+			  
+			  
+			  $("#photo").change(function(){
+				    $('#photoImage').html('');
+				    var regExp=new RegExp('^(.+?)\\.(jpg|png|gif|bmp|jpeg)$',"i")
+					   var s1 = $("#photo")[0].files
+					   if(s1.length>0){
+					 var result=regExp.test(s1[0].name);
+					   if (!result){
+					      layer.msg("请选择正确格式的图片（jpg|png|gif|bmp|jpeg）", {offset: '400px'});
+					      $("#photo").val("");
+				          $('#photoImage').html('');
+					       return
+				         }
+						 duqv()
+				  }
+			  })
+			
+
+	});
+
+
+            function duqv() {
+       
+                var s1 = $("#photo")[0].files
+                var reader = new FileReader();
+                reader.readAsDataURL(s1[0]);
+                reader.onload = function (ev) {
+                    $("#photoImage").html('<img src="' + this.result + '" alt="" class="layui-upload-img" style="width: 100%;height: 100%" >')
+                  
+                }
+            
+        }
+  
+	</script>
+	
+</body>
+</html>
+

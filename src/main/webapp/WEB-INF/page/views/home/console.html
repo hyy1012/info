@@ -1,0 +1,423 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>员工资料</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../../css/city-picker.css" />
+  <script src="../../../js/jquery-2.1.4.js"></script>
+  <script src="../../../js/city-picker.data.js"></script>
+  <script src="../../../js/city-picker.js"></script>
+	<style type="text/css">
+		.grid-demo-bg1>span{margin-bottom: 10px;border: 1px solid #009688;color: #009688;padding: 5px 12px;display: inline-block;}
+		.grid-demo-bg1>span.on{background: #009688;color: #fff;}
+		.grid-demo-bg1>span:hover{cursor: pointer;}
+		
+	</style>
+</head>
+<body>
+  <ul class="sidebar hidden-xs">
+  <a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-chat"></i>咨询<span class="sbr-400 tra" style="height: 108px;padding-top: 10px;left: -117px;"><img src="../../layuiadmin/img/person.png" alt=""></span></a>
+  <a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-login-wechat" style="color: #fff;"></i>微信<span class="sbr-400 tra" style="height: 108px;padding-top: 10px;left: -117px;"><img src="../../layuiadmin/img/weixin.png" alt=""></span></a>
+  <a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-cellphone"></i>电话<span class="sbr-400 tra"><i class="r-arr-b"></i>0574-63559457</span></a>
+  </ul>
+  
+  <div class="layui-fluid" style="padding-bottom: 50px;">
+    <div class="layui-row layui-col-space15">
+	
+				<div class="layui-row personal ">
+					<div class="layui-col-xs12" >
+						<div class="grid-demo grid-demo-bg1" style="width: 1200px; background-color: #FFFFFF;padding: 30px;">
+						<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+						  <legend>基本信息（基本信息仅可修改一次，请确认修改正确后提交）</legend>
+						</fieldset>
+						 
+						<form class="layui-form" action="">
+							<div class="layui-form-item">
+							  <div class="layui-inline">
+							    <label class="layui-form-label">姓名</label>
+							    <div class="layui-input-inline">
+							      <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+							    </div>
+							  </div>
+							  <div class="layui-inline">
+							    <label class="layui-form-label">籍贯</label>
+							    <div class="layui-input-inline">
+							<div style="position: relative;"><!-- container -->
+							  <input readonly id="dddd" type="text" data-toggle="city-picker" placeholder="请选择省/市" data-level="city" >
+							</div>
+							    </div>
+								
+							  </div>
+							  
+							  
+							  <div class="layui-inline">
+							    <label class="layui-form-label">照片</label>
+							      <div id="photoImage" style="width: 110px; height: 150px;position: absolute;left:120px;top: -20px;display: flex;align-items: center; justify-content: space-around;text-align: center;border: 1px solid black;">
+									  点击选择图片(110X150)
+							  </div>
+							  <input type="file" style="display: none;" id="photo" />
+							</div>
+							<div class="layui-form-item">
+							  <label class="layui-form-label">婚否</label>
+							  <div class="layui-input-inline">
+							    <input type="radio" name="married" value="是" title="是" checked="">
+							    <input type="radio" name="married" value="否" title="否">
+							  </div>
+							</div>
+							<div class="layui-form-item">
+							  <label class="layui-form-label">性别</label>
+							  <div class="layui-input-inline">
+							    <input type="radio" name="sex" value="男" title="男" checked="">
+							    <input type="radio" name="sex" value="女" title="女">
+							  </div>
+							</div>
+							
+							<div class="layui-form-item">
+							  <div class="layui-inline">
+							    <label class="layui-form-label">出生年月</label>
+							    <div class="layui-input-inline">
+							      <input type="text" name="date" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+							    </div>
+							  </div>
+							  <div class="layui-inline">
+							    <label class="layui-form-label">年龄</label>
+							    <div class="layui-input-inline">
+							      <input type="tel" name="url" lay-verify="url" autocomplete="off" class="layui-input">
+							    </div>
+							  </div>
+							  <div class="layui-inline">
+							    <label class="layui-form-label">身高（cm）</label>
+							    <div class="layui-input-inline">
+							      <input type="tel" name="url" lay-verify="url" autocomplete="off" class="layui-input">
+							    </div>
+							  </div>
+							</div>
+							<div class="layui-form-item">
+							  <div class="layui-inline">
+							    <label class="layui-form-label">名族</label>
+							    <div class="layui-input-inline">
+							     <select>
+									 <option>汉</option>
+									 <option>少数名族</option>
+									 <option>其他</option>
+								 </select>
+							    </div>
+							  </div>
+							  <div class="layui-inline">
+							    <label class="layui-form-label">政治面貌</label>
+							    <div class="layui-input-inline">
+							     <select>
+									 <option>中共党员</option>
+									 <option>中共预备党员</option>
+									 <option>共青团员</option>
+									 <option>群众</option>
+									 <option>其他</option>
+								 </select>
+							    </div>
+							  </div>
+							  <div class="layui-inline">
+							    <label class="layui-form-label">脚码</label>
+							    <div class="layui-input-inline">
+							     <select>
+									 <option>36</option>
+									 <option>37</option>
+									 <option>38</option>
+									 <option>39</option>
+									 <option>40</option>
+									 <option>41</option>
+									 <option>42</option>
+									 <option>43</option>
+									 <option>44</option>
+									 <option>45</option>
+									 <option>46</option>
+								 </select>
+							    </div>
+							  </div>
+							</div>
+							
+							<div class="layui-form-item">
+								 <div class="layui-inline">
+							  <label class="layui-form-label">应聘职位</label>
+							  <div class="layui-input-inline">
+							     <select>
+									 <option>职位一</option>
+									 <option>职位二</option>
+								 </select>
+							  </div>
+							  </div>
+							  <div class="layui-inline">
+							    <label class="layui-form-label">期望待遇</label>
+							    <div class="layui-input-inline" >
+							      <input type="text" name="price_min" placeholder="¥" autocomplete="off" class="layui-input">
+							    </div>
+							  						
+							  </div>
+							</div>
+							
+							
+							
+							<div class="layui-form-item">
+							  <div class="layui-inline">
+							    <label class="layui-form-label">工作日期</label>
+							    <div class="layui-input-inline">
+							      <input type="text" name="date" id="date1" lay-verify="date1" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+							    </div>
+							  </div>
+							  <div class="layui-inline">
+							    <label class="layui-form-label">转正日期</label>
+							    <div class="layui-input-inline">
+							      <input type="text" name="date" id="date3" lay-verify="date1" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+							    </div>
+							  </div>
+							  <div class="layui-inline">
+							    <label class="layui-form-label">出单位时间</label>
+							    <div class="layui-input-inline">
+							      <input type="text" name="date" id="date2" lay-verify="date1" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+							    </div>
+							  </div>
+							</div>
+							
+							
+						  <div class="layui-form-item">
+						    <label class="layui-form-label">联系地址</label>
+						    <div class="layui-input-block">
+						      <input type="text" name="title"  autocomplete="off" placeholder="请输入地址" class="layui-input" >
+						    </div>
+						  </div>	  
+						  <div class="layui-form-item">
+						    <div class="layui-inline">
+						      <label class="layui-form-label">手机</label>
+						      <div class="layui-input-inline">
+						        <input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
+						      </div>
+						    </div>
+						    <div class="layui-inline">
+						      <label class="layui-form-label">微信</label>
+						      <div class="layui-input-inline">
+						        <input type="text" name="wx"  autocomplete="off" class="layui-input">
+						      </div>
+						    </div>
+							<div class="layui-inline">
+							  <label class="layui-form-label">QQ</label>
+							  <div class="layui-input-inline">
+							    <input type="text" name="wx"  autocomplete="off" class="layui-input">
+							  </div>
+							</div>
+						  </div>
+						  
+						  <div class="layui-form-item">
+						    <div class="layui-inline">
+						      <label class="layui-form-label">第一学历</label>
+						      <div class="layui-input-inline">
+						        <input type="tel" name="education" lay-verify="required" autocomplete="off" class="layui-input">
+						      </div>
+						    </div>
+						    <div class="layui-inline">
+						      <label class="layui-form-label">起止时间</label>
+						   <div class="layui-input-inline" style="width: 180px;">
+						   <input type="text" name="date" id="date4" lay-verify="date4" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+						   </div>
+						   <div class="layui-form-mid">-</div>
+						   <div class="layui-input-inline" style="width: 180px;">
+						    <input type="text" name="date" id="date5" lay-verify="date5" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+						   </div>
+						    </div>
+						  </div>
+						  
+						  <div class="layui-form-item">
+						    <div class="layui-inline">
+						      <label class="layui-form-label">毕业院校</label>
+						      <div class="layui-input-inline">
+						        <input type="tel" name="education" lay-verify="required" autocomplete="off" class="layui-input">
+						      </div>
+						    </div>
+							
+							
+							<div class="layui-inline">
+							  <label class="layui-form-label">所学专业</label>
+							  <div class="layui-input-inline">
+							    <input type="tel" name="education" lay-verify="required" autocomplete="off" class="layui-input">
+							  </div>
+							</div>
+						
+						  </div>
+						  
+						  
+						  
+						  
+						  <div class="layui-form-item">
+						    <div class="layui-inline">
+						      <label class="layui-form-label">最高学历</label>
+						      <div class="layui-input-inline">
+						        <input type="tel" name="education" lay-verify="required" autocomplete="off" class="layui-input">
+						      </div>
+						    </div>
+						    <div class="layui-inline">
+						      <label class="layui-form-label">起止时间</label>
+						   <div class="layui-input-inline" style="width: 180px;">
+						   <input type="text" name="date" id="date6" lay-verify="date6" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+						   </div>
+						   <div class="layui-form-mid">-</div>
+						   <div class="layui-input-inline" style="width: 180px;">
+						    <input type="text" name="date" id="date7" lay-verify="date7" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+						   </div>
+						    </div>
+						  </div>
+						  
+						  <div class="layui-form-item">
+						    <div class="layui-inline">
+						      <label class="layui-form-label">毕业院校</label>
+						      <div class="layui-input-inline">
+						        <input type="tel" name="education" lay-verify="required" autocomplete="off" class="layui-input">
+						      </div>
+						    </div>
+							
+							
+							<div class="layui-inline">
+							  <label class="layui-form-label">所学专业</label>
+							  <div class="layui-input-inline">
+							    <input type="tel" name="education" lay-verify="required" autocomplete="off" class="layui-input">
+							  </div>
+							</div>
+						
+						  </div>						  
+						  
+						  
+						  <div class="layui-form-item">
+						    <label class="layui-form-label">老家地址</label>
+						    <div class="layui-input-block">
+						      <input id="oldAdress" type="text" name="title"  autocomplete="off" placeholder="请输入地址" class="layui-input" >
+						    </div>
+						  </div>	  
+						 
+						
+					
+						  <div class="layui-form-item layui-form-text">
+						    <label class="layui-form-label">备注</label>
+						    <div class="layui-input-block">
+						      <textarea placeholder="请输入内容" class="layui-textarea" id="test"></textarea>
+						    </div>
+						  </div>
+						  <!--<div class="layui-form-item layui-form-text">
+						    <label class="layui-form-label">编辑器</label>
+						    <div class="layui-input-block">
+						      <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="LAY_demo_editor"></textarea>
+						    </div>
+						  </div>-->
+						  <div class="layui-form-item">
+						    <div class="layui-input-block">
+						      <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+						      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+						    </div>
+						  </div>
+						</form>
+						</div>
+					</div>
+				</div>
+		
+    </div>
+  </div>
+	<!--footer-->
+	<footer class="footer">
+		<span class="footer-brand">
+			<a href="http://www.25175.net" target="_blank"><strong class="text-danger">顺通网络</strong></a>&nbsp;提供技术支持
+		</span>
+		<p class="no-margin">
+			&copy;by <a href="http://www.25175.net/" target="_Blank"><strong>25175</strong></a>
+		</p>
+	</footer><!-- /footer -->
+
+
+	 
+  <script src="../../layuiadmin/layui/layui.js"></script>  
+  <script>
+  layui.config({
+    base: '../../layuiadmin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index', 'console','jquery','table','laydate','form'],function(){
+			var $ = layui.jquery,table = layui.table,laydate=layui.laydate,client=true;
+			
+			
+			  //日期
+			  laydate.render({
+			    elem: '#date'
+				,type: 'time'
+			  });
+			  laydate.render({
+			    elem: '#date1'
+			  });
+			  laydate.render({
+			    elem: '#date2'
+			  });
+			  laydate.render({
+			    elem: '#date3'
+			  });
+			  laydate.render({
+			    elem: '#date4'
+			  });
+			  laydate.render({
+			    elem: '#date5'
+			  });
+			  laydate.render({
+			    elem: '#date6'
+			  });
+			  laydate.render({
+			    elem: '#date7'
+			  });
+			  
+			 
+			  
+			  $("#photoImage").click(function(){
+				 
+				 //console.log($("#dddd").val())
+				  $("#photo").click();
+			  })
+			  
+			  
+			  $("#photo").change(function(){
+				    $('#photoImage').html('');
+				    var regExp=new RegExp('^(.+?)\\.(jpg|png|gif|bmp|jpeg)$',"i")
+					   var s1 = $("#photo")[0].files
+					   if(s1.length>0){
+					 var result=regExp.test(s1[0].name);
+					   if (!result){
+					      layer.msg("请选择正确格式的图片（jpg|png|gif|bmp|jpeg）", {offset: '400px'});
+					      $("#photo").val("");
+				          $('#photoImage').html('');
+					       return
+				         }
+						 duqv()
+				  }
+			  })
+			  
+			  
+			 		
+
+	});
+
+
+            function duqv() {
+       
+                var s1 = $("#photo")[0].files
+                var reader = new FileReader();
+                reader.readAsDataURL(s1[0]);
+                reader.onload = function (ev) {
+                    $("#photoImage").html('<img src="' + this.result + '" alt="" class="layui-upload-img" style="width: 100%;height: 100%" >')
+                  
+                }
+            
+        }
+  
+	</script>
+	
+</body>
+</html>
+

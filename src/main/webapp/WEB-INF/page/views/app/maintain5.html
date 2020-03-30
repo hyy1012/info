@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>专业开单</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+		<link rel="stylesheet" type="text/css" href="../../layuiadmin/layui/extend/steps.css" />
+		<style type="text/css">
+			body .step-line-box .step-line {
+				top: 19px;
+			}
+
+			.step-icon-custom-box {
+				width: 40px;
+				height: 40px;
+			}
+
+			.step-icon-custom {
+				margin-top: -2px;
+				font-size: 26px;
+			}
+			.demoTable>.layui-inline{margin-right: 10px;}
+			.step-icon.step-icon-custom-box:hover{cursor: pointer;}
+			.layui-form-label{width: 100px;}
+			.layui-table{width: 100%;}
+		</style>
+	</head>
+	<body>
+		<ul class="sidebar hidden-xs">
+		<a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-chat"></i>咨询<span class="sbr-400 tra" style="height: 108px;padding-top: 10px;left: -117px;"><img src="../../layuiadmin/img/person.png" alt=""></span></a>
+		<a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-login-wechat" style="color: #fff;"></i>微信<span class="sbr-400 tra" style="height: 108px;padding-top: 10px;left: -117px;"><img src="../../layuiadmin/img/weixin.png" alt=""></span></a>
+		<a href="tel:0574-63559457" class="tra"><i class="rtico layui-icon layui-icon-cellphone"></i>电话<span class="sbr-400 tra"><i class="r-arr-b"></i>0574-63559457</span></a>
+		</ul>
+		<!--footer-->
+		<footer class="footer">
+			<span class="footer-brand">
+				<a href="http://www.25175.net" target="_blank"><strong class="text-danger">顺通网络</strong></a>&nbsp;提供技术支持
+			</span>
+			<p class="no-margin">
+				&copy;by <a href="http://www.25175.net/" target="_Blank"><strong>25175</strong></a>
+			</p>
+		</footer><!-- /footer -->
+	<div class="layui-fluid" style="padding-bottom: 50px;">
+		<div class="layui-row layui-col-space15">
+				
+				
+			<div class="layui-row">
+				<div class="layui-col-md10 layui-col-lg-offset1">
+					<div id="step"></div>
+				</div>
+			</div>
+		<div class="demoTable">
+				订单编号：
+				<div class="layui-inline">
+					<input class="layui-input" name="id" id="demoReload" autocomplete="off">
+				</div>
+				车牌
+				<div class="layui-inline">
+					<input class="layui-input" name="id" id="demoReload" autocomplete="off">
+				</div>
+				<button class="layui-btn" data-type="reload">搜索</button>
+			</div>
+			<!-- style="display: none;margin-top: 20px;" -->
+			<div class="layui-row addNews" style="display: none;margin-top: 20px;">
+			<div class="layui-col-md11">
+				<!-- <form class="layui-form" action=""> -->
+					<div class="layui-form-item">
+						<label class="layui-form-label">订单编号</label>
+						<div class="layui-input-inline">
+							<input type="text" name="name" autocomplete="off" class="layui-input" value="4665">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">车牌</label>
+						<div class="layui-input-inline">
+							<input type="text" name="name" autocomplete="off" class="layui-input" value="5646541">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">维修单总金额</label>
+						<div class="layui-input-inline">
+							<input type="text" name="name" autocomplete="off" class="layui-input" value="8000">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">优惠金额</label>
+						<div class="layui-input-inline">
+							<input type="text" name="name" autocomplete="off" class="layui-input" value="1000">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">应收金额</label>
+						<div class="layui-input-inline">
+							<input type="text" name="name" autocomplete="off" class="layui-input" value="7000">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">实收金额</label>
+						<div class="layui-input-inline">
+							<input type="text" name="name" autocomplete="off" class="layui-input" value="7000">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">欠款挂账金额</label>
+						<div class="layui-input-inline">
+							<input type="text" name="name" autocomplete="off" class="layui-input" value="0">
+						</div>
+					</div>
+				<!-- </form> -->
+			</div>
+		</div>
+	
+			<div class="layui-row">
+				<div class="layui-col-md12">
+					<!-- <button class="layui-btn" style="margin-left: 20px;" onclick="addNew()">添加</button> -->
+					<h2>结算列表</h2>
+					<table class="layui-hide" lay-filter="test" id="test"></table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/html" id="barTool">
+		<a class="layui-btn layui-btn-xs" lay-event="edit">收银</a>
+	</script>
+		<script src="../../layuiadmin/layui/layui.js"></script>
+		<script src="../../layuiadmin/layui/extend/steps.js"></script>
+		<script>
+			
+			layui.config({
+				base: '../../layuiadmin/' //静态资源所在路径
+			}).extend({
+				index: 'lib/index', //主入口模块
+			}).use(['index', 'jquery', 'table','laydate','upload'], function() {
+				var $ = layui.jquery,laydate=layui.laydate,upload=layui.upload,
+					table = layui.table;
+				table.render({
+					elem: '#test',
+					toolbar:true,
+					defaultToolbar:["exports","print"]
+					,url:'../../layuiadmin/json/app/jiesuan.js'
+					,cols: [[
+						{field:'id', width:80, title: 'ID',sort: true}
+						,{field:'orderNumber', title: '订单编号'}
+						,{field:'carNumber', title: '车牌', }
+						,{field:'orderType', title: '订单类型', }
+						,{field:'timeInto',  title: '进厂时间', }
+						,{field:'maintanTime',  title: '维修完成时间', }
+						,{field:'serviceman', title: '维修人'}
+						,{field:'sendman', title: '送车人'}
+						,{field:'contactway', title: '联系方式'}
+						,{field:'leasingCompany', title: '租赁公司'}
+						,{field:'maintanMoney', title: '维修费用'}
+						,{field:'coupon', title: '优惠金额'}
+						,{field:'amountReceivable', title: '应收金额'}
+						,{field:'subordinate', title: '所属门店'}
+						,{field:'financialStatus', title: '财务状态'}
+						,{fixed: 'right', title:'操作', toolbar: '#barTool', width:100}
+					]]
+					,page: true
+				});
+
+				table.on("tool(test)",function(obj){
+					var data = obj.data;
+					// 完工（编辑)
+					if(obj.event==="edit"){
+						layer.open({
+							title:"收银",
+							type:1,
+							btnAlign: 'c',
+							shadeClose:true,
+							area:["400px","500px"],
+							btn:["结算","取消"],
+							content:$('.addNews'),
+							yes:function(index){
+								layer.msg('ok')
+								layer.close(index);
+							},btn2: function(index, layero){
+								//按钮【按钮二】的回调
+								layer.msg('取消')
+								layer.close(index);
+						    }
+						})
+					}
+				})
+				$("body").on("click", ".step-icon.step-icon-custom-box",function(){
+					var box = $(this).children('.step-icon-custom').text();
+					$('.step-icon.step-icon-custom-box').each(function(i,e){
+						if($(this).children('.step-icon-custom').text()==box){
+							switch (i){
+								case 0:
+								  location.href="maintain.html";
+									break;
+								case 1:
+								  location.href="maintain2.html";
+									break;
+								case 2:
+								  location.href="maintain3.html";
+									break;
+								case 3:
+								  location.href="maintain4.html";
+									break;
+								case 4:
+								  location.href="maintain5.html";
+									break;
+								case 5:
+								  location.href="maintain6.html";
+									break;
+								default:
+									break;
+							}
+						}
+					})
+			});
+			
+				var time1=localStorage.getItem("time1");
+				var time2;
+				if(localStorage.getItem("time2")==null||localStorage.getItem("time3")=="undefined"){
+					time2="";
+				}else{
+					time2=localStorage.getItem("time2");
+				}
+				var time3;
+				if(localStorage.getItem("time3")==null||localStorage.getItem("time3")=="undefined"){
+					time3="";
+				}else{
+					time3=localStorage.getItem("time3");
+				}
+				var time4;
+				if(localStorage.getItem("time4")==null||localStorage.getItem("time4")=="undefined"){
+					time4="";
+				}else{
+					time4=localStorage.getItem("time4");
+				}
+			    var time = getNowFormatDate();
+				localStorage.setItem("time5",time);
+				var steps1 = steps({
+					el: "#step",
+					data: [{
+							title: "登记",
+							description: time1
+						},
+						{
+							title: "检测",
+							description: time2
+						},
+						{
+							title: "定价",
+							description: time3
+						},
+						{
+							title: "维修",
+							description: time4
+						},
+						{
+							title: "结算",
+							description: time
+						},
+						{
+							title: "出厂",
+							description: ""
+						}
+					],
+					active: 4,
+					center: true,
+					iconType: "custom",
+					customClass: "custom-class",
+					dataOrder: ["title", "line", "description"]
+				});
+
+			});
+			function getNowFormatDate() {
+				var date = new Date();
+				var seperator1 = "-";
+				var seperator2 = ":";
+				var month = date.getMonth() + 1;
+				var strDate = date.getDate();
+				if (month >= 1 && month <= 9) {
+						month = "0" + month;
+				}
+				if (strDate >= 0 && strDate <= 9) {
+						strDate = "0" + strDate;
+				}
+				var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+								+ " " + date.getHours() + seperator2 + date.getMinutes()
+								+ seperator2 + date.getSeconds();
+				return currentdate;
+			}
+		</script>
+		<!-- 维修人 -->
+		<div id="serviceMan_" style="display: none;margin-top: 30px;">
+			<form class="layui-form" action="">
+				<div class="layui-form-item">
+					<div class="layui-inline">
+						<label class="layui-form-label">维修人</label>
+						<div class="layui-input-inline">
+							<select name="modules" lay-verify="required" lay-search="" id="serviceMan_select_man">
+								<option value="张三">张三</option>
+								<option value="李四">李四</option>
+								<option value="王五">王五</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<div class="layui-inline">
+						<label class="layui-form-label">维修工位</label>
+						<div class="layui-input-inline">
+							<select name="modules" lay-verify="required" lay-search="" id="serviceMan_select_seat">
+								<option value="工位一">工位一</option>
+								<option value="工位二">工位二</option>
+								<option value="工位三">工位三</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	
+	</body>
+</html>

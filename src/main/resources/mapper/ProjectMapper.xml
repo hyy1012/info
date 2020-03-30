@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.info.n25175_info.dao.ProjectMapper">
+    <resultMap id="BaseResultMap" type="com.info.n25175_info.entity.Project">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="p_code" jdbcType="VARCHAR" property="pCode"/>
+        <result column="u_aid" jdbcType="INTEGER" property="uAid"/>
+        <result column="d_id" jdbcType="INTEGER" property="dId"/>
+        <result column="p_name" jdbcType="VARCHAR" property="pName"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="fidea" jdbcType="VARCHAR" property="fidea"/>
+        <result column="eidea" jdbcType="VARCHAR" property="eidea"/>
+        <result column="start_time" jdbcType="TIMESTAMP" property="startTime"/>
+        <result column="end_time" jdbcType="TIMESTAMP" property="endTime"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+         p_code as pCode,
+         p_name as pName,
+         create_time as createTime,
+         status,
+         fidea,
+         eidea,
+         p_content as pContent,
+         start_time as startTime,
+         end_time as endTime,
+         pd_check as pdCheck,
+         pc_check as pcCheck,
+    </sql>
+
+    <select id="newByAid" resultType="com.info.n25175_info.dto.project.ProjectDto">
+        SELECT
+          o.n_name as departName,
+          u.u_name as pPerson
+        from n25175_admin a
+        left join n25175_organ o
+        on a.a_depart = o.n_id
+        left join n25175_user u
+        on a.a_id = u.u_aid
+        where a.a_id = #{aId,jdbcType=INTEGER}
+    </select>
+
+    <select id="findByPCode" resultType="com.info.n25175_info.dto.project.ProjectDto">
+        SELECT
+        <include refid="Base_Column_List"/>
+        o.n_name as departName,
+        u.u_name as pPerson
+        from project a
+        left join n25175_organ o
+        on a.d_id = o.n_id
+        left join n25175_user u
+        on a.u_aid = u.u_aid
+        where a.p_code = #{pCode,jdbcType=INTEGER}
+    </select>
+
+    <select id="findAllByaId" resultType="com.info.n25175_info.dto.project.ProjectDto">
+        SELECT
+        <include refid="Base_Column_List"/>
+        o.n_name as departName,
+        u.u_name as pPerson
+        from project a
+        left join n25175_organ o
+        on a.d_id = o.n_id
+        left join n25175_user u
+        on a.u_aid = u.u_aid
+        where a.u_aid = #{aId,jdbcType=INTEGER}
+    </select>
+
+    <select id="findAllInaIds" resultType="com.info.n25175_info.dto.project.ProjectDto">
+        SELECT
+        <include refid="Base_Column_List"/>
+        o.n_name as departName,
+        u.u_name as pPerson
+        from project a
+        left join n25175_organ o
+        on a.d_id = o.n_id
+        left join n25175_user u
+        on a.u_aid = u.u_aid
+        where a.u_aid in
+        <foreach collection="list" item="aId" open="(" close=")" separator=",">
+            #{aId}
+        </foreach>
+    </select>
+
+    <select id="findAll" resultType="com.info.n25175_info.dto.project.ProjectDto">
+        SELECT
+        <include refid="Base_Column_List"/>
+        o.n_name as departName,
+        u.u_name as pPerson
+        from project a
+        left join n25175_organ o
+        on a.d_id = o.n_id
+        left join n25175_user u
+        on a.u_aid = u.u_aid
+    </select>
+
+
+</mapper>
