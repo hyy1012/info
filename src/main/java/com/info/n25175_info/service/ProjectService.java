@@ -25,4 +25,7 @@ public interface ProjectService {
 
     List<ProjectDto> findAll();
 
+    //与搜索匹配
+    List<ProjectDto> selectBypNamepCode(Integer aId ,String pName,String pCode);
+
 }

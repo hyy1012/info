@@ -96,17 +96,23 @@ public class ProjectController {
         return "project/projectInfo";
     }
 
+    /**
+     * 修改了状态4中的函数调用，添加了新的参数
+     * **/
     @RequestMapping("/getList")
     @ResponseBody
     public JSONObject getList(@RequestParam(defaultValue = "1") Integer page, @RequestParam(defaultValue = "10") Integer limit,
-                              Integer id, HttpSession session){
+                              Integer id,@RequestParam(defaultValue = "") String pName ,@RequestParam(defaultValue = "") String pCode, HttpSession session){
         JSONObject jsonObject = new JSONObject();
         N25175Admin admin = (N25175Admin) session.getAttribute("user");
         List<ProjectDto> list = null;
         if (admin.getaStatus() == 4){
             // 安全起见要放在if里面
             PageHelper.startPage(page, limit);
-            list = projectService.findListByuAid(id);
+            if( pName.equals("") && pCode.equals("") )
+                list = projectService.findListByuAid(id);
+            else
+                list = projectService.selectBypNamepCode(id,pName,pCode);
         }
         if (admin.getaStatus() == 5){
             list = projectService.findAllInaIds(admin.getaDepart(), page, limit);

@@ -124,6 +124,16 @@ public class ProjectServiceImpl implements ProjectService {
         return projects;
     }
 
+    /**
+     * 修改人：bill
+     * 描述：添加了selectBypNamepCode
+     * **/
+    @Override
+    public List<ProjectDto> selectBypNamepCode(Integer aId,String pName,String pCode){
+        List<ProjectDto> projects = projectMapper.selectBypNamepCode(aId,pName,pCode);
+        return projects;
+    }
+
     public int selectNum(String sDate) throws ParseException {
         Date date = sdf.parse(sDate);
         Example example = new Example(Project.class);
