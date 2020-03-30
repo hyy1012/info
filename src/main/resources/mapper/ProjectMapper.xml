@@ -97,5 +97,27 @@
         on a.u_aid = u.u_aid
     </select>
 
-
+    <!--
+        搜索功能用到的数据库操作
+    -->
+    <select id = "selectBypNamepCode" resultType="com.info.n25175_info.dto.project.ProjectDto">
+        SELECT
+        <include refid="Base_Column_List" />
+        o.n_name as departName,
+        u.u_name as pPerson
+        from project a
+        left join n25175_organ o
+        on a.d_id = o.n_id
+        left join n25175_user u
+        on a.u_aid = u.u_aid
+        <where>
+            a.u_aid = #{aId,jdbcType=INTEGER}
+            <if test="pName!=''">
+                and a.p_name = #{pName,jdbcType=VARCHAR}
+            </if>
+            <if test="pCode!=''">
+                and a.p_code = #{pCode,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
 </mapper>
