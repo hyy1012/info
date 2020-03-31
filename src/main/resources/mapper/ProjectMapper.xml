@@ -11,6 +11,7 @@
         <result column="d_id" jdbcType="INTEGER" property="dId"/>
         <result column="p_name" jdbcType="VARCHAR" property="pName"/>
         <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="p_content" jdbcType="VARCHAR" property="pContent"/>
         <result column="fidea" jdbcType="VARCHAR" property="fidea"/>
         <result column="eidea" jdbcType="VARCHAR" property="eidea"/>
         <result column="start_time" jdbcType="TIMESTAMP" property="startTime"/>
