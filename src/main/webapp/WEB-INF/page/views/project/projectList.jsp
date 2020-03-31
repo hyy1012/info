@@ -155,16 +155,27 @@
             });
         });
 
+        /**
+         * Class Name:com.info.n25175_info.controller ChangeController
+         * ==========================
+         * Author: bill
+         * Date: 2020/3/27 0008 20:16
+         * Description: $("search").click()修改
+         * ==========================
+         */
         $("#search").click(function () {
-            var s = $("#name").val()
-            var n = $("#zhiwei").val();
-            table.reload('inner', {
+            var s = $("#pCode").val();// pname,pcode
+            var n = $("#pName").val();
+            table.reload( 'project',{
+                page:{
+                    curr:1
+                },
                 where: {
-                    name: s,
-                    status: n
+                    pName:n,
+                    pCode:s,
                 }
-            })
-            $("#selzhiwei").val(n);
+            });
+
         })
 
         table.render({
