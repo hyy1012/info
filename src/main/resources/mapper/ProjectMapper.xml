@@ -114,10 +114,10 @@
         <where>
             a.u_aid = #{aId,jdbcType=INTEGER}
             <if test="pName!=''">
-                and a.p_name = #{pName,jdbcType=VARCHAR}
+                and a.p_name like concat('%',#{pName,jdbcType=VARCHAR},'%')
             </if>
             <if test="pCode!=''">
-                and a.p_code = #{pCode,jdbcType=VARCHAR}
+                and a.p_code like concat('%',#{pCode,jdbcType=VARCHAR},'%')
             </if>
         </where>
     </select>
