@@ -359,7 +359,7 @@ public class N25175AdminExample {
 
         //lusifer 扩展
         public Criteria andARoleNotEqualToOrARoleIsNull(Integer value) {
-            addCriterion("a_role <> " + value + " or a_role is null");
+            addCriterion("(a_role <> " + value + " or a_role is null)");
             return (Criteria) this;
         }
 
