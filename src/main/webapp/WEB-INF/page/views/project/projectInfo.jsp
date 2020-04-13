@@ -209,9 +209,15 @@
 
                         <div class="layui-form-item">
                             <div class="layui-input-block">
-                                <c:if test="${p.status == null}">
-                                <button type="submit" lay-submit class="layui-btn" id="commit"  lay-filter="demo1">
-                                    立即提交</button>
+                                <c:if test="${user.aStatus == 4}">
+                                    <c:if test="${p.status == null}">
+                                        <button type="submit" lay-submit class="layui-btn" id="commit"  lay-filter="demo1">
+                                            立即提交</button>
+                                    </c:if>
+                                    <c:if test="${p.status == 4 || p.status == 5}">
+                                        <button type="submit" lay-submit class="layui-btn" id="commit"  lay-filter="demo2">
+                                            重新提交</button>
+                                    </c:if>
                                 </c:if>
                                 <c:if test="${user.aStatus == 5 && p.status == 1}">
                                     <button type="button" lay-submit class="layui-btn" id="fchecky"
@@ -290,8 +296,32 @@
                         layer.alert(data.msg,{offset: '300px'},
                             function(index, layero) {
                                 //关闭当前标签页
-                                parent.layui.admin.events.closeThisTabs()
+                                parent.layui.index.refreshAndCloseTabs("project/to_list","project/newp?uAid=${user.aId}")
                         });
+                    } else {
+                        layer.alert(data.msg,{offset: '300px'},
+                            function(index, layero) { parent.layui.admin.events.closeThisTabs() });
+                    }
+                }
+            });
+            return false;
+        });
+
+        form.on('submit(demo2)', function(data){
+            var fdata = $("#user-profile").serialize();
+            var pContent = layedit.getContent(ieditor);
+            $.ajax({
+                "url": "project/afresh_commit",
+                "data": fdata + "&pContent=" + pContent,
+                "type": "POST",
+                "dataType": "json",
+                "success": function(data) {
+                    if (data.code == 200) {
+                        layer.alert(data.msg,{offset: '300px'},
+                            function(index, layero) {
+                                //关闭当前标签页
+                                parent.layui.index.refreshAndCloseTabs("project/to_list", "project/item?pCode=${p.pCode}")
+                            });
                     } else {
                         layer.alert(data.msg,{offset: '300px'},
                             function(index, layero) { parent.layui.admin.events.closeThisTabs() });
@@ -360,7 +390,10 @@
             "success": function(data) {
                 if (data.code == 200) {
                     layer.alert(data.msg,{offset: '300px'},
-                        function(index, layero) { parent.layui.admin.events.closeThisTabs() });
+                        function(index, layero) {
+                            parent.layui.index.refreshAndCloseTabs("project/to_list", "project/item?pCode=${p.pCode}")
+                            // parent.layui.admin.events.closeThisTabs()
+                        });
                 } else {
                     layer.alert("未知错误,请联系管理员",{offset: '300px'},
                         function(index, layero) { parent.layui.admin.events.closeThisTabs() });

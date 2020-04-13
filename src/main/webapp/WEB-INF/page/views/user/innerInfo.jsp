@@ -569,7 +569,6 @@
                     }, sort: true}
                 , {field: 'aDate', width: 110, title: '创建日期', sort: true}
                 , {field: 'phone', width: 120, title: '手机号'}
-                , {field: 'aPassword', width: 120, title: '密码'}
                 , {field: "left", title: "操作", toolbar: "#barTool"}
             ]]
             , page: {

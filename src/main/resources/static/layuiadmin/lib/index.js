@@ -88,8 +88,49 @@ layui.extend({
   //加载公共模块
   layui.use('common');
 
+  //关闭标签页刷新列表  lusifer
+  refreshAndCloseTabs = function (refreshUrl, closeUrl) {
+    //遍历页签选项卡
+    var matchTo,
+        mathCloseIndex,
+        mathCloseTo,
+        tabs = $('#LAY_app_tabsheader>li'),
+        path = refreshUrl.replace(/(^http(s*):)|(\?[\s\S]*$)/g, '');
+
+    tabs.each(function (index) {
+      var li = $(this), layid = li.attr('lay-id');
+      if (layid === refreshUrl) {
+        matchTo = true;
+        tabsPage.index = index;
+      }
+      if (layid == closeUrl) {
+        mathCloseTo = true;
+        mathCloseIndex = index;
+      }
+    });
+
+    if (mathCloseTo) {
+      $('#LAY_app_tabsheader>li').eq(mathCloseIndex).find('.layui-tab-close').trigger('click');
+    }
+
+    if (matchTo) {
+      //定位当前tabs
+      element.tabChange(FILTER_TAB_TBAS, refreshUrl);
+      admin.tabsBodyChange(tabsPage.index,
+          {
+            url: refreshUrl,
+            //text: text
+          });
+      var iframe = admin.tabsBody(admin.tabsPage.index).find('.layadmin-iframe');
+      iframe[0].contentWindow.location.href = refreshUrl;
+    } else {
+      console.log("调用openTabsPageRefresh没有匹配到url:", refreshUrl, "路径！");
+    }
+  }
+
   //对外输出
   exports('index', {
     openTabsPage: openTabsPage
-  });
+    , refreshAndCloseTabs: refreshAndCloseTabs
+});
 });

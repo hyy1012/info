@@ -84,6 +84,29 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
+    public JSONObject afreshCommit(Project project) {
+        JSONObject jsonObject = new JSONObject();
+        int code = selectCode(project.getpCode());
+        if (code != 1){
+            jsonObject.put("code", 500);
+            jsonObject.put("msg", "提交失败, 项目编号不存在");
+            return jsonObject;
+        }
+        project.setStatus(1);
+        Example example = new Example(Project.class);
+        example.createCriteria().andEqualTo("pCode", project.getpCode());
+        int i = projectMapper.updateByExampleSelective(project, example);
+        if (i == 0){
+            jsonObject.put("code", 500);
+            jsonObject.put("msg", "提交失败, 未知错误");
+            return jsonObject;
+        }
+        jsonObject.put("code", 200);
+        jsonObject.put("msg", "提交成功");
+        return jsonObject;
+    }
+
+    @Override
     public int shenpiUpdate(String idea, Boolean isFirst, Integer status, String pCode) {
         Example example = new Example(Project.class);
         example.createCriteria().andEqualTo("pCode", pCode);

@@ -60,6 +60,13 @@ public class ProjectController {
         return jsonObject;
     }
 
+    @RequestMapping("/afresh_commit")
+    @ResponseBody
+    public JSONObject afreshCommit(Project project){
+        JSONObject jsonObject = projectService.afreshCommit(project);
+        return jsonObject;
+    }
+
     @RequestMapping("/check")
     @ResponseBody
     public JSONObject check(String fideay, String fidean, String eideay, String eidean, String pCode){

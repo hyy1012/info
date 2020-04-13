@@ -17,6 +17,8 @@ public interface ProjectService {
 
     JSONObject commit(Project project);
 
+    JSONObject afreshCommit(Project project);
+
     int shenpiUpdate(String idea, Boolean isFirst, Integer status, String pCode);
 
     List<ProjectDto> findListByuAid(Integer id);
